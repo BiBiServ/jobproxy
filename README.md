@@ -1,6 +1,6 @@
 # JobProxy
 
-JobProxy is (should be) a proxy between a application that needs access to compute resources like starting a docker container or just starting a simple shell script and the various existing resource providing frameworks. 
+JobProxy is (should be) a proxy between an application that needs access to compute resources like starting a docker container or just starting a simple shell script and the various existing resource providing frameworks. 
 
 
 ## Motivation
