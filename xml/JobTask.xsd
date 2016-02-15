@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"> 
+
+
+<xs:element name="task">
+    <xs:annotation>
+        <xs:documentation>
+            Describes a task running on resource/task scheduler like mesos + frameworks or grid batch cluster system like OGE/Univa.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="user" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>User who submits this task.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cores" type="xs:int" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Number of cores reserved for submission (optional).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="memory" type="xs:int" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Memory (in Gb) for submission (optional).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cputime" type="xs:int" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Maximum available cpu time (in hours) for submitted job (optional).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stdout" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Stdout directory location used by this task.</xs:documentation>
+                </xs:annotation>          
+            </xs:element>
+            
+            <xs:element name="stderr" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Stderr directory location used by this task.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            
+            <xs:choice>
+                <xs:annotation>
+                    <xs:documentation>Currently 2 different types of task a supported, execution via cmdline or container</xs:documentation>
+                </xs:annotation>
+                <xs:element name="cmd" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Commandline executed when running this task.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="container" type="tContainer">
+                    <xs:annotation>
+                        <xs:documentation>Container executed when running this task.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+</xs:element>
+    
+    
+    
+    
+    <xs:complexType name="tContainer">
+        <xs:annotation>
+            <xs:documentation>Container description</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="image" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>image name/id (mandantory)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ports" type="tPorts" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>ports mapped between host and container</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="mounts" type="tMounts" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>volumes/devices mapped between host and container</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cmd" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>specific cmd to call instead of containers default cmd</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    <xs:complexType name="tMounts">
+        <xs:annotation>
+            <xs:documentation>Describe a list of host,container mount values</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="mount">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="host" type="xs:string" />
+                        <xs:element name="container" type="xs:string"/>
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="tPorts">
+        <xs:annotation>
+            <xs:documentation>Describe a list of host,container port values</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="port">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="host" type="xs:int"/>
+                        <xs:element name="container" type="xs:int"/>
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+
+</xs:schema>
