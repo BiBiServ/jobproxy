@@ -34,7 +34,9 @@ import org.glassfish.jersey.server.ResourceConfig;
  */
 
 public class JobProxy {
+    
 
+    
     
     /**
      * Create and start a simple http server hosting all implemented 

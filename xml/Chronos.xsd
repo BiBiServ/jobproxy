@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"> 
+
+    <xs:element name="jobconfig">
+        <xs:annotation>
+            <xs:documentation> Job Configuration used to define a Chronos job (Chronos 2.4)</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="name" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Name of job.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="description" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Description of job</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="command" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Command to execute</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="arguments">
+                    <xs:annotation>
+                        <xs:documentation>Arguments to pass to the command. Ignored if shell is
+                            true</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:list itemType="xs:string"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="shell" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If true, Mesos will execute command by running /bin/sh -c
+                            &lt;command&gt; and will ignore arguments. If false, command will be
+                            treated as the filename of an executable and arguments will be the
+                            arguments passed. If this is a Docker job and shell is true, the
+                            entrypoint of the container will be overridden with /bin/sh
+                            -c</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="epsilon" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>If, for any reason, a job can't be started at the
+                            scheduled time, this is the window in which Chronos will attempt to run
+                            the job again</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="executor" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Mesos executor. By default Chronos uses the Mesos command
+                            executor.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="executorFlags">
+                    <xs:annotation>
+                        <xs:documentation>Flags to pass to Mesos executor</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:list itemType="xs:string"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="retries" type="xs:int">
+                    <xs:annotation>
+                        <xs:documentation>Number of retries to attempt if a command returns a
+                            non-zero status</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="owner">
+                    <xs:annotation>
+                        <xs:documentation>Email address(es) to send job failure notifications. Use
+                            comma-separated list for multiple addresses.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:list itemType="xs:string"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="ownerName" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Name of the individual responsible for the
+                            job.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="async" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>Execute using Async executor</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="successCount" type="xs:int">
+                    <xs:annotation>
+                        <xs:documentation>Number of successes since the job was last
+                            modified.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="errorCount" type="xs:int">
+                    <xs:annotation>
+                        <xs:documentation>Number of errors since the job was last
+                            modified.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="lastSuccess" type="xs:dateTime">
+                    <xs:annotation>
+                        <xs:documentation>Date of last successful attempt.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="lastError" type="xs:dateTime">
+                    <xs:annotation>
+                        <xs:documentation>Date of last failed attempt.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="cpus" type="xs:double">
+                    <xs:annotation>
+                        <xs:documentation>Amount of Mesos CPUs for this job.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="mem" type="xs:int">
+                    <xs:annotation>
+                        <xs:documentation>Amount of Mesos Memory (in MB) for this
+                            job.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="disk" type="xs:long">
+                    <xs:annotation>
+                        <xs:documentation>Amount of Mesos disk (in MB) for this
+                            job.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="disabled" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If set to true, this job will not be
+                            run.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="uris">
+                    <xs:annotation>
+                        <xs:documentation>An array of URIs which Mesos will download when the task
+                            is started.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:list itemType="xs:anyURI"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="schedule" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>ISO 8601 repeating schedule for this job. If specified,
+                            parents must not be specified.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="scheduleTimeZone" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>The time zone for the given schedule, specified in the tz
+                            database format.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="parents">
+                    <xs:annotation>
+                        <xs:documentation>An array of parent jobs for a dependent job. If specified,
+                            schedule must not be specified.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:list itemType="xs:string"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="runAsUser" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Mesos will run the job as this user, if
+                            specified.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="container">
+                    <xs:annotation>
+                        <xs:documentation>This contains the subfields for the Docker
+                            container</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="type" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Type of container implemenation, should be
+                                        'DOCKER' for docker container. </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="image" type="xs:string"/>
+                            <xs:element name="forcePullImage" type="xs:boolean" minOccurs="0"/>
+                            <xs:element name="network" type="xs:string" minOccurs="0"/>
+                            <xs:element name="volumes" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="volume" minOccurs="0"
+                                            maxOccurs="unbounded" type="Tvolume"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dataJob" type="xs:boolean"> 
+                    <xs:annotation>
+                        <xs:documentation>Toggles whether the job tracks data (number of elements processed)</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="environmentVariables">
+                    <xs:annotation>
+                        <xs:documentation>An array of environment variables passed to the Mesos executor. For Docker containers, these are also passed to Docker using the -e flag.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="var">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="name" type="xs:string"/>
+                                        <xs:element name="value" type="xs:string"/>
+                                    </xs:all>
+                                    
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                    
+                </xs:element>
+                <xs:element name="constraints">
+                    <xs:annotation>
+                        <xs:documentation>Control where jobs run. Each constraint is compared against the attributes of a Mesos slave.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="constraint">
+                                <xs:simpleType>
+                                    <xs:list itemType="xs:string"/>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+
+            </xs:all>
+
+        </xs:complexType>
+
+
+    </xs:element>
+    
+    
+    <xs:complexType name="Tvolume">
+        <xs:annotation>
+            <xs:documentation> Specification of one Volume</xs:documentation>
+        </xs:annotation>
+        
+        <xs:all>
+            <xs:element name="containerPath" type="xs:string"/>
+            <xs:element name="hostPath" type="xs:string"/>
+            <xs:element name="mode" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>One of 'R' (read) or 'RW' (readwrite)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:all>    
+    </xs:complexType>
+
+
+</xs:schema>
