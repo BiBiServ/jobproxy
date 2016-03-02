@@ -1,0 +1,16 @@
+  {
+  "schedule": "R1//PT2M",
+  "name": "dockerjob",
+  "container": {
+    "type": "DOCKER",
+    "image": "ubuntu",
+    "network": "BRIDGE",
+    "volumes": [
+    ]
+  },
+  "cpus": "0.5",
+  "mem": "128",
+  "uris": [],
+  "command": "/bin/echo 'Hello World!'",
+  "retries" : 0
+}

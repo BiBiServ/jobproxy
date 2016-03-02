@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/Users/jkrueger/NetbeansProjects/jobproxy/xml/JobTask.xsd">
+    <user>jkrueger</user>
+    <cores>1</cores>
+    <memory>128</memory>
+    <cputime>10</cputime>
+    <cmd>/bin/echo 'Hello World!'</cmd>
+</task>

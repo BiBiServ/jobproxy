@@ -1,0 +1,9 @@
+{
+  "schedule": "R1//PT2M",
+  "name": "helloworld",
+  "cpus": "0.5",
+  "mem": "128",
+  "uris": [],
+  "command": "/bin/echo 'Hello World!'",
+  "retries" : 0
+}

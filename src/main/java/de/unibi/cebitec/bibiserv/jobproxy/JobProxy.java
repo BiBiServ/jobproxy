@@ -20,6 +20,7 @@ import com.sun.net.httpserver.HttpServer;
 import de.unibi.cebitec.bibiserv.jobproxy.rest.State;
 import de.unibi.cebitec.bibiserv.jobproxy.rest.Submit;
 import de.unibi.cebitec.bibiserv.jobproxy.rest.Ping;
+import de.unibi.cebitec.bibiserv.jobproxy.scheduler.Chronos;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
@@ -36,6 +37,20 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class JobProxy {
     
 
+    private static JobProxyInterface framework;
+    
+    
+    /** Currently hardcoded Chronos framework, should be replaced by a more flexible
+     *  aproach to support 
+     *  
+     * @return Return a framework implememting the jobproxy interface
+     */
+    public static JobProxyInterface getFramework(){
+       if (framework == null) {
+           framework = new Chronos();
+       }
+      return framework;
+    }
     
     
     /**

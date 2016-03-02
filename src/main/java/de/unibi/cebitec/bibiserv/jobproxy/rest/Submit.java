@@ -16,6 +16,8 @@
 package de.unibi.cebitec.bibiserv.jobproxy.rest;
 
 
+import de.unibi.cebitec.bibiserv.jobproxy.JobProxy;
+import de.unibi.cebitec.bibiserv.jobproxy.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.data.task.Task;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -41,7 +43,8 @@ public class Submit {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})   
     @Produces(MediaType.TEXT_PLAIN)
     public String submit(Task task){
-        throw new UnsupportedOperationException("Implementation is missing");
+        JobProxyInterface framework = JobProxy.getFramework();
+        return framework.addTask(task);
     }
     
 
