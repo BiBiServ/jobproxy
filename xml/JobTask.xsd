@@ -32,13 +32,13 @@
             </xs:element>
             <xs:element name="stdout" type="xs:string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Stdout directory location used by this task.</xs:documentation>
+                    <xs:documentation>Stdout directory location used by this task (optional).</xs:documentation>
                 </xs:annotation>          
             </xs:element>
             
             <xs:element name="stderr" type="xs:string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>Stderr directory location used by this task.</xs:documentation>
+                    <xs:documentation>Stderr directory location used by this task (optional).</xs:documentation>
                 </xs:annotation>
             </xs:element>
             
@@ -76,17 +76,17 @@
                     <xs:documentation>image name/id (mandantory)</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="ports" type="tPorts" minOccurs="0">
+            <xs:element name="ports" type="tPorts" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>ports mapped between host and container</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="mounts" type="tMounts" minOccurs="0">
+            <xs:element name="mounts" type="tMounts" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>volumes/devices mapped between host and container</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="cmd" type="xs:string" minOccurs="0">
+            <xs:element name="cmd" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>specific cmd to call instead of containers default cmd</xs:documentation>
                 </xs:annotation>
