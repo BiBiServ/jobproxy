@@ -1,6 +1,4 @@
-package de.unibi.cebitec.bibiserv.jobproxy;
-
-import de.unibi.cebitec.bibiserv.jobproxy.JobProxyInterface;
+package de.unibi.cebitec.bibiserv.jobproxy.model;
 
 /**
  * Created by pbelmann on 04.03.16.

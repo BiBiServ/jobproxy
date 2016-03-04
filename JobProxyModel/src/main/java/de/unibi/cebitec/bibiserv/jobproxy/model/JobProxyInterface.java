@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.unibi.cebitec.bibiserv.jobproxy;
+package de.unibi.cebitec.bibiserv.jobproxy.model;
 
 
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;

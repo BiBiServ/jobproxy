@@ -15,7 +15,7 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;/*
  */
 
 
-import de.unibi.cebitec.bibiserv.jobproxy.JobProxyFactory;
+import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
 
 import javax.ws.rs.Consumes;

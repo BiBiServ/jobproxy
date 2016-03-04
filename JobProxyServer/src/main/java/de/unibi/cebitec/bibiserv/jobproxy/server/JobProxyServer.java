@@ -22,8 +22,8 @@ import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
 
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.Chronos;
-import de.unibi.cebitec.bibiserv.jobproxy.JobProxyFactory;
-import de.unibi.cebitec.bibiserv.jobproxy.JobProxyInterface;
+import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
+import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Ping;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Submit;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
