@@ -4,7 +4,7 @@
     <groupId>de.unibi.cebitec.bibiserv.jkrueger</groupId>
     <artifactId>JobProxy</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     
     <repositories>
         <repository>
@@ -18,7 +18,11 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
-    
+    <modules>
+        <module>JobProxyModel</module>
+        <module>JobProxyServer</module>
+        <module>JobProxyChronos</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>

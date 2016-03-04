@@ -1,4 +1,7 @@
-/target/
-# User-specific stuff:
-.idea/
+target/
+.idea
+.settings/
 *.iml
+target/
+/.target
+
