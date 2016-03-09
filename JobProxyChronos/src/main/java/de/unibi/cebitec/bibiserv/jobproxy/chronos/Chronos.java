@@ -16,6 +16,7 @@ package de.unibi.cebitec.bibiserv.jobproxy.chronos;/*
 
 
 import java.io.StringWriter;
+import java.util.List;
 import java.util.UUID;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -31,6 +32,7 @@ import javax.xml.bind.PropertyException;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Jobconfig;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Tvolume;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
+import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.TContainer;
@@ -51,16 +53,12 @@ import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
  *
  * @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
-public class Chronos implements JobProxyInterface {
-
-    /**
-     * @ToDo: Use zookeeper to retrieve the necessary informations
-     */
-    private final static String uri = "http://nettop:4400";
+public class Chronos extends JobProxyInterface {
 
     private Client client;
 
-    public Chronos() {
+    public Chronos(URLProvider provider) {
+        super(provider);
         client = ClientBuilder.newClient().register(MoxyJsonFeature.class);
     }
 
@@ -106,8 +104,9 @@ public class Chronos implements JobProxyInterface {
         jc.setRetries(0);
         jc.setSchedule("R1//PT2M");
 
+        jc.setShell(true);
         // request Chronos for a new task
-        WebTarget webtarget = client.target(uri).path("/scheduler/iso8601");
+        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/iso8601");
         try {
         Response response = webtarget.
                 request(MediaType.APPLICATION_JSON).
@@ -121,7 +120,7 @@ public class Chronos implements JobProxyInterface {
 
     @Override
     public Task getTask(String id) {
-        WebTarget webtarget = client.target(uri).path("/scheduler/jobs");
+        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
         Task task = new Task();
        // check if 
@@ -131,13 +130,13 @@ public class Chronos implements JobProxyInterface {
 
     @Override
     public void delTask(String id) {
-        WebTarget webtarget = client.target(uri).path("/scheduler/jobs/" + id);
+        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs/" + id);
         Response response = webtarget.request().delete();
     }
 
     @Override
     public State getState(String id) {
-        WebTarget webtarget = client.target(uri).path("/scheduler/jobs");
+        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
 
         State state = new State();
@@ -147,7 +146,7 @@ public class Chronos implements JobProxyInterface {
 
     @Override
     public States getState() {
-        WebTarget webtarget = client.target(uri).path("/scheduler/jobs");
+        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
        // translate all response data to a list of states
 
@@ -169,5 +168,4 @@ public class Chronos implements JobProxyInterface {
 
         return sw.toString();
     }
-
 }

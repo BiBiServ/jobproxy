@@ -16,6 +16,7 @@
 package de.unibi.cebitec.bibiserv.jobproxy.model;
 
 
+import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
@@ -24,46 +25,59 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
  *
  * @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
-public interface JobProxyInterface {
-   
+public abstract class JobProxyInterface {
+
+    private URLProvider provider;
+
+    public JobProxyInterface(URLProvider provider){
+        this.provider = provider;
+    }
+
     /**
      * Add a new task and returns an unique task id
-     * 
+     *
      * @param t - task definition
      * @return unique task id
      */
-    public String addTask(Task t);
-    
+    public abstract String addTask(Task t);
+
     /**
      * Return a task definition given a its task id.
-     * 
+     *
      * @param id - task id
      * @return Return task state.
      */
-    public Task getTask(String id);
-       
+    public abstract Task getTask(String id);
+
     /**
      * Delete a task given its task id.
-     * 
+     *
      * @param id - task id
      */
-    public void delTask(String id);
-    
-    
+    public abstract void delTask(String id);
+
+
     /**
-     * Return a task state given its task id. 
-     * 
+     * Return a task state given its task id.
+     *
      * @param id - task id
-     * @return Return task state 
+     * @return Return task state
      */
-    public State getState(String id);
-    
-    
-    
+    public abstract State getState(String id);
+
     /**
-     * Return a list of states of all tasks running 
-     * @return 
+     * Return a list of states of all tasks running
+     * @return
      */
-    public States getState();
-    
+    public abstract States getState();
+
+    /**
+     * Return Url provider that return Url
+     *
+     * @return URLProvider
+     *
+     */
+    protected URLProvider getUrlProvider(){
+        return provider;
+    }
 }
