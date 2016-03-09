@@ -11,5 +11,11 @@
 
     <artifactId>JobProxyModel</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+    </dependencies>
 </project>

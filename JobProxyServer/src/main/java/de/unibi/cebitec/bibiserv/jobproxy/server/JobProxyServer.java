@@ -22,11 +22,15 @@ import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
 
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.Chronos;
+import de.unibi.cebitec.bibiserv.jobproxy.chronos.ChronosURLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Ping;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Submit;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.retry.RetryOneTime;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -46,13 +50,23 @@ public class JobProxyServer {
      *
      * @return Return a framework implememting the jobproxy interface
      */
-    public static JobProxyInterface getFramework(){
+    public static JobProxyInterface getFramework(CuratorFramework client){
        if (framework == null) {
-           framework = new Chronos();
+           framework = new Chronos(new ChronosURLProvider(client));
        }
       return framework;
     }
-    
+
+    /**
+     * Initialize Curator Client and return it.
+     * @return Curator Framework
+     */
+    private static CuratorFramework startCuratorClient(String zookeeperURL){
+        CuratorFramework client = CuratorFrameworkFactory.newClient(zookeeperURL, new RetryOneTime(1000));
+        client.start();
+        return client;
+    }
+
     /**
      * Create and start a simple http server hosting all implemented 
      * REST interfaces ...
@@ -60,7 +74,8 @@ public class JobProxyServer {
      * @param args 
      */
     public static void main (String [] args) {
-        JobProxyFactory.setFramework(getFramework());
+        CuratorFramework client = startCuratorClient("localhost:2181");
+        JobProxyFactory.setFramework(getFramework(client));
 
         try {
             // create a new HTTPServer and register JAXRS annotated classes
