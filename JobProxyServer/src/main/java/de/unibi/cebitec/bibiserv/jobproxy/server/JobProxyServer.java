@@ -74,7 +74,12 @@ public class JobProxyServer {
      * @param args 
      */
     public static void main (String [] args) {
-        CuratorFramework client = startCuratorClient("localhost:2181");
+        if(args.length != 1 ){
+            System.err.println("Please provide the zookeeper url and port: '<URL>':'<PORT>' ");
+            System.exit(1);
+        }
+        String zookeeperURL = args[0];
+        CuratorFramework client = startCuratorClient(zookeeperURL);
         JobProxyFactory.setFramework(getFramework(client));
 
         try {
