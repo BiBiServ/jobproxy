@@ -1,0 +1,96 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: JobProxy
+  description: JobProxy REST API for running task independent of the framework
+  version: "0.1.0"
+# array of all schemes that your API supports
+schemes:
+  - http
+  - https
+produces:
+  - application/json
+paths:
+  /jobproxy/submit:
+    post:
+      summary: Tasks to be run
+      description: |
+        The submit endpoint accepts a task definition which is used to run
+        on a fraemwork.
+      parameters:
+        - name: "Task"
+          in: "body"
+          required: true
+          schema:
+            $ref: '#/definitions/Task'
+      consumes:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: Accepted Task
+definitions:
+  Task:
+    type: object
+    required:
+     - user
+    properties:
+      user: 
+        type: string
+        description: Task specification representing a specific Task a Framework should run.
+      cores:
+        type: number
+        description: Cores a Task should use.
+      memory:
+        type: number
+        description: Memory used by a task.
+      cputime:
+        type: number
+        description: Cpu time a task is allowed to use.
+      stdout:
+        type: string
+        description: Path to a file for stdout a task could produce.
+      stderr:
+        type: string
+        description: Path to a file for stderr a task could produce.
+      cmd:
+        type: string
+        description: A command specified for a task
+      container:
+        $ref: '#/definitions/TContainer'
+  TContainer:
+    description: Optional Docker container.
+    type: object
+    required:
+     - image
+    properties:
+      image:
+        type: string
+        description: Docker image specification
+      cmd:
+        type: string
+        description: Command a Docker container should execute
+      ports:
+        $ref: '#/definitions/TPorts'
+  TPorts:
+    description: Ports container could shoult map to the host system.
+    type: object
+    required:
+      - port
+    properties:
+      port:
+        $ref: '#/definitions/Port'
+  Port:
+    description: Port of the host and the container system.
+    type: object
+    required:
+      - host
+      - container
+    properties:
+      host:
+        type: number
+        description: Port of the host system.
+      container:
+        type: number
+        description: Port of the container. 
