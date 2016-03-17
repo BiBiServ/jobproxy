@@ -14,6 +14,7 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;/*
  * limitations under the License.
  */
 
+import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 
 import javax.ws.rs.Consumes;
@@ -31,7 +32,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("jobproxy/state")
 public class State {
-    
+
     
     /**
      * Returns the state of all  tasks in human readable format.
@@ -53,7 +54,7 @@ public class State {
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public States state_get_machinereadable(){
-        throw new UnsupportedOperationException("Implementation is missing!");
+        return JobProxyFactory.getFramework().getState();
     }
     
     /**
@@ -81,8 +82,8 @@ public class State {
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public State state_post_machinereadable(String id){
-        throw new UnsupportedOperationException("Implementation is missing!");
+    public de.unibi.cebitec.bibiserv.jobproxy.model.state.State state_post_machinereadable(String id){
+        return JobProxyFactory.getFramework().getState(id);
     }
     
 }
