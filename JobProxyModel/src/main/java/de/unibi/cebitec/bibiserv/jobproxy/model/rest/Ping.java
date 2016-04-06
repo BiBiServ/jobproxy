@@ -27,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
-@Path("jobproxy/ping")
+@Path("/v1/jobproxy/ping")
 public class Ping {
     
     /**

@@ -32,7 +32,7 @@ import javax.ws.rs.core.Response;
  * 
  *  @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
-@Path("jobproxy/submit")
+@Path("/v1/jobproxy/submit")
 public class Submit {
     
     @Context Request request;
