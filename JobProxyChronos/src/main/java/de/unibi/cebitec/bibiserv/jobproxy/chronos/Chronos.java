@@ -15,20 +15,12 @@ package de.unibi.cebitec.bibiserv.jobproxy.chronos;/*
  */
 
 
-import java.io.StringWriter;
-import java.util.List;
-import java.util.UUID;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
-
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.ChronosJob;
+import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.ChronosJobState;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Jobconfig;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Tvolume;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
@@ -41,6 +33,23 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.task.TPorts;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
 import org.eclipse.persistence.jaxb.MarshallerProperties;
 import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.*;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Implementation of JoBProxyInterface for Mesos Framework Chronos
@@ -136,23 +145,62 @@ public class Chronos extends JobProxyInterface {
 
     @Override
     public State getState(String id) {
-        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
-        Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
+        List<State> jobProxyStates = getJobProxyStates();
 
-        State state = new State();
+        Optional<State> optionalJobProxyState = jobProxyStates.stream().filter(state -> state.getId().equals(id)).findFirst();
 
-        return state;
+        return optionalJobProxyState.orElse(new State());
     }
 
     @Override
     public States getState() {
+        List<State> jobProxyStates = getJobProxyStates();
+        States states = new States();
+        states.getState().addAll(jobProxyStates);
+        return states;
+    }
+
+    /**
+     * Retrieve Job States from chronos.
+     * @return List of states
+     *
+     */
+    private List<State> getJobProxyStates(){
         WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
-       // translate all response data to a list of states
 
-        States states = new States();
+        WebTarget webtargetCSV = client.target(getUrlProvider().getUrl()).path("/scheduler/graph/csv");
+        Response  chronosStates = webtargetCSV.request(MediaType.TEXT_PLAIN).get();
 
-        return states;
+        String entity = chronosStates.readEntity(String.class);
+
+        CsvMapper mapper = new CsvMapper();
+        CsvSchema schema = mapper.schemaFor(ChronosJobState.class);
+
+        Map<String, ChronosJobState> map = new HashMap<String, ChronosJobState>();
+
+        try {
+            MappingIterator<ChronosJobState> iter = mapper.readerWithSchemaFor(ChronosJobState.class).with(schema).readValues(entity);
+            iter.forEachRemaining(state -> map.put(state.getId(),state));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // translate all response data to a list of chronos job states
+        List<ChronosJob> chronosJobs = response.readEntity(new GenericType<List<ChronosJob>>(){});
+
+        //transform to jobproxy state
+        List<State> jobProxyStates = chronosJobs.stream().map(chronosState -> {
+            State state = chronosState.getState();
+            if (map.get(state.getId()).getLastExit().equals("failure")) {
+                state.setCode("1");
+            } else {
+                state.setCode("0");
+            }
+            return state;
+        }).collect(toList());
+
+        return jobProxyStates;
     }
 
     private String unmarshall2Json(Jobconfig jobconfig) throws PropertyException, JAXBException {

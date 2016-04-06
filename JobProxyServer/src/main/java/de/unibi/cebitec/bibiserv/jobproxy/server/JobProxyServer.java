@@ -27,7 +27,7 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Ping;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Submit;
-import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
+import de.unibi.cebitec.bibiserv.jobproxy.model.rest.State;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryOneTime;
