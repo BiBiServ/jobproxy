@@ -30,7 +30,7 @@ import javax.ws.rs.core.MediaType;
  * 
  *  @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
-@Path("jobproxy/state")
+@Path("/v1/jobproxy/state")
 public class State {
 
     
