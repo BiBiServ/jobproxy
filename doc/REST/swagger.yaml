@@ -30,6 +30,30 @@ paths:
       responses:
         200:
           description: Accepted Task
+  /jobproxy/state:
+    post:
+      summary: Tasks state
+      description: |
+        The states endpoint accepts a task id.
+      parameters:
+        - name: "Task ID"
+          in: "body"
+          required: true
+          schema:
+            type: string
+      consumes:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: Accepted Task ID
+    get:
+      summary: Tasks states
+      description: |
+        Returns task states.
+      responses:
+        200:
+          description: Task IDs returned
 definitions:
   Task:
     type: object

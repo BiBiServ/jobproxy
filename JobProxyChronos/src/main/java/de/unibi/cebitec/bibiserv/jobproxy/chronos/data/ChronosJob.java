@@ -10,7 +10,7 @@ import java.util.StringJoiner;
  *
  *
  */
-public class ChronosState {
+public class ChronosJob {
 
     private String name;
 

@@ -15,7 +15,12 @@ package de.unibi.cebitec.bibiserv.jobproxy.chronos;/*
  */
 
 
-import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.ChronosState;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.ChronosJob;
+import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.ChronosJobState;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Jobconfig;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Tvolume;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
@@ -40,10 +45,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
+import java.io.IOException;
 import java.io.StringWriter;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -165,11 +169,36 @@ public class Chronos extends JobProxyInterface {
         WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
 
+        WebTarget webtargetCSV = client.target(getUrlProvider().getUrl()).path("/scheduler/graph/csv");
+        Response  chronosStates = webtargetCSV.request(MediaType.TEXT_PLAIN).get();
+
+        String entity = chronosStates.readEntity(String.class);
+
+        CsvMapper mapper = new CsvMapper();
+        CsvSchema schema = mapper.schemaFor(ChronosJobState.class);
+
+        Map<String, ChronosJobState> map = new HashMap<String, ChronosJobState>();
+
+        try {
+            MappingIterator<ChronosJobState> iter = mapper.readerWithSchemaFor(ChronosJobState.class).with(schema).readValues(entity);
+            iter.forEachRemaining(state -> map.put(state.getId(),state));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // translate all response data to a list of chronos job states
-        List<ChronosState> chronosStates = response.readEntity(new GenericType<List<ChronosState>>(){});
+        List<ChronosJob> chronosJobs = response.readEntity(new GenericType<List<ChronosJob>>(){});
 
         //transform to jobproxy state
-        List<State> jobProxyStates = chronosStates.stream().map(chronosState -> chronosState.getState()).collect(toList());
+        List<State> jobProxyStates = chronosJobs.stream().map(chronosState -> {
+            State state = chronosState.getState();
+            if (map.get(state.getId()).getLastExit().equals("failure")) {
+                state.setCode("1");
+            } else {
+                state.setCode("0");
+            }
+            return state;
+        }).collect(toList());
 
         return jobProxyStates;
     }
