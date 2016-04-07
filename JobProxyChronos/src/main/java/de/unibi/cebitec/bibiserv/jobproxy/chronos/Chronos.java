@@ -139,7 +139,7 @@ public class Chronos extends JobProxyInterface {
 
     @Override
     public void delTask(String id) {
-        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs/" + id);
+        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/job/" + id);
         Response response = webtarget.request().delete();
     }
 
