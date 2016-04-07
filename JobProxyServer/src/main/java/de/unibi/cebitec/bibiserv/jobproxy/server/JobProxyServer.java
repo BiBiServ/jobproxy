@@ -25,6 +25,7 @@ import de.unibi.cebitec.bibiserv.jobproxy.chronos.Chronos;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.ChronosURLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
+import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Delete;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Ping;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Submit;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.State;
@@ -85,7 +86,8 @@ public class JobProxyServer {
         try {
             // create a new HTTPServer and register JAXRS annotated classes
             URI serveruri = new URI("http://localhost:9999/");
-            HttpServer server = JdkHttpServerFactory.createHttpServer(serveruri, new ResourceConfig(Ping.class,Submit.class,State.class));
+            HttpServer server = JdkHttpServerFactory.createHttpServer(serveruri,
+                    new ResourceConfig(Ping.class,Submit.class,State.class, Delete.class));
             JOptionPane.showMessageDialog( null, "Server run on "+serveruri+"!\nClose Dialog to stop server ..." );
             server.stop(0);
         } catch (URISyntaxException io){

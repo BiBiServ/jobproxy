@@ -56,6 +56,22 @@ paths:
       responses:
         200:
           description: Task IDs returned
+  /jobproxy/delete:
+    delete:
+      summary: Delete a Task
+      description: |
+        The delete endpoint accepts a task id and deletes the corresponding task. 
+      parameters:
+        - name: "Task ID"
+          in: "body"
+          required: true
+          schema:
+            type: string
+      consumes:
+        - text/plain
+      responses:
+        204:
+          description: Task is deleted
 definitions:
   Task:
     type: object

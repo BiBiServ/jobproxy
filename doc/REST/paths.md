@@ -1,19 +1,29 @@
 ## Paths
-### Tasks states
+### Delete a Task
 ```
-GET /jobproxy/state
+DELETE /jobproxy/delete
 ```
 
 #### Description
 
-Returns task states.
+The delete endpoint accepts a task id and deletes the corresponding task. 
+
+
+#### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|BodyParameter|Task ID||true|string||
 
 
 #### Responses
 |HTTP Code|Description|Schema|
 |----|----|----|
-|200|Task IDs returned|No Content|
+|204|Task is deleted|No Content|
 
+
+#### Consumes
+
+* text/plain
 
 ### Tasks state
 ```
@@ -41,6 +51,22 @@ The states endpoint accepts a task id.
 
 * application/json
 * application/xml
+
+### Tasks states
+```
+GET /jobproxy/state
+```
+
+#### Description
+
+Returns task states.
+
+
+#### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|200|Task IDs returned|No Content|
+
 
 ### Tasks to be run
 ```
