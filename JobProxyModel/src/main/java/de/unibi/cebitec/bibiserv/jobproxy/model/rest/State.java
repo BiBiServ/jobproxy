@@ -33,18 +33,6 @@ import javax.ws.rs.core.MediaType;
 @Path("/v1/jobproxy/state")
 public class State {
 
-    
-    /**
-     * Returns the state of all  tasks in human readable format.
-     * 
-     * @return 
-     */
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String state_get_humanreadable(){
-        throw new UnsupportedOperationException("Implementation is missing!");
-    }
-    
     /**
      * Returns  the state of all tasks in machine readable format (either xml or json 
      * depending on  request-header mime-type)
@@ -53,24 +41,9 @@ public class State {
      */
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public States state_get_machinereadable(){
+    public States stateGet(){
         return JobProxyFactory.getFramework().getState();
     }
-    
-    /**
-     *  Returns the state of one task with given id in human readable format.
-     * 
-     * @param id of the task asked for
-     * @return 
-     */
-    @POST
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String state_post_humanreadable(String id){ 
-        throw new UnsupportedOperationException("Implementation is missing!");
-    }
-    
-    
     
     /**
      * Returns the state of one task with given id in machine readable format. 
@@ -82,7 +55,7 @@ public class State {
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public de.unibi.cebitec.bibiserv.jobproxy.model.state.State state_post_machinereadable(String id){
+    public de.unibi.cebitec.bibiserv.jobproxy.model.state.State statePost(String id){
         return JobProxyFactory.getFramework().getState(id);
     }
     
