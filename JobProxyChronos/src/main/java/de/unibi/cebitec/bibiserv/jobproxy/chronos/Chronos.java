@@ -103,6 +103,7 @@ public class Chronos extends JobProxyInterface {
                 volume.setMode("RW"); //@TODO - not specified by JobTask
                 c.getVolumes().getVolume().add(volume);
             }
+            jc.setContainer(c);
         }
 
         // Resources
