@@ -19,7 +19,6 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -52,7 +51,7 @@ public class State {
      * @param id of the task asked for
      * @return 
      */
-    @POST
+    @GET
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public de.unibi.cebitec.bibiserv.jobproxy.model.state.State statePost(String id){
