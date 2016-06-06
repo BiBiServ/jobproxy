@@ -32,23 +32,23 @@ paths:
       responses:
         200:
           description: Accepted Task
-  /jobproxy/state:
+  /jobproxy/state/{id}:
     get:
       summary: Tasks state
       description: |
         The states endpoint accepts a task id.
       parameters:
-        - name: "Task ID"
-          in: "body"
+        - name: id
+          in: path
           required: true
-          schema:
-            type: string
+          type: string
       consumes:
         - application/json
         - application/xml
       responses:
         200:
           description: Accepted Task ID
+  /jobproxy/state:
     get:
       summary: Tasks states
       description: |
@@ -56,17 +56,16 @@ paths:
       responses:
         200:
           description: Task IDs returned
-  /jobproxy/delete:
+  /jobproxy/delete/{id}:
     delete:
       summary: Delete a Task
       description: |
         The delete endpoint accepts a task id and deletes the corresponding task. 
       parameters:
-        - name: "Task ID"
-          in: "body"
+        - name: id
+          in: path
           required: true
-          schema:
-            type: string
+          type: string
       consumes:
         - text/plain
       responses:
