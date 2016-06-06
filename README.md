@@ -67,11 +67,22 @@ You will find the jar inside the `JobProxy/JobProxyServer/target` folder.
 ### REST
 
 We are using Swagger for our REST API. Our swagger.yaml can be found inside our `doc` [directory](doc/REST) altogether with our
-latest REST API [documentation]().
+latest REST API [documentation](doc/REST/api.md).
 
 #### How to extend our REST documentation?
 
-We are generating markup out of our swagger yaml by using the [swagger2markup](https://swagger2markup.readme.io/docs) tool.
+We are generating markup out of our swagger yaml by using the [swagger2markup-cli](http://swagger2markup.github.io/swagger2markup/1.0.1-SNAPSHOT/#_command_line_interface) tool.
+With the following command:
+
+~~~BASH
+java -jar swagger2markup-cli-1.0.0.jar convert -c config.properties -i swagger.yaml -f doc.md
+~~~
+
+where
+   
+   * doc.md is the output document
+   
+   * config.properties is the [configuration file](doc/REST/config.properties)
 
 #### How to build your own jobproxy client?
 
