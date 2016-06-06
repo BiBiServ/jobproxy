@@ -17,10 +17,7 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;/*
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -52,9 +49,9 @@ public class State {
      * @return 
      */
     @GET
-    @Consumes(MediaType.TEXT_PLAIN)
+    @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public de.unibi.cebitec.bibiserv.jobproxy.model.state.State statePost(String id){
+    public de.unibi.cebitec.bibiserv.jobproxy.model.state.State statePost(@PathParam("id")String id){
         return JobProxyFactory.getFramework().getState(id);
     }
     
