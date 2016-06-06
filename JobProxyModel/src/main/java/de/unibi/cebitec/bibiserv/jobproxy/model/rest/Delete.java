@@ -21,6 +21,7 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
@@ -38,8 +39,9 @@ public class Delete {
     @Context Response response;
 
     @DELETE
+    @Path("/{id}")
     @Consumes({MediaType.TEXT_PLAIN})
-    public void delete(String id){
+    public void delete(@PathParam("id")String id){
         JobProxyFactory.getFramework().delTask(id);
     }
 }
