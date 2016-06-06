@@ -33,7 +33,7 @@ paths:
         200:
           description: Accepted Task
   /jobproxy/state:
-    post:
+    get:
       summary: Tasks state
       description: |
         The states endpoint accepts a task id.
