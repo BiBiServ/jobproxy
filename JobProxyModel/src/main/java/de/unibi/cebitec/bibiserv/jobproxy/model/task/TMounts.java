@@ -7,6 +7,8 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.task;//
 
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -101,13 +103,15 @@ public class TMounts {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-
     })
     public static class Mount {
 
         @XmlElement(required = true)
+        @NotEmpty
         protected String host;
+
         @XmlElement(required = true)
+        @NotEmpty
         protected String container;
 
         /**
@@ -157,7 +161,5 @@ public class TMounts {
         public void setContainer(String value) {
             this.container = value;
         }
-
     }
-
 }

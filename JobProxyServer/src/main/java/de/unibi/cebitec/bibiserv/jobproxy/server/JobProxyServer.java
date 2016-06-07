@@ -34,6 +34,7 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryOneTime;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.ServerProperties;
 
 /**
  * Main class - initiate a simple http server and register JAXRS annotated classes.
@@ -87,7 +88,10 @@ public class JobProxyServer {
             // create a new HTTPServer and register JAXRS annotated classes
             URI serveruri = new URI("http://localhost:9999/");
             HttpServer server = JdkHttpServerFactory.createHttpServer(serveruri,
-                    new ResourceConfig(Ping.class,Submit.class,State.class, Delete.class));
+                    new ResourceConfig(Ping.class,Submit.class,State.class, Delete.class)
+                            .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
+                            .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true)
+                            .packages("de.unibi.cebitec.bibiserv.jobproxy.model.task"));
             JOptionPane.showMessageDialog( null, "Server run on "+serveruri+"!\nClose Dialog to stop server ..." );
             server.stop(0);
         } catch (URISyntaxException io){

@@ -16,12 +16,13 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;/*
 
 
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.BadGatewayException;
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
+import javax.validation.*;
+import javax.ws.rs.*;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
@@ -39,11 +40,13 @@ public class Submit {
     @Context Response response;
     
     @POST
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})   
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces(MediaType.TEXT_PLAIN)
-    public String submit(Task task){
-        return JobProxyFactory.getFramework().addTask(task);
+    public String submit(@Valid Task task){
+        try {
+            return JobProxyFactory.getFramework().addTask(task);
+        } catch (FrameworkException e) {
+            throw new BadGatewayException("Framework could not submit task.", e);
+        }
     }
-    
-
 }

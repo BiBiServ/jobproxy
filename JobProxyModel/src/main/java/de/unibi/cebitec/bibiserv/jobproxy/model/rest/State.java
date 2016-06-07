@@ -15,6 +15,8 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;/*
  */
 
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.BadGatewayException;
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 
 import javax.ws.rs.*;
@@ -38,9 +40,15 @@ public class State {
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public States stateGet(){
-        return JobProxyFactory.getFramework().getState();
+        States states = null;
+        try {
+            states = JobProxyFactory.getFramework().getState();
+        } catch (FrameworkException e) {
+            throw new BadGatewayException("Framework could not show states.", e);
+        }
+        return states;
     }
-    
+
     /**
      * Returns the state of one task with given id in machine readable format. 
      * (either xml or json depending on  request-header mime-type)
@@ -52,7 +60,14 @@ public class State {
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public de.unibi.cebitec.bibiserv.jobproxy.model.state.State statePost(@PathParam("id")String id){
-        return JobProxyFactory.getFramework().getState(id);
+        de.unibi.cebitec.bibiserv.jobproxy.model.state.State state = null;
+
+        try {
+            state = JobProxyFactory.getFramework().getState(id);
+        } catch (FrameworkException e) {
+            throw new BadGatewayException("Framework could not show the state of task " + id + ".", e);
+        }
+
+        return state;
     }
-    
 }

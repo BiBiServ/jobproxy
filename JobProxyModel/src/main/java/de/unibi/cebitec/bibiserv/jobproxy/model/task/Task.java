@@ -7,6 +7,11 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.task;//
 
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -16,9 +21,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -39,8 +44,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -57,22 +62,36 @@ import javax.xml.bind.annotation.XmlType;
 public class Task {
 
     @XmlElement(required = true)
+    @NotNull
+    @NotEmpty
     protected String user;
+
+    @Digits(integer = Integer.MAX_VALUE, fraction = 0)
     protected Integer cores;
+
+    @Digits(integer = Integer.MAX_VALUE, fraction = 0)
     protected Integer memory;
+
+    @Digits(integer = Integer.MAX_VALUE, fraction = 0)
     protected Integer cputime;
+
     protected String stdout;
+
     protected String stderr;
+
+    @NotEmpty
     protected String cmd;
+
+    @Valid
     protected TContainer container;
 
     /**
      * Gets the value of the user property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getUser() {
         return user;
@@ -80,11 +99,11 @@ public class Task {
 
     /**
      * Sets the value of the user property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setUser(String value) {
         this.user = value;
