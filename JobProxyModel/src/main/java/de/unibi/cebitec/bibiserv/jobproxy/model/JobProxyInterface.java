@@ -16,6 +16,7 @@
 package de.unibi.cebitec.bibiserv.jobproxy.model;
 
 
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
@@ -39,7 +40,7 @@ public abstract class JobProxyInterface {
      * @param t - task definition
      * @return unique task id
      */
-    public abstract String addTask(Task t);
+    public abstract String addTask(Task t) throws FrameworkException;
 
     /**
      * Return a task definition given a its task id.
@@ -47,14 +48,14 @@ public abstract class JobProxyInterface {
      * @param id - task id
      * @return Return task state.
      */
-    public abstract Task getTask(String id);
+    public abstract Task getTask(String id) throws FrameworkException;
 
     /**
      * Delete a task given its task id.
      *
      * @param id - task id
      */
-    public abstract void delTask(String id);
+    public abstract void delTask(String id) throws FrameworkException;
 
 
     /**
@@ -63,13 +64,13 @@ public abstract class JobProxyInterface {
      * @param id - task id
      * @return Return task state
      */
-    public abstract State getState(String id);
+    public abstract State getState(String id) throws FrameworkException;
 
     /**
      * Return a list of states of all tasks running
      * @return
      */
-    public abstract States getState();
+    public abstract States getState() throws FrameworkException;
 
     /**
      * Return Url provider that return Url

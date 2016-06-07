@@ -7,8 +7,11 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.task;//
 
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -49,9 +52,14 @@ import javax.xml.bind.annotation.XmlType;
 public class TContainer {
 
     @XmlElement(required = true)
+    @NotNull
+    @NotEmpty
     protected String image;
+
     protected List<TPorts> ports;
+
     protected List<TMounts> mounts;
+
     protected String cmd;
 
     /**

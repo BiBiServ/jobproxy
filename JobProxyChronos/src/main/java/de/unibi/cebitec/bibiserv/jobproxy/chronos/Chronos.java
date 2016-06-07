@@ -15,7 +15,6 @@ package de.unibi.cebitec.bibiserv.jobproxy.chronos;/*
  */
 
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
@@ -24,6 +23,7 @@ import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.ChronosJobState;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Jobconfig;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Tvolume;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
@@ -72,7 +72,7 @@ public class Chronos extends JobProxyInterface {
     }
 
     @Override
-    public String addTask(Task t) {
+    public String addTask(Task t) throws FrameworkException {
         // create a new Chronos JobConfig
         Jobconfig jc = new Jobconfig();
 
@@ -117,35 +117,38 @@ public class Chronos extends JobProxyInterface {
         jc.setShell(true);
         // request Chronos for a new task
         WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/iso8601");
+
         try {
-        Response response = webtarget.
+            Response response = webtarget.
                 request(MediaType.APPLICATION_JSON).
                 post(Entity.json(unmarshall2Json(jc)));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return jc.getName();
     }
 
     @Override
-    public Task getTask(String id) {
+    public Task getTask(String id) throws FrameworkException {
         WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
+        checkResponse(response);
         Task task = new Task();
-       // check if 
-
+       // check if
         return task;
     }
 
     @Override
-    public void delTask(String id) {
+    public void delTask(String id) throws FrameworkException {
         WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/job/" + id);
         Response response = webtarget.request().delete();
+        checkResponse(response);
     }
 
     @Override
-    public State getState(String id) {
+    public State getState(String id) throws FrameworkException {
         List<State> jobProxyStates = getJobProxyStates();
 
         Optional<State> optionalJobProxyState = jobProxyStates.stream().filter(state -> state.getId().equals(id)).findFirst();
@@ -154,11 +157,17 @@ public class Chronos extends JobProxyInterface {
     }
 
     @Override
-    public States getState() {
+    public States getState() throws FrameworkException {
         List<State> jobProxyStates = getJobProxyStates();
         States states = new States();
         states.getState().addAll(jobProxyStates);
         return states;
+    }
+
+    private void checkResponse(Response response) throws FrameworkException {
+        if(! response.getStatusInfo().getFamily().equals(Response.Status.Family.SUCCESSFUL)) {
+            throw new FrameworkException(response.getStatusInfo().getReasonPhrase());
+        }
     }
 
     /**
@@ -166,12 +175,16 @@ public class Chronos extends JobProxyInterface {
      * @return List of states
      *
      */
-    private List<State> getJobProxyStates(){
+    private List<State> getJobProxyStates() throws FrameworkException {
         WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
+
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
+        checkResponse(response);
 
         WebTarget webtargetCSV = client.target(getUrlProvider().getUrl()).path("/scheduler/graph/csv");
-        Response  chronosStates = webtargetCSV.request(MediaType.TEXT_PLAIN).get();
+
+        Response chronosStates = webtargetCSV.request(MediaType.TEXT_PLAIN).get();
+        checkResponse(chronosStates);
 
         String entity = chronosStates.readEntity(String.class);
 

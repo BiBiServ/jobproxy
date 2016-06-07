@@ -17,6 +17,8 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;
  */
 
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.BadGatewayException;
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -42,6 +44,10 @@ public class Delete {
     @Path("/{id}")
     @Consumes({MediaType.TEXT_PLAIN})
     public void delete(@PathParam("id")String id){
-        JobProxyFactory.getFramework().delTask(id);
+        try {
+            JobProxyFactory.getFramework().delTask(id);
+        } catch (FrameworkException e){
+            throw new BadGatewayException("Framework could not delete task.", e);
+        }
     }
 }
