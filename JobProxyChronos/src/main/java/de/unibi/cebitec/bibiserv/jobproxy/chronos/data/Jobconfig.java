@@ -960,7 +960,7 @@ public class Jobconfig {
         protected String image;
         protected Boolean forcePullImage;
         protected String network;
-        protected Jobconfig.Container.Volumes volumes;
+        protected List<Tvolume> volumes;
 
         /**
          * Gets the value of the type property.
@@ -1063,10 +1063,13 @@ public class Jobconfig {
          * 
          * @return
          *     possible object is
-         *     {@link Jobconfig.Container.Volumes }
+         *     {@link Jobconfig.Container.Tvolume }
          *     
          */
-        public Jobconfig.Container.Volumes getVolumes() {
+        public List<Tvolume> getVolumes() {
+            if(volumes == null) {
+                volumes = new ArrayList<Tvolume>();
+            }
             return volumes;
         }
 
@@ -1075,72 +1078,12 @@ public class Jobconfig {
          * 
          * @param value
          *     allowed object is
-         *     {@link Jobconfig.Container.Volumes }
+         *     {@link Jobconfig.Container.TVolume }
          *     
          */
-        public void setVolumes(Jobconfig.Container.Volumes value) {
+        public void setVolumes(List<Tvolume> value) {
             this.volumes = value;
         }
-
-
-        /**
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="volume" type="{}Tvolume" maxOccurs="unbounded" minOccurs="0"/>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "volume"
-        })
-        public static class Volumes {
-
-            protected List<Tvolume> volume;
-
-            /**
-             * Gets the value of the volume property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the volume property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getVolume().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link Tvolume }
-             * 
-             * 
-             */
-            public List<Tvolume> getVolume() {
-                if (volume == null) {
-                    volume = new ArrayList<Tvolume>();
-                }
-                return this.volume;
-            }
-
-        }
-
     }
 
 

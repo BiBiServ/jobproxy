@@ -101,7 +101,7 @@ public class Chronos extends JobProxyInterface {
                 volume.setContainerPath(mount.getContainer());
                 volume.setHostPath(mount.getHost());
                 volume.setMode("RW"); //@TODO - not specified by JobTask
-                c.getVolumes().getVolume().add(volume);
+                c.getVolumes().add(volume);
             }
             jc.setContainer(c);
         }
@@ -122,7 +122,6 @@ public class Chronos extends JobProxyInterface {
             Response response = webtarget.
                 request(MediaType.APPLICATION_JSON).
                 post(Entity.json(unmarshall2Json(jc)));
-
         } catch (Exception e) {
             e.printStackTrace();
         }

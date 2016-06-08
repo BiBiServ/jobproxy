@@ -74,21 +74,4 @@ public class ObjectFactory {
     public Tvolume createTvolume() {
         return new Tvolume();
     }
-
-    /**
-     * Create an instance of {@link Jobconfig.EnvironmentVariables.Var }
-     * 
-     */
-    public Jobconfig.EnvironmentVariables.Var createJobconfigEnvironmentVariablesVar() {
-        return new Jobconfig.EnvironmentVariables.Var();
-    }
-
-    /**
-     * Create an instance of {@link Jobconfig.Container.Volumes }
-     * 
-     */
-    public Jobconfig.Container.Volumes createJobconfigContainerVolumes() {
-        return new Jobconfig.Container.Volumes();
-    }
-
 }
