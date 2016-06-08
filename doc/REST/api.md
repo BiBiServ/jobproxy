@@ -7,7 +7,7 @@ JobProxy REST API for running task independent of the framework
 
 
 ### Version information
-*Version* : 0.1.0
+*Version* : 0.1.0.alpha.3
 
 
 ### URI scheme
@@ -141,6 +141,19 @@ on a fraemwork.
 <a name="definitions"></a>
 ## Definitions
 
+<a name="container"></a>
+### Container
+Optional Docker container.
+
+
+|Name|Description|Schema|
+|---|---|---|
+|**cmd**  <br>*optional*|Command a Docker container should execute|string|
+|**image**  <br>*required*|Docker image specification|string|
+|**ports**  <br>*optional*||[Ports](#ports)|
+|**volumes**  <br>*optional*||[Volumes](#volumes)|
+
+
 <a name="port"></a>
 ### Port
 Port of the host and the container system.
@@ -152,20 +165,8 @@ Port of the host and the container system.
 |**host**  <br>*required*|Port of the host system.|number|
 
 
-<a name="tcontainer"></a>
-### TContainer
-Optional Docker container.
-
-
-|Name|Description|Schema|
-|---|---|---|
-|**cmd**  <br>*optional*|Command a Docker container should execute|string|
-|**image**  <br>*required*|Docker image specification|string|
-|**ports**  <br>*optional*||[TPorts](#tports)|
-
-
-<a name="tports"></a>
-### TPorts
+<a name="ports"></a>
+### Ports
 Ports container could shoult map to the host system.
 
 
@@ -180,13 +181,31 @@ Ports container could shoult map to the host system.
 |Name|Description|Schema|
 |---|---|---|
 |**cmd**  <br>*optional*|A command specified for a task|string|
-|**container**  <br>*optional*||[TContainer](#tcontainer)|
+|**container**  <br>*optional*||[Container](#container)|
 |**cores**  <br>*optional*|Cores a Task should use.|number|
 |**cputime**  <br>*optional*|Cpu time a task is allowed to use.|number|
 |**memory**  <br>*optional*|Memory used by a task.|number|
 |**stderr**  <br>*optional*|Path to a file for stderr a task could produce.|string|
 |**stdout**  <br>*optional*|Path to a file for stdout a task could produce.|string|
 |**user**  <br>*required*|Task specification representing a specific Task a Framework should run.|string|
+
+
+<a name="volume"></a>
+### Volume
+Optional Volumes for Docker containers.
+
+
+|Name|Description|Schema|
+|---|---|---|
+|**container**  <br>*required*|Path to a file or directory inside the container|string|
+|**host**  <br>*required*|Path to a file or directory on the host system|string|
+
+
+<a name="volumes"></a>
+### Volumes
+Optional Volumes for Docker containers.
+
+*Type* : < [Volume](#volume) > array
 
 
 

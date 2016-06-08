@@ -4,9 +4,9 @@ swagger: '2.0'
 info:
   title: JobProxy
   description: JobProxy REST API for running task independent of the framework
-  version: "0.1.0"
+  version: "0.1.0.alpha.3"
 
-basePath: /v1          
+basePath: /v1
 # array of all schemes that your API supports
 schemes:
   - http
@@ -60,7 +60,7 @@ paths:
     delete:
       summary: Delete a Task
       description: |
-        The delete endpoint accepts a task id and deletes the corresponding task. 
+        The delete endpoint accepts a task id and deletes the corresponding task.
       parameters:
         - name: id
           in: path
@@ -77,7 +77,7 @@ definitions:
     required:
      - user
     properties:
-      user: 
+      user:
         type: string
         description: Task specification representing a specific Task a Framework should run.
       cores:
@@ -99,8 +99,8 @@ definitions:
         type: string
         description: A command specified for a task
       container:
-        $ref: '#/definitions/TContainer'
-  TContainer:
+        $ref: '#/definitions/Container'
+  Container:
     description: Optional Docker container.
     type: object
     required:
@@ -113,8 +113,29 @@ definitions:
         type: string
         description: Command a Docker container should execute
       ports:
-        $ref: '#/definitions/TPorts'
-  TPorts:
+        $ref: '#/definitions/Ports'
+      volumes:
+        $ref: '#/definitions/Volumes'
+  Volumes:
+    description: Optional Volumes for Docker containers.
+    type: array
+    minItems: 1
+    items: 
+      $ref: '#/definitions/Volume'
+  Volume:
+    description: Optional Volumes for Docker containers.
+    type: object
+    required:
+     - host
+     - container
+    properties:
+      host:
+        type: string
+        description: Path to a file or directory on the host system
+      container:
+        type: string
+        description: Path to a file or directory inside the container
+  Ports:
     description: Ports container could shoult map to the host system.
     type: object
     required:
@@ -134,4 +155,4 @@ definitions:
         description: Port of the host system.
       container:
         type: number
-        description: Port of the container. 
+        description: Port of the container.
