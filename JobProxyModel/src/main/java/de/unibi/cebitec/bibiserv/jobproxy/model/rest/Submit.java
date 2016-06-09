@@ -15,10 +15,14 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;/*
  */
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.BadGatewayException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.*;
 import javax.ws.rs.*;
@@ -36,13 +40,22 @@ import javax.ws.rs.core.Response;
 @Path("/v1/jobproxy/submit")
 public class Submit {
     
+    final Logger logger = LoggerFactory.getLogger(Submit.class);
+
     @Context Request request;
     @Context Response response;
-    
+
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces(MediaType.TEXT_PLAIN)
     public String submit(@Valid Task task){
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            logger.info(String.format("Submitted task %s ", mapper.writerWithDefaultPrettyPrinter().writeValueAsString(task)));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
         try {
             return JobProxyFactory.getFramework().addTask(task);
         } catch (FrameworkException e) {

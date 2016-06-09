@@ -5,7 +5,7 @@
     <artifactId>JobProxy</artifactId>
     <version>0.1.0.alpha.1</version>
     <packaging>pom</packaging>
-    
+
     <repositories>
         <repository>
             <id>snapshot-repository.java.net</id>
@@ -44,8 +44,12 @@
             <artifactId>jersey-bean-validation</artifactId>
             <version>2.23</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.21</version>
+        </dependency>
     </dependencies>
-    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>

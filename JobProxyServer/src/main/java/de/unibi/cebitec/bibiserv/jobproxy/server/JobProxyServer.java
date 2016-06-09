@@ -16,25 +16,26 @@ package de.unibi.cebitec.bibiserv.jobproxy.server;/*
 
 
 import com.sun.net.httpserver.HttpServer;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import javax.swing.JOptionPane;
-
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.Chronos;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.ChronosURLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Delete;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Ping;
-import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Submit;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.State;
+import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Submit;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryOneTime;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Scanner;
 
 /**
  * Main class - initiate a simple http server and register JAXRS annotated classes.
@@ -46,6 +47,8 @@ import org.glassfish.jersey.server.ServerProperties;
 public class JobProxyServer {
 
     private static JobProxyInterface framework;
+
+    static final Logger logger = LoggerFactory.getLogger(JobProxyServer.class);
 
     /** Currently hardcoded Chronos framework, should be replaced by a more flexible
      *  aproach to support
@@ -92,7 +95,9 @@ public class JobProxyServer {
                             .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
                             .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true)
                             .packages("de.unibi.cebitec.bibiserv.jobproxy.model.task"));
-            JOptionPane.showMessageDialog( null, "Server run on "+serveruri+"!\nClose Dialog to stop server ..." );
+            logger.info(String.format("Server run on %s ! Press key to stop service.", serveruri));
+            Scanner scanner = new Scanner(System.in);
+            scanner.nextLine();
             server.stop(0);
         } catch (URISyntaxException io){
             io.printStackTrace();

@@ -21,6 +21,9 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * REST-Wrapper around a job state information.
@@ -30,6 +33,8 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/v1/jobproxy/state")
 public class State {
+
+    final Logger logger = LoggerFactory.getLogger(State.class);
 
     /**
      * Returns  the state of all tasks in machine readable format (either xml or json 
@@ -46,15 +51,16 @@ public class State {
         } catch (FrameworkException e) {
             throw new BadGatewayException("Framework could not show states.", e);
         }
+        logger.info("Jobs State Request");
         return states;
     }
 
     /**
-     * Returns the state of one task with given id in machine readable format. 
+     * Returns the state of one task with given id in machine readable format.
      * (either xml or json depending on  request-header mime-type)
-     * 
+     *
      * @param id of the task asked for
-     * @return 
+     * @return
      */
     @GET
     @Path("/{id}")
@@ -65,8 +71,10 @@ public class State {
         try {
             state = JobProxyFactory.getFramework().getState(id);
         } catch (FrameworkException e) {
-            throw new BadGatewayException("Framework could not show the state of task " + id + ".", e);
+            throw new BadGatewayException("Framework could not show the state of task " + id + " .", e);
         }
+
+        logger.info(String.format("Job %s State Request", id));
 
         return state;
     }
