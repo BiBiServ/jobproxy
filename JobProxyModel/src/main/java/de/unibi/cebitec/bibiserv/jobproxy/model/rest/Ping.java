@@ -15,12 +15,15 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;/*
  */
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A simple class providing a simple ping
@@ -29,7 +32,9 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/v1/jobproxy/ping")
 public class Ping {
-    
+
+    final Logger logger = LoggerFactory.getLogger(Ping.class);
+
     /**
      * Just a simple ping command.
      * 
@@ -38,6 +43,7 @@ public class Ping {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String ping(){
+        logger.info("Ping");
         return "alive ("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())+")";
     }
     

@@ -19,6 +19,8 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.BadGatewayException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -37,6 +39,8 @@ import javax.ws.rs.core.Response;
 @Path("/v1/jobproxy/delete")
 public class Delete {
 
+    final Logger logger = LoggerFactory.getLogger(State.class);
+
     @Context Request request;
     @Context Response response;
 
@@ -49,5 +53,6 @@ public class Delete {
         } catch (FrameworkException e){
             throw new BadGatewayException("Framework could not delete task.", e);
         }
+        logger.info(String.format("Deleting task %s .", id));
     }
 }
