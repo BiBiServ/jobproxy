@@ -122,6 +122,7 @@ public class Chronos extends JobProxyInterface {
             Response response = webtarget.
                 request(MediaType.APPLICATION_JSON).
                 post(Entity.json(unmarshall2Json(jc)));
+            checkResponse(response);
         } catch (Exception e) {
             e.printStackTrace();
         }
