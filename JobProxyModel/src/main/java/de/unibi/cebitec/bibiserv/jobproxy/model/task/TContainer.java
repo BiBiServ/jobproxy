@@ -46,8 +46,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "tContainer", propOrder = {
     "image",
     "ports",
-    "mounts",
-    "cmd"
+    "mounts"
 })
 public class TContainer {
 
@@ -59,8 +58,6 @@ public class TContainer {
     protected List<TPorts> ports;
 
     protected List<TMounts> mounts;
-
-    protected String cmd;
 
     /**
      * Gets the value of the image property.
@@ -142,30 +139,6 @@ public class TContainer {
             mounts = new ArrayList<TMounts>();
         }
         return this.mounts;
-    }
-
-    /**
-     * Gets the value of the cmd property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCmd() {
-        return cmd;
-    }
-
-    /**
-     * Sets the value of the cmd property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCmd(String value) {
-        this.cmd = value;
     }
 
 }

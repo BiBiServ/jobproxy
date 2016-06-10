@@ -7,6 +7,7 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.task;//
 
 
 
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -114,6 +115,10 @@ public class TMounts {
         @NotEmpty
         protected String container;
 
+        @XmlElement(required = true)
+        @NotEmpty
+        private String mode;
+
         /**
          * Gets the value of the host property.
          * 
@@ -160,6 +165,14 @@ public class TMounts {
          */
         public void setContainer(String value) {
             this.container = value;
+        }
+
+        public String getMode() {
+            return mode;
+        }
+
+        public void setMode(String mode) {
+            this.mode = mode;
         }
     }
 }

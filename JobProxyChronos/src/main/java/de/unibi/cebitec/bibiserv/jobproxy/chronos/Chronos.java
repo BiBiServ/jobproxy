@@ -100,7 +100,7 @@ public class Chronos extends JobProxyInterface {
                 Tvolume volume = new Tvolume();
                 volume.setContainerPath(mount.getContainer());
                 volume.setHostPath(mount.getHost());
-                volume.setMode("RW"); //@TODO - not specified by JobTask
+                volume.setMode(mount.getMode());
                 c.getVolumes().add(volume);
             }
             jc.setContainer(c);
