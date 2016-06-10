@@ -7,7 +7,7 @@ JobProxy REST API for running task independent of the framework
 
 
 ### Version information
-*Version* : 0.1.0.alpha.3
+*Version* : 0.1.0.alpha.4
 
 
 ### URI scheme
@@ -151,7 +151,26 @@ Optional Docker container.
 |**cmd**  <br>*optional*|Command a Docker container should execute|string|
 |**image**  <br>*required*|Docker image specification|string|
 |**ports**  <br>*optional*||[Ports](#ports)|
-|**volumes**  <br>*optional*||[Volumes](#volumes)|
+|**volumes**  <br>*optional*||[Mounts](#mounts)|
+
+
+<a name="mount"></a>
+### Mount
+Optional Volumes for Docker containers.
+
+
+|Name|Description|Schema|
+|---|---|---|
+|**container**  <br>*required*|Path to a file or directory inside the container|string|
+|**host**  <br>*required*|Path to a file or directory on the host system|string|
+|**mode**  <br>*required*|Mound file or directory writeable (RW) or readonly (RO)|enum (RW, RO)|
+
+
+<a name="mounts"></a>
+### Mounts
+Optional Volumes for Docker containers.
+
+*Type* : < [Mount](#mount) > array
 
 
 <a name="port"></a>
@@ -188,24 +207,6 @@ Ports container could shoult map to the host system.
 |**stderr**  <br>*optional*|Path to a file for stderr a task could produce.|string|
 |**stdout**  <br>*optional*|Path to a file for stdout a task could produce.|string|
 |**user**  <br>*required*|Task specification representing a specific Task a Framework should run.|string|
-
-
-<a name="volume"></a>
-### Volume
-Optional Volumes for Docker containers.
-
-
-|Name|Description|Schema|
-|---|---|---|
-|**container**  <br>*required*|Path to a file or directory inside the container|string|
-|**host**  <br>*required*|Path to a file or directory on the host system|string|
-
-
-<a name="volumes"></a>
-### Volumes
-Optional Volumes for Docker containers.
-
-*Type* : < [Volume](#volume) > array
 
 
 

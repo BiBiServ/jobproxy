@@ -4,8 +4,7 @@ swagger: '2.0'
 info:
   title: JobProxy
   description: JobProxy REST API for running task independent of the framework
-  version: "0.1.0.alpha.3"
-
+  version: "0.1.0.alpha.4"
 basePath: /v1
 # array of all schemes that your API supports
 schemes:
@@ -115,19 +114,20 @@ definitions:
       ports:
         $ref: '#/definitions/Ports'
       volumes:
-        $ref: '#/definitions/Volumes'
-  Volumes:
+        $ref: '#/definitions/Mounts'
+  Mounts:
     description: Optional Volumes for Docker containers.
     type: array
     minItems: 1
     items: 
-      $ref: '#/definitions/Volume'
-  Volume:
+      $ref: '#/definitions/Mount'
+  Mount:
     description: Optional Volumes for Docker containers.
     type: object
     required:
      - host
      - container
+     - mode
     properties:
       host:
         type: string
@@ -135,6 +135,10 @@ definitions:
       container:
         type: string
         description: Path to a file or directory inside the container
+      mode:
+        type: string
+        enum: ["RW", "RO"]
+        description: Mound file or directory writeable (RW) or readonly (RO)
   Ports:
     description: Ports container could shoult map to the host system.
     type: object
