@@ -148,7 +148,6 @@ Optional Docker container.
 
 |Name|Description|Schema|
 |---|---|---|
-|**cmd**  <br>*optional*|Command a Docker container should execute|string|
 |**image**  <br>*required*|Docker image specification|string|
 |**ports**  <br>*optional*||[Ports](#ports)|
 |**volumes**  <br>*optional*||[Mounts](#mounts)|
