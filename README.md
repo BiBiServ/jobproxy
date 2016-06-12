@@ -39,6 +39,10 @@ where
   * **URL** URL is the url of zookeeper (i.e: localhost) 
   * **PORT** The port where zookeeper is running (i.e: 2181)
 
+#### List of implementing Frameworks:
+
+* Mesos Chronos (https://mesos.github.io/chronos/) version 2.4.0
+
 ## Developer Guide
 
 ### Release/Branch Workflow
@@ -47,7 +51,8 @@ For each release a new branch must be created.
 
 E.g: beta.release.1
 
-On a release this branch will be merged into the master.
+On a release, the list of implementing Frameworks must be extended.
+Then the release branch will be merged into the master.
 
 ### How to use jobProxy as a dependecy?
 
