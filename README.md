@@ -5,6 +5,7 @@
 JobProxy is (should be) a proxy between an application that needs access to compute resources like starting a docker container or just starting a simple shell script and the various existing resource providing frameworks. 
 
 ## Motivation
+
 While developing an application that needs access to compute resources from a running Mesos, we were searching for a Mesos framework that fullfills our constraints (which were very simple at this point). However we found that there are exists more than one framework that can do the job, but which is right/best one for our application ? A proxy as abstraction layer between our application and the frameworks seems to be very helpful. The decision which framework to be used is then indepened from writting the application ...
 
 ## Requirements:
@@ -38,7 +39,20 @@ where
   * **URL** URL is the url of zookeeper (i.e: localhost) 
   * **PORT** The port where zookeeper is running (i.e: 2181)
 
+#### List of implementing Frameworks:
+
+* Mesos Chronos (https://mesos.github.io/chronos/) version 2.4.0
+
 ## Developer Guide
+
+### Release/Branch Workflow
+
+For each release a new branch must be created.
+
+E.g: beta.release.1
+
+On a release, the list of implementing Frameworks must be extended.
+Then the release branch will be merged into the master.
 
 ### How to use jobProxy as a dependecy?
 
