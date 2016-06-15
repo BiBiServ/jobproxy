@@ -81,4 +81,6 @@ public abstract class JobProxyInterface {
     protected URLProvider getUrlProvider(){
         return provider;
     }
+
+    public abstract String getName();
 }

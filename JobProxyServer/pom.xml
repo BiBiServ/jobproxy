@@ -21,10 +21,14 @@
             <artifactId>JobProxyChronos</artifactId>
             <version>0.1.0.alpha.1</version>
         </dependency>
+        <dependency>
+            <groupId>de.unibi.cebitec.bibiserv</groupId>
+            <artifactId>JobProxyJavaDocker</artifactId>
+            <version>0.1.0.alpha.1</version>
+        </dependency>
     </dependencies>
 
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

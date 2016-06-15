@@ -1,4 +1,6 @@
-package de.unibi.cebitec.bibiserv.jobproxy.server;/*
+package de.unibi.cebitec.bibiserv.jobproxy.server;
+
+/*
  * Copyright 2016 Jan Krueger.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,10 +16,11 @@ package de.unibi.cebitec.bibiserv.jobproxy.server;/*
  * limitations under the License.
  */
 
-
 import com.sun.net.httpserver.HttpServer;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.Chronos;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.ChronosURLProvider;
+import de.unibi.cebitec.bibiserv.jobproxy.javadocker.JavaDocker;
+import de.unibi.cebitec.bibiserv.jobproxy.javadocker.JavaDockerURLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Delete;
@@ -35,31 +38,30 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * Main class - initiate a simple http server and register JAXRS annotated classes.
- * 
  * 
  * @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
 
 public class JobProxyServer {
 
-    private static JobProxyInterface framework;
-
     static final Logger logger = LoggerFactory.getLogger(JobProxyServer.class);
 
-    /** Currently hardcoded Chronos framework, should be replaced by a more flexible
-     *  aproach to support
+    /**
      *
-     * @return Return a framework implememting the jobproxy interface
+     * Returns Framework identified by String;
+     *
+     * @return Return a framework implementing the jobproxy interface
      */
-    public static JobProxyInterface getFramework(CuratorFramework client){
-       if (framework == null) {
-           framework = new Chronos(new ChronosURLProvider(client));
-       }
-      return framework;
+    public static JobProxyInterface getFramework(CuratorFramework client, String name){
+        List<JobProxyInterface> frameworks = Arrays.asList(new JavaDocker(new JavaDockerURLProvider()),
+                new Chronos(new ChronosURLProvider(client)));
+        return frameworks.stream().filter(framework -> framework.getName().equals(name)).findAny().get();
     }
 
     /**
@@ -79,13 +81,14 @@ public class JobProxyServer {
      * @param args 
      */
     public static void main (String [] args) {
-        if(args.length != 1 ){
-            System.err.println("Please provide the zookeeper url and port: '<URL>':'<PORT>' ");
+        if(args.length != 2 ){
+            System.err.println("Please provide the zookeeper url and port: '<URL>':'<PORT>' and your Framework: JavaDocker|Chronos ");
             System.exit(1);
         }
         String zookeeperURL = args[0];
+        String framework = args[1];
         CuratorFramework client = startCuratorClient(zookeeperURL);
-        JobProxyFactory.setFramework(getFramework(client));
+        JobProxyFactory.setFramework(getFramework(client, framework));
 
         try {
             // create a new HTTPServer and register JAXRS annotated classes

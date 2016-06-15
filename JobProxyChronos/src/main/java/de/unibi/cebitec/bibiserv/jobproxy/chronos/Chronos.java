@@ -164,6 +164,11 @@ public class Chronos extends JobProxyInterface {
         return states;
     }
 
+    @Override
+    public String getName() {
+        return "Chronos";
+    }
+
     private void checkResponse(Response response) throws FrameworkException {
         if(! response.getStatusInfo().getFamily().equals(Response.Status.Family.SUCCESSFUL)) {
             throw new FrameworkException(response.getStatusInfo().getReasonPhrase());
