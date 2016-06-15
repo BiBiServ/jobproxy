@@ -39,7 +39,7 @@ where
   * **URL** URL is the url of zookeeper (i.e: localhost) 
   * **PORT** The port where zookeeper is running (i.e: 2181)
 
-#### List of implementing Frameworks:
+### List of implementing Frameworks:
 
 * Mesos Chronos (https://mesos.github.io/chronos/) version 2.4.0
 
@@ -49,7 +49,11 @@ where
 
 For each release a new branch must be created.
 
-E.g: beta.release.1
+E.g: 
+
+~~~
+beta.release.1
+~~~
 
 On a release, the list of implementing Frameworks must be extended.
 Then the release branch will be merged into the master.
