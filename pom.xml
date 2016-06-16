@@ -23,6 +23,7 @@
         <module>JobProxyServer</module>
         <module>JobProxyChronos</module>
         <module>JobProxyJavaDocker</module>
+        <module>JobProxyServerCLI</module>
     </modules>
     <dependencies>
         <dependency>
