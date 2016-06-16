@@ -21,6 +21,7 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,22 @@ import org.ggf.drmaa.Session;
  * framework independent - way of job control. Since the latest DRMAA
  * specification (version 2) is only supported by the Univa Grid Engine (June
  * 2016) this plugin should use the widely spread version 1.
- *
+ * 
+ * <p>
+ * This implementation was successful tested with the latest OpenSource Version of
+ * the SunGridEngine (6.2u5) and the commercial successor UnivaGridEngine.
+ * </p>
+ * <p>
+ * To use/run the DRMAA Java binding, the environment must be set for the
+ * JVM running this class. At last <code>$SGE_ROOT</code>. Additional the
+ * Shared Object <code>$SGE_ROOT/lib/$ARCH</code> must be in the library path
+ * (e.g. setting system property 'java.library.path').
+ * </p>
+ * <p>
+ * Since DRMAA is an general purpose API how to use distributed resources
+ * not everything of the GridEngine features is supported by an API function. Special
+ * GridEngine features are supported using the native option functions.
+ * </p>
  *
  * @author Jan Krueger -jkrueger(at)cebitec.uni-bielefeld.de
  */
@@ -47,8 +63,28 @@ public class DRMAA extends JobProxyInterface {
 
     Map<String, Task> taskhash = new HashMap<>();
 
+    /**
+     * 
+     * @param urlprovider
+     * @throws DrmaaException 
+     */
     public DRMAA(URLProvider urlprovider) throws DrmaaException {
         super(urlprovider);
+        
+        /* SGE_ROOT */
+        if (System.getenv("SGE_ROOT") == null) {
+            System.err.println("The enviroment variable $SGE_ROOT must be set and point to SGE dir!");
+            
+        } 
+        System.out.println("$SGE_ROOT points to " + System.getenv("SGE_ROOT"));
+        
+        /* java.library.path*/
+        if ( System.getProperty("java.library.path") == null || !(new File(System.getProperty("java.library.path"))).exists()){
+            System.err.println("The Java System Variable 'java.library.path' "
+                    + "should be set and contain a path to the $SGE_ROOT/lib/$ARCH folder!");
+        } 
+        
+        
         session = DRMAASession.getInstance();
 
     }
