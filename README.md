@@ -56,7 +56,12 @@ beta.release.1
 ~~~
 
 On a release, the list of implementing Frameworks must be extended.
+
 Then the release branch will be merged into the master.
+
+Each module has its own version number e.g.: https://github.com/jkrue/jobproxy/blob/master/JobProxyServer/pom.xml#L8
+ 
+If the code is updated the corresponding module version number must be updated. 
 
 ### How to use jobProxy as a dependecy?
 
