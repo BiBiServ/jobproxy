@@ -20,7 +20,7 @@ public class CLI {
         Option zookeeperOption = new Option("z", true, "Please provide the zookeeper url and port: '<URL>':'<PORT>'");
         zookeeperOption.setRequired(true);
 
-        Option frameworkOption = new Option("f", true, "Please provide your framework: JavaDocker or Chronos");
+        Option frameworkOption = new Option("f", true, "Please provide your framework: JavaDocker, Chronos or DRMAA");
         frameworkOption.setRequired(true);
 
         options.addOption(zookeeperOption);
@@ -42,8 +42,6 @@ public class CLI {
                 Scanner scanner = new Scanner(System.in);
                 scanner.nextLine();
                 server.stopServer();
-            } else {
-                // print date for country specified by countryCode
             }
         } catch (ParseException e) {
             System.err.println( "Parsing failed.  Reason: " + e.getMessage() );

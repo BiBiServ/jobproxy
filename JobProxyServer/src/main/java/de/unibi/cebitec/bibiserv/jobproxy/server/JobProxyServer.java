@@ -19,6 +19,7 @@ package de.unibi.cebitec.bibiserv.jobproxy.server;
 import com.sun.net.httpserver.HttpServer;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.Chronos;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.ChronosURLProvider;
+import de.unibi.cebitec.bibiserv.jobproxy.drmaa.DRMAA;
 import de.unibi.cebitec.bibiserv.jobproxy.javadocker.JavaDocker;
 import de.unibi.cebitec.bibiserv.jobproxy.javadocker.JavaDockerURLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
@@ -67,7 +68,7 @@ public class JobProxyServer {
      */
     public JobProxyInterface getFramework(CuratorFramework client, String name) {
         List<JobProxyInterface> frameworks = Arrays.asList(new JavaDocker(new JavaDockerURLProvider()),
-                new Chronos(new ChronosURLProvider(client)));
+                new Chronos(new ChronosURLProvider(client)), new DRMAA(new DefaultUrlProvider()));
         logger.info(String.format(" Selected framework: %s ", name));
         return frameworks.stream().filter(framework -> framework.getName().equals(name)).findAny().get();
     }

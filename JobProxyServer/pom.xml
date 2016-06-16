@@ -18,6 +18,11 @@
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
+            <artifactId>JobProxyDRMAA</artifactId>
+            <version>beta.1.release</version>
+        </dependency>
+        <dependency>
+            <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyChronos</artifactId>
             <version>beta.1.release</version>
         </dependency>
