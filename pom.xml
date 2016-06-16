@@ -24,6 +24,7 @@
         <module>JobProxyChronos</module>
         <module>JobProxyJavaDocker</module>
         <module>JobProxyServerCLI</module>
+        <module>JobProxyDRMAA</module>
     </modules>
     <dependencies>
         <dependency>
