@@ -22,11 +22,8 @@
         <module>JobProxyModel</module>
         <module>JobProxyServer</module>
         <module>JobProxyChronos</module>
-<<<<<<< HEAD
-=======
         <module>JobProxyJavaDocker</module>
         <module>JobProxyServerCLI</module>
->>>>>>> f0411e450d305a6a6a0f920969ac93a953788932
         <module>JobProxyDRMAA</module>
     </modules>
     <dependencies>

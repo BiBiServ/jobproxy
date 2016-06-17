@@ -4,11 +4,7 @@
     <parent>
         <groupId>de.unibi.cebitec.bibiserv</groupId>
         <artifactId>JobProxy</artifactId>
-<<<<<<< HEAD
-        <version>0.1.0.alpha.1</version>
-=======
         <version>beta.1.release</version>
->>>>>>> f0411e450d305a6a6a0f920969ac93a953788932
     </parent>
     <artifactId>JobProxyDRMAA</artifactId>
     <packaging>jar</packaging>
