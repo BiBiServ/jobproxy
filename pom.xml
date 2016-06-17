@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.unibi.cebitec.bibiserv</groupId>
     <artifactId>JobProxy</artifactId>
-    <version>0.1.0.alpha.1</version>
+    <version>beta.1.release</version>
     <packaging>pom</packaging>
 
     <repositories>
@@ -22,6 +22,11 @@
         <module>JobProxyModel</module>
         <module>JobProxyServer</module>
         <module>JobProxyChronos</module>
+<<<<<<< HEAD
+=======
+        <module>JobProxyJavaDocker</module>
+        <module>JobProxyServerCLI</module>
+>>>>>>> f0411e450d305a6a6a0f920969ac93a953788932
         <module>JobProxyDRMAA</module>
     </modules>
     <dependencies>

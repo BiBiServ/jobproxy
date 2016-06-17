@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.unibi.cebitec.bibiserv</groupId>
         <artifactId>JobProxy</artifactId>
-        <version>0.1.0.alpha.1</version>
+        <version>beta.1.release</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,49 +14,22 @@
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyModel</artifactId>
-            <version>0.1.0.alpha.1</version>
+            <version>beta.1.release</version>
+        </dependency>
+        <dependency>
+            <groupId>de.unibi.cebitec.bibiserv</groupId>
+            <artifactId>JobProxyDRMAA</artifactId>
+            <version>beta.1.release</version>
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyChronos</artifactId>
-            <version>0.1.0.alpha.1</version>
+            <version>beta.1.release</version>
+        </dependency>
+        <dependency>
+            <groupId>de.unibi.cebitec.bibiserv</groupId>
+            <artifactId>JobProxyJavaDocker</artifactId>
+            <version>beta.1.release</version>
         </dependency>
     </dependencies>
-
-    <build>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.3</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>de.unibi.cebitec.bibiserv.jobproxy.server.JobProxyServer</mainClass>
-                                </transformer>
-                            </transformers>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>org/datanucleus/**</exclude>
-                                        <exclude>META-INF/*.SF</exclude>
-                                        <exclude>META-INF/*.DSA</exclude>
-                                        <exclude>META-INF/*.RSA</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

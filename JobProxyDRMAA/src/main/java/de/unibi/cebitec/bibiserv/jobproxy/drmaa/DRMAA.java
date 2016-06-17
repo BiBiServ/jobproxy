@@ -21,7 +21,10 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
+<<<<<<< HEAD
 import java.io.File;
+=======
+>>>>>>> f0411e450d305a6a6a0f920969ac93a953788932
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +40,7 @@ import org.ggf.drmaa.Session;
  * framework independent - way of job control. Since the latest DRMAA
  * specification (version 2) is only supported by the Univa Grid Engine (June
  * 2016) this plugin should use the widely spread version 1.
+<<<<<<< HEAD
  * 
  * <p>
  * This implementation was successful tested with the latest OpenSource Version of
@@ -53,6 +57,9 @@ import org.ggf.drmaa.Session;
  * not everything of the GridEngine features is supported by an API function. Special
  * GridEngine features are supported using the native option functions.
  * </p>
+=======
+ *
+>>>>>>> f0411e450d305a6a6a0f920969ac93a953788932
  *
  * @author Jan Krueger -jkrueger(at)cebitec.uni-bielefeld.de
  */
@@ -63,6 +70,7 @@ public class DRMAA extends JobProxyInterface {
 
     Map<String, Task> taskhash = new HashMap<>();
 
+<<<<<<< HEAD
     /**
      * 
      * @param urlprovider
@@ -85,6 +93,10 @@ public class DRMAA extends JobProxyInterface {
         } 
         
         
+=======
+    public DRMAA(URLProvider urlprovider){
+        super(urlprovider);
+>>>>>>> f0411e450d305a6a6a0f920969ac93a953788932
         session = DRMAASession.getInstance();
 
     }
@@ -175,6 +187,14 @@ public class DRMAA extends JobProxyInterface {
         return states;
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public String getName() {
+        return "DRMAA";
+    }
+
+>>>>>>> f0411e450d305a6a6a0f920969ac93a953788932
     public String statustoString(int jobstatus) {
         switch (jobstatus) {
             case Session.QUEUED_ACTIVE:
