@@ -17,7 +17,6 @@ package de.unibi.cebitec.bibiserv.jobproxy.drmaa;
 
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
-import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
@@ -26,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import org.ggf.drmaa.DrmaaException;
 import org.ggf.drmaa.JobTemplate;
 import org.ggf.drmaa.Session;
@@ -37,23 +37,23 @@ import org.ggf.drmaa.Session;
  * framework independent - way of job control. Since the latest DRMAA
  * specification (version 2) is only supported by the Univa Grid Engine (June
  * 2016) this plugin should use the widely spread version 1.
- * 
+ *
  * <p>
- * This implementation was successful tested with the latest OpenSource Version of
- * the SunGridEngine (6.2u5) and the commercial successor UnivaGridEngine.
+ * This implementation was successful tested with the latest OpenSource Version
+ * of the SunGridEngine (6.2u5) and the commercial successor UnivaGridEngine.
  * </p>
  * <p>
- * To use/run the DRMAA Java binding, the environment must be set for the
- * JVM running this class. At last <code>$SGE_ROOT</code>. Additional the
- * Shared Object <code>$SGE_ROOT/lib/$ARCH</code> must be in the library path
- * (e.g. setting system property 'java.library.path').
+ * To use/run the DRMAA Java binding, the environment must be set for the JVM
+ * running this class. At last <code>$SGE_ROOT</code>. Additional the Shared
+ * Object <code>$SGE_ROOT/lib/$ARCH</code> must be in the library path (e.g.
+ * setting system property 'java.library.path').
  * </p>
  * <p>
- * Since DRMAA is an general purpose API how to use distributed resources
- * not everything of the GridEngine features is supported by an API function. Special
- * GridEngine features are supported using the native option functions.
+ * Since DRMAA is an general purpose API how to use distributed resources not
+ * everything of the GridEngine features is supported by an API function.
+ * Special GridEngine features are supported using the native option functions.
  * </p>
-
+ *
  *
  * @author Jan Krueger -jkrueger(at)cebitec.uni-bielefeld.de
  */
@@ -64,28 +64,27 @@ public class DRMAA extends JobProxyInterface {
 
     Map<String, Task> taskhash = new HashMap<>();
 
-
     /**
-     * 
-     * @param urlprovider
+     * Constructor checks if environment is set. @see general class description.
+     *
+     * @param properties
      */
-    public DRMAA(URLProvider urlprovider){
-        super(urlprovider);
-        
+    public DRMAA(Properties properties) {
+        super(properties);
+
         /* SGE_ROOT */
         if (System.getenv("SGE_ROOT") == null) {
             System.err.println("The enviroment variable $SGE_ROOT must be set and point to SGE dir!");
-            
-        } 
+
+        }
         System.out.println("$SGE_ROOT points to " + System.getenv("SGE_ROOT"));
-        
+
         /* java.library.path*/
-        if ( System.getProperty("java.library.path") == null || !(new File(System.getProperty("java.library.path"))).exists()){
+        if (System.getProperty("java.library.path") == null || !(new File(System.getProperty("java.library.path"))).exists()) {
             System.err.println("The Java System Variable 'java.library.path' "
                     + "should be set and contain a path to the $SGE_ROOT/lib/$ARCH folder!");
-        } 
-        
-       
+        }
+
         session = DRMAASession.getInstance();
 
     }
@@ -117,7 +116,11 @@ public class DRMAA extends JobProxyInterface {
                 }
                 nativeSpecs.append(":00:00");
             }
-
+            // check if nativeopt set in properties
+            if (properties.contains("nativeoptions")) {
+                nativeSpecs.append(" ").append(properties.getProperty("nativeoptions"));
+            }
+         
             // set nativeSpecs
             if (nativeSpecs.length() > 0) {
                 jobTemplate.setNativeSpecification(nativeSpecs.toString());
@@ -168,7 +171,7 @@ public class DRMAA extends JobProxyInterface {
     }
 
     @Override
-    public States getState() throws FrameworkException {   
+    public States getState() throws FrameworkException {
         States states = new States();
         for (String id : taskhash.keySet()) {
             states.getState().add(getState(id));
@@ -176,10 +179,37 @@ public class DRMAA extends JobProxyInterface {
         return states;
     }
 
-
     @Override
     public String getName() {
         return "DRMAA";
+    }
+
+    @Override
+    public String help() {
+        return "Batch grid systems like [S|O|U] Grid Engine or Torque are still popular and\n"
+                + " often available/used on non \"cloud\" compute clusters to distribute job\n"
+                + " requests. Most batch grid systems supports the DRMAA API for a general -\n"
+                + " framework independent - way of job control. Since the latest DRMAA\n"
+                + " specification (version 2) is only supported by the Univa Grid Engine (June\n"
+                + " 2016) this plugin should use the widely spread version 1.\n"
+                + " \n"
+                + " This implementation was successful tested with the latest OpenSource Version of\n"
+                + " the SunGridEngine (6.2u5) and the commercial successor UnivaGridEngine.\n"
+                + " \n"
+                + " To use/run the DRMAA Java binding, the environment must be set for the\n"
+                + " JVM running this class. At last <code>$SGE_ROOT</code>. Additional the\n"
+                + " hared Object <code>$SGE_ROOT/lib/$ARCH</code> must be in the library path\n"
+                + " (e.g. setting system property 'java.library.path').\n"
+                + " \n"
+                + " Since DRMAA is an general purpose API how to use distributed resources\n"
+                + " not everything of the GridEngine features is supported by an API function. Special\n"
+                + " GridEngine features are supported using the native option functions.\n\n"
+                + " Supports the following properties :\n"
+                + " KEY                | DEFAULTVALUE\n"
+                + "-----------------------------------------------------------------------------\n"
+                + " serveruri          | http://localhost:9999\n"
+                + " nativeoptions      | \n";
+
     }
 
     public String statustoString(int jobstatus) {
@@ -206,6 +236,6 @@ public class DRMAA extends JobProxyInterface {
                 return "Job has failed.";
         }
         return "Job status is unknown";
-
     }
+
 }

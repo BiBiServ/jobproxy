@@ -5,7 +5,6 @@ import com.spotify.docker.client.exceptions.DockerException;
 import com.spotify.docker.client.messages.*;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
-import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.TContainer;
@@ -14,6 +13,7 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
 
 
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 
@@ -21,9 +21,9 @@ public class JavaDocker extends JobProxyInterface {
 
     private final DefaultDockerClient dockerClient;
 
-    public JavaDocker(URLProvider provider) {
-        super(provider);
-        dockerClient = new DefaultDockerClient(provider.getUrl());
+    public JavaDocker(Properties properties) {
+        super(properties);
+        dockerClient = new DefaultDockerClient("unix:///var/run/docker.sock");
     }
 
     @Override
@@ -188,6 +188,11 @@ public class JavaDocker extends JobProxyInterface {
     @Override
     public String getName() {
         return "JavaDocker";
+    }
+
+    @Override
+    public String help() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

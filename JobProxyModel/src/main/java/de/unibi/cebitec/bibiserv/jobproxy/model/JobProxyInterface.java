@@ -17,21 +17,23 @@ package de.unibi.cebitec.bibiserv.jobproxy.model;
 
 
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
-import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
+import java.util.Properties;
 
 /**
- *
+ * General definition of an JobProxy.
+ * 
+ * 
  * @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
 public abstract class JobProxyInterface {
 
-    private URLProvider provider;
+    protected final Properties properties;
 
-    public JobProxyInterface(URLProvider provider){
-        this.provider = provider;
+    public JobProxyInterface(Properties properties){
+        this.properties = properties;
     }
 
     /**
@@ -39,6 +41,7 @@ public abstract class JobProxyInterface {
      *
      * @param t - task definition
      * @return unique task id
+     * @throws de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException
      */
     public abstract String addTask(Task t) throws FrameworkException;
 
@@ -47,6 +50,7 @@ public abstract class JobProxyInterface {
      *
      * @param id - task id
      * @return Return task state.
+     * @throws de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException
      */
     public abstract Task getTask(String id) throws FrameworkException;
 
@@ -54,6 +58,7 @@ public abstract class JobProxyInterface {
      * Delete a task given its task id.
      *
      * @param id - task id
+     * @throws de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException
      */
     public abstract void delTask(String id) throws FrameworkException;
 
@@ -63,24 +68,40 @@ public abstract class JobProxyInterface {
      *
      * @param id - task id
      * @return Return task state
+     * @throws de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException
      */
     public abstract State getState(String id) throws FrameworkException;
 
     /**
      * Return a list of states of all tasks running
      * @return
+     * @throws de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException
      */
     public abstract States getState() throws FrameworkException;
 
     /**
-     * Return Url provider that return Url
+     * Return properties object used by this framework
      *
-     * @return URLProvider
+     * @return Properties
      *
      */
-    protected URLProvider getUrlProvider(){
-        return provider;
+    public Properties getProperties(){
+        return properties;
     }
 
+    /**
+     * Return the name of the framework
+     * 
+     * @return Name
+     */
     public abstract String getName();
+    
+    
+    /**
+     * Return a (short) human readable description of this framework. Any mandatory or
+     * optional properties should also be described.
+     * 
+     * @return framework help message
+     */
+    public abstract String help();
 }
