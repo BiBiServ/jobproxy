@@ -29,6 +29,8 @@ import java.util.Properties;
 import org.ggf.drmaa.DrmaaException;
 import org.ggf.drmaa.JobTemplate;
 import org.ggf.drmaa.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Batch grid systems like [S|O|U] Grid Engine or Torque are still popular and
@@ -59,9 +61,12 @@ import org.ggf.drmaa.Session;
  */
 public class DRMAA extends JobProxyInterface {
 
+    
+    static final Logger LOGGER = LoggerFactory.getLogger(DRMAA.class);
+    
     Session session;
     JobTemplate jobTemplate;
-
+    
     Map<String, Task> taskhash = new HashMap<>();
 
     /**
@@ -74,14 +79,14 @@ public class DRMAA extends JobProxyInterface {
 
         /* SGE_ROOT */
         if (System.getenv("SGE_ROOT") == null) {
-            System.err.println("The enviroment variable $SGE_ROOT must be set and point to SGE dir!");
+            LOGGER.error("The enviroment variable $SGE_ROOT must be set and point to SGE dir!");
 
         }
-        System.out.println("$SGE_ROOT points to " + System.getenv("SGE_ROOT"));
+        LOGGER.info("$SGE_ROOT points to " + System.getenv("SGE_ROOT"));
 
         /* java.library.path*/
         if (System.getProperty("java.library.path") == null || !(new File(System.getProperty("java.library.path"))).exists()) {
-            System.err.println("The Java System Variable 'java.library.path' "
+            LOGGER.error("The Java System Variable 'java.library.path' "
                     + "should be set and contain a path to the $SGE_ROOT/lib/$ARCH folder!");
         }
 
@@ -98,8 +103,8 @@ public class DRMAA extends JobProxyInterface {
         try {
             // build jobTemplate from Task
             jobTemplate = session.createJobTemplate();
-            jobTemplate.setOutputPath(t.getStdout());
-            jobTemplate.setErrorPath(t.getStderr());
+            jobTemplate.setOutputPath(":"+t.getStdout());
+            jobTemplate.setErrorPath(":"+t.getStderr());
             // use grid engine parallel environment if task specifies more than 1 cpu 
             if (t.getCores() != null && t.getCores() > 2) {
                 nativeSpecs.append(" -pe multislot ").append(t.getCores());
@@ -126,6 +131,16 @@ public class DRMAA extends JobProxyInterface {
                 jobTemplate.setNativeSpecification(nativeSpecs.toString());
             }
 
+            // set remote command
+            if (t.getContainer() == null) {
+                jobTemplate.setRemoteCommand(t.getCmd());
+            } else {
+                throw new UnsupportedOperationException("Docker container not supported yet.");
+            }
+            
+            // set working dir from
+            jobTemplate.setWorkingDirectory(properties.getProperty("workingdir", System.getProperty("java.io.tmpdir")));
+
             // submit jobTemplate
             String id = session.runJob(jobTemplate);
             // store jobid 
@@ -135,9 +150,11 @@ public class DRMAA extends JobProxyInterface {
             // and return job id
             return id;
 
-        } catch (DrmaaException e) {
-            throw new FrameworkException("DRMAA exception occured while call 'addTask'", e);
-        }
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            throw new FrameworkException("Exception occured while call 'addTask'", e);
+        } 
+        
     }
 
     @Override
@@ -164,7 +181,8 @@ public class DRMAA extends JobProxyInterface {
             state.setCode(Integer.toString(session.getJobProgramStatus(id)));
             state.setDescription(statustoString(session.getJobProgramStatus(id)));
             return state;
-        } catch (DrmaaException e) {
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
             throw new FrameworkException("DRMAA exception occurred while call 'getState'", e);
         }
 
@@ -208,6 +226,7 @@ public class DRMAA extends JobProxyInterface {
                 + " KEY                | DEFAULTVALUE\n"
                 + "-----------------------------------------------------------------------------\n"
                 + " serveruri          | http://localhost:9999\n"
+                + " workingdir         | System.getProperty(\"java.io.tmpdir\")\n"
                 + " nativeoptions      | \n";
 
     }

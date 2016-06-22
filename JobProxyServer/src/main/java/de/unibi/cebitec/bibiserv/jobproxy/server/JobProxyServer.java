@@ -59,7 +59,7 @@ public class JobProxyServer {
      */
     public JobProxyServer(String frameworkname, Properties properties) throws FrameworkException {
         try {
-            jobProxyServerUri = new URI((String) properties.getOrDefault("serveruri", "http://localhost:9999"));
+            jobProxyServerUri = new URI(properties.getProperty("serveruri", "http://localhost:9999/"));
         } catch (URISyntaxException ex) {
             throw new FrameworkException(ex.getMessage(), ex);
         }
