@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="image" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="ports" type="{}tPorts" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="mounts" type="{}tMounts" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="cmd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
