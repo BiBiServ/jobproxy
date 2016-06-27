@@ -18,6 +18,13 @@
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
+            <artifactId>JobProxyModel</artifactId>
+            <version>beta.1.release</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyDRMAA</artifactId>
             <version>beta.1.release</version>
         </dependency>
@@ -30,6 +37,12 @@
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyJavaDocker</artifactId>
             <version>beta.1.release</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
