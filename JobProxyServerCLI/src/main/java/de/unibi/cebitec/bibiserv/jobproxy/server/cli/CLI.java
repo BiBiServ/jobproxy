@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class CLI {
 
@@ -30,12 +31,20 @@ public class CLI {
         Option propertiesOption = new Option("p",true,"Configuration file (java properities style)");
         propertiesOption.setRequired(false);
         
+        Option demoniseOption = new Option("d",false,"start server in daemon mode");
+        propertiesOption.setRequired(false);
+        
+        Option debugOption = new Option("debug",false,"run server in debug mode. Logs all http request/responses. ");
+        propertiesOption.setRequired(false);
+        
         Option helpOption = new Option("h",false,"Print general help or help for a specified framework together with '-f' option");
         propertiesOption.setRequired(false);
         
         options.addOption(frameworkOption);
         options.addOption(listFrameworkOption);
         options.addOption(propertiesOption);
+        options.addOption(demoniseOption);
+        options.addOption(debugOption);       
         options.addOption(helpOption);
 
         CommandLineParser parser = new DefaultParser();
@@ -75,11 +84,20 @@ public class CLI {
                     if (cmd.hasOption("h")) {
                         System.out.println(JobProxyFactory.getFramework().help());
                     } else {
-                        server.startServer();
-                        LOGGER.info(String.format("Server run on %s ! Press key to stop service.",server.getURI()));
-                        Scanner scanner = new Scanner(System.in);
-                        scanner.nextLine();
-                        server.stopServer();
+                        server.startServer(cmd.hasOption("debug"));
+                        if (cmd.hasOption(("d"))) {
+                            LOGGER.info(String.format("Server run on %s !",server.getURI()));
+                            try {
+                                Thread.currentThread().join();
+                            } catch (InterruptedException ex) {
+                                LOGGER.error(ex.getMessage());
+                            }   
+                        } else  {
+                            LOGGER.info(String.format("Server run on %s ! Press key to stop service.",server.getURI()));
+                            Scanner scanner = new Scanner(System.in);
+                            scanner.nextLine();
+                            server.stopServer();
+                        }
                     }
                 } catch (FrameworkException e) {
                     LOGGER.error(e.getMessage());   

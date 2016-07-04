@@ -31,6 +31,7 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
+import org.glassfish.jersey.filter.LoggingFilter;
 import org.slf4j.Logger;
 
 /**
@@ -66,15 +67,36 @@ public class JobProxyServer {
         framework = JobProxyFactory.getFramework(frameworkname, properties);
     }
 
+    
+    /**
+     * Start simple http server in debug mode.
+     * 
+     */
+    public void startServer(){
+        startServer(true);
+    }
+    
     /**
      * Start simple http server.
+     * 
+     * @param debug - if set to true prints out all request and respone headers. That can produce a lot debug informations.
      */
-    public void startServer() {
-        server = JdkHttpServerFactory.createHttpServer(jobProxyServerUri,
+    public void startServer(boolean debug) {
+        if (debug) {
+            server = JdkHttpServerFactory.createHttpServer(jobProxyServerUri,
+                new ResourceConfig(Ping.class, Submit.class, State.class, Delete.class)
+                .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
+                .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true)
+                .register(new LoggingFilter(java.util.logging.Logger.getAnonymousLogger(), true))
+                .packages(MODEL_PACKAGE));
+        } else {
+            server = JdkHttpServerFactory.createHttpServer(jobProxyServerUri,
                 new ResourceConfig(Ping.class, Submit.class, State.class, Delete.class)
                 .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
                 .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true)
                 .packages(MODEL_PACKAGE));
+        }
+       
     }
 
     /**
