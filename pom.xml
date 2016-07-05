@@ -22,12 +22,12 @@
         <module>JobProxyModel</module>
         <module>JobProxyServer</module>
         <module>JobProxyChronos</module>
-        <module>JobProxyJavaDocker</module>
+        <!--<module>JobProxyJavaDocker</module>-->
         <module>JobProxyServerCLI</module>
         <module>JobProxyDRMAA</module>
     </modules>
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-jdk-http</artifactId>
             <version>2.22.1</version>
@@ -46,7 +46,7 @@
             <groupId>org.glassfish.jersey.ext</groupId>
             <artifactId>jersey-bean-validation</artifactId>
             <version>2.23</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>

@@ -33,11 +33,11 @@
             <artifactId>JobProxyChronos</artifactId>
             <version>beta.1.release</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyJavaDocker</artifactId>
             <version>beta.1.release</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
