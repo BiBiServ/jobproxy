@@ -42,15 +42,5 @@ public class TaskTest {
         assertTrue(errors.stream().filter(error -> error.getMessage().equals(Misc.NULL_ERROR_MESSAGE)).findAny().isPresent());
     }
 
-    @Test
-    public void taskRequiresCommandField() {
-        Task task = new Task();
-        task.setUser(DummyFramework.TASK_USER);
-
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        Set<ConstraintViolation<Task>> errors = validator.validate(task);
-        assertTrue(errors.size() == 1);
-        assertTrue(errors.stream().filter(error -> error.getMessage().equals(Misc.EMPTY_ERROR_MESSAGE)).findAny().isPresent());
-    }
+   
 }

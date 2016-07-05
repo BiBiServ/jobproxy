@@ -108,10 +108,4 @@ public class SubmitTest extends JerseyMethodTest {
         target(POST_TARGET).request().post(Entity.json(task));
     }
 
-    @Test(expected = RuntimeException.class)
-    public void submitRequiresCommandField() {
-        Task task = new Task();
-        task.setUser(DummyFramework.TASK_USER);
-        target(POST_TARGET).request().post(Entity.json(task));
-    }
 }
