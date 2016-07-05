@@ -35,10 +35,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="cputime" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="stdout" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="stderr" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;choice>
- *           &lt;element name="cmd" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *           &lt;element name="container" type="{}tContainer"/>
- *         &lt;/choice>
+ *         &lt;element name="cmd" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="container" type="{}tContainer"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -79,7 +77,7 @@ public class Task {
 
     protected String stderr;
 
-    @NotEmpty
+    //@NotEmpty
     protected String cmd;
 
     @Valid

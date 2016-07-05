@@ -40,7 +40,7 @@ import javax.ws.rs.core.Response;
 @Path("/v1/jobproxy/submit")
 public class Submit {
     
-    final Logger logger = LoggerFactory.getLogger(Submit.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(Submit.class);
 
     @Context Request request;
     @Context Response response;
@@ -51,15 +51,16 @@ public class Submit {
     public String submit(@Valid Task task){
         try {
             ObjectMapper mapper = new ObjectMapper();
-            logger.info(String.format("Submitted task %s ", mapper.writerWithDefaultPrettyPrinter().writeValueAsString(task)));
+            LOGGER.info(String.format("Submitted task %s ", mapper.writerWithDefaultPrettyPrinter().writeValueAsString(task)));
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(),e);
         }
 
         try {
             return JobProxyFactory.getFramework().addTask(task);
         } catch (FrameworkException e) {
-            throw new BadGatewayException("Framework could not submit task.", e);
+           LOGGER.error(e.getMessage());
+           throw new BadGatewayException("Framework could not submit task.", e);
         }
     }
 }

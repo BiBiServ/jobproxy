@@ -1,4 +1,6 @@
-package de.unibi.cebitec.bibiserv.jobproxy.server;/*
+package de.unibi.cebitec.bibiserv.jobproxy.server;
+
+/*
  * Copyright 2016 Jan Krueger.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,94 +15,103 @@ package de.unibi.cebitec.bibiserv.jobproxy.server;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 import com.sun.net.httpserver.HttpServer;
-import de.unibi.cebitec.bibiserv.jobproxy.chronos.Chronos;
-import de.unibi.cebitec.bibiserv.jobproxy.chronos.ChronosURLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
+import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Delete;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Ping;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Submit;
-import org.apache.curator.framework.CuratorFramework;
-import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.retry.RetryOneTime;
+import java.net.URI;
+import java.net.URISyntaxException;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Scanner;
+import java.util.Properties;
+import org.glassfish.jersey.filter.LoggingFilter;
+import org.slf4j.Logger;
 
 /**
- * Main class - initiate a simple http server and register JAXRS annotated classes.
- * 
- * 
+ * Main class - initiate a simple http server and register JAXRS annotated
+ * classes.
+ *
  * @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
-
 public class JobProxyServer {
 
-    private static JobProxyInterface framework;
+    static final Logger LOGGER = LoggerFactory.getLogger(JobProxyServer.class);
 
-    static final Logger logger = LoggerFactory.getLogger(JobProxyServer.class);
+    static final String MODEL_PACKAGE = "de.unibi.cebitec.bibiserv.jobproxy.model.task";
 
-    /** Currently hardcoded Chronos framework, should be replaced by a more flexible
-     *  aproach to support
+    private HttpServer server;
+
+    private final JobProxyInterface framework;
+    private final URI jobProxyServerUri;
+
+    /**
+     * Create a new proxy server instance
      *
-     * @return Return a framework implememting the jobproxy interface
+     * @param frameworkname
+     * @param properties
+     * @throws FrameworkException
      */
-    public static JobProxyInterface getFramework(CuratorFramework client){
-       if (framework == null) {
-           framework = new Chronos(new ChronosURLProvider(client));
-       }
-      return framework;
-    }
-
-    /**
-     * Initialize Curator Client and return it.
-     * @return Curator Framework
-     */
-    private static CuratorFramework startCuratorClient(String zookeeperURL){
-        CuratorFramework client = CuratorFrameworkFactory.newClient(zookeeperURL, new RetryOneTime(1000));
-        client.start();
-        return client;
-    }
-
-    /**
-     * Create and start a simple http server hosting all implemented 
-     * REST interfaces ...
-     * 
-     * @param args 
-     */
-    public static void main (String [] args) {
-        if(args.length != 1 ){
-            System.err.println("Please provide the zookeeper url and port: '<URL>':'<PORT>' ");
-            System.exit(1);
-        }
-        String zookeeperURL = args[0];
-        CuratorFramework client = startCuratorClient(zookeeperURL);
-        JobProxyFactory.setFramework(getFramework(client));
-
+    public JobProxyServer(String frameworkname, Properties properties) throws FrameworkException {
         try {
-            // create a new HTTPServer and register JAXRS annotated classes
-            URI serveruri = new URI("http://localhost:9999/");
-            HttpServer server = JdkHttpServerFactory.createHttpServer(serveruri,
-                    new ResourceConfig(Ping.class,Submit.class,State.class, Delete.class)
-                            .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
-                            .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true)
-                            .packages("de.unibi.cebitec.bibiserv.jobproxy.model.task"));
-            logger.info(String.format("Server run on %s ! Press key to stop service.", serveruri));
-            Scanner scanner = new Scanner(System.in);
-            scanner.nextLine();
-            server.stop(0);
-        } catch (URISyntaxException io){
-            io.printStackTrace();
-        }       
+            jobProxyServerUri = new URI(properties.getProperty("serveruri", "http://localhost:9999/"));
+        } catch (URISyntaxException ex) {
+            throw new FrameworkException(ex.getMessage(), ex);
+        }
+        framework = JobProxyFactory.getFramework(frameworkname, properties);
+    }
+
+    
+    /**
+     * Start simple http server in debug mode.
+     * 
+     */
+    public void startServer(){
+        startServer(true);
+    }
+    
+    /**
+     * Start simple http server.
+     * 
+     * @param debug - if set to true prints out all request and respone headers. That can produce a lot debug informations.
+     */
+    public void startServer(boolean debug) {
+        if (debug) {
+            server = JdkHttpServerFactory.createHttpServer(jobProxyServerUri,
+                new ResourceConfig(Ping.class, Submit.class, State.class, Delete.class)
+                .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
+                .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true)
+                .register(new LoggingFilter(java.util.logging.Logger.getAnonymousLogger(), true))
+                .packages(MODEL_PACKAGE));
+        } else {
+            server = JdkHttpServerFactory.createHttpServer(jobProxyServerUri,
+                new ResourceConfig(Ping.class, Submit.class, State.class, Delete.class)
+                .property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true)
+                .property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true)
+                .packages(MODEL_PACKAGE));
+        }
+       
+    }
+
+    /**
+     * Stop simple http server
+     */
+    public void stopServer() {
+        server.stop(0);
+    }
+    
+    /**
+     * Returns server URI
+     * 
+     * @return 
+     */
+    public URI getURI(){
+        return jobProxyServerUri;
     }
 }

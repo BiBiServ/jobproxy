@@ -33,7 +33,7 @@ import java.util.Date;
 @Path("/v1/jobproxy/ping")
 public class Ping {
 
-    final Logger logger = LoggerFactory.getLogger(Ping.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(Ping.class);
 
     /**
      * Just a simple ping command.
@@ -43,7 +43,7 @@ public class Ping {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String ping(){
-        logger.info("Ping");
+        LOGGER.info("Ping");
         return "alive ("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())+")";
     }
     

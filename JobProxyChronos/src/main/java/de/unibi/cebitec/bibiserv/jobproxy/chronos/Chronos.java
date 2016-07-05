@@ -24,7 +24,6 @@ import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Jobconfig;
 import de.unibi.cebitec.bibiserv.jobproxy.chronos.data.Tvolume;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
-import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.State;
 import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.TContainer;
@@ -47,28 +46,58 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.net.URL;
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of JoBProxyInterface for Mesos Framework Chronos
  *
- * Mapping between Task and JobConfig :
+ * Mapping between JobConfig and Task :
  *
- * name - ownerName
+ * <table>
+ *  <tr><th>JobConfig</th><th>Task</th></tr>
+ *  <tr>
+ *      <td>name</td><td>[UUID.randomUUID()]</td>
+ *  </tr><tr>
+ *      <td>ownerName</td><td>user</td>
+ *  </tr><tr>
+ *      <td>command</td><td>cmd</td>
+ *  </tr><tr>
+ *      <td>cpus</td><td>cores</td>
+ *  </tr><tr>
+ *      <td>mem</td><td>memory</td>
+ *  </tr><tr>
+ *      <td>Container.image</td><td>Container.image</td>
+ *  </tr><tr>
+ *      <td>Container.network</td><td>[BRIDGE]</td>
+ *  </tr><tr>
+ *      <td>Container.type</td><td>[DOCKER]</td>
+ *  </tr><tr>
+ *      <td>-</td><td>tc.ports</td>
+ *  </tr><tr>
+ *      <td>Container.mounts</td><td>tc.mounts</td>
+ *  </tr>
  *
- *
+ * </table>
  *
  * @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
 public class Chronos extends JobProxyInterface {
 
-    private Client client;
+    static final Logger LOGGER = LoggerFactory.getLogger(Chronos.class);
+    
+    private final Client client;
+    
+    private final String url; 
 
-    public Chronos(URLProvider provider) {
-        super(provider);
+    public Chronos(Properties properties) {
+        super(properties);
         client = ClientBuilder.newClient().register(MoxyJsonFeature.class);
+        url = "must set from properties ...";
     }
 
     @Override
@@ -116,7 +145,7 @@ public class Chronos extends JobProxyInterface {
 
         jc.setShell(true);
         // request Chronos for a new task
-        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/iso8601");
+        WebTarget webtarget = client.target(url).path("/scheduler/iso8601");
 
         try {
             Response response = webtarget.
@@ -124,7 +153,7 @@ public class Chronos extends JobProxyInterface {
                 post(Entity.json(unmarshall2Json(jc)));
             checkResponse(response);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(),e);
         }
 
         return jc.getName();
@@ -132,7 +161,7 @@ public class Chronos extends JobProxyInterface {
 
     @Override
     public Task getTask(String id) throws FrameworkException {
-        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
+        WebTarget webtarget = client.target(url).path("/scheduler/jobs");
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
         checkResponse(response);
         Task task = new Task();
@@ -142,7 +171,7 @@ public class Chronos extends JobProxyInterface {
 
     @Override
     public void delTask(String id) throws FrameworkException {
-        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/job/" + id);
+        WebTarget webtarget = client.target(url).path("/scheduler/job/" + id);
         Response response = webtarget.request().delete();
         checkResponse(response);
     }
@@ -164,6 +193,11 @@ public class Chronos extends JobProxyInterface {
         return states;
     }
 
+    @Override
+    public String getName() {
+        return "Chronos";
+    }
+
     private void checkResponse(Response response) throws FrameworkException {
         if(! response.getStatusInfo().getFamily().equals(Response.Status.Family.SUCCESSFUL)) {
             throw new FrameworkException(response.getStatusInfo().getReasonPhrase());
@@ -176,12 +210,12 @@ public class Chronos extends JobProxyInterface {
      *
      */
     private List<State> getJobProxyStates() throws FrameworkException {
-        WebTarget webtarget = client.target(getUrlProvider().getUrl()).path("/scheduler/jobs");
+        WebTarget webtarget = client.target(url).path("/scheduler/jobs");
 
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
         checkResponse(response);
 
-        WebTarget webtargetCSV = client.target(getUrlProvider().getUrl()).path("/scheduler/graph/csv");
+        WebTarget webtargetCSV = client.target(url).path("/scheduler/graph/csv");
 
         Response chronosStates = webtargetCSV.request(MediaType.TEXT_PLAIN).get();
         checkResponse(chronosStates);
@@ -191,7 +225,7 @@ public class Chronos extends JobProxyInterface {
         CsvMapper mapper = new CsvMapper();
         CsvSchema schema = mapper.schemaFor(ChronosJobState.class);
 
-        Map<String, ChronosJobState> map = new HashMap<String, ChronosJobState>();
+        Map<String, ChronosJobState> map = new HashMap<>();
 
         try {
             MappingIterator<ChronosJobState> iter = mapper.readerWithSchemaFor(ChronosJobState.class).with(schema).readValues(entity);
@@ -229,5 +263,10 @@ public class Chronos extends JobProxyInterface {
         marshaller.marshal(jobconfig, sw);
 
         return sw.toString();
+    }
+
+    @Override
+    public String help() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
