@@ -63,7 +63,7 @@ Each module has its own version number e.g.: https://github.com/jkrue/jobproxy/b
  
 If the code is updated the corresponding module version number must be updated. 
 
-### How to use jobProxy as a dependecy?
+### How to use jobProxy as a dependency?
 
 Just go to [this site](https://jitpack.io/#jkrue/jobproxy) and follow the instructions.
 
@@ -85,7 +85,7 @@ Run the following command for packaging.
 mvn package
 ~~~
 
-You will find the jar inside the `JobProxy/JobProxyServer/target` folder.
+You will find the jar inside the `JobProxy/JobProxyServerCLI/target` folder.
 
 ### REST
 
