@@ -46,7 +46,6 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.net.URL;
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
