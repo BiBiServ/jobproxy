@@ -22,7 +22,7 @@
         <module>JobProxyModel</module>
         <module>JobProxyServer</module>
         <module>JobProxyChronos</module>
-        <!--<module>JobProxyJavaDocker</module>-->
+        <module>JobProxyJavaDocker</module>
         <module>JobProxyServerCLI</module>
         <module>JobProxyDRMAA</module>
     </modules>

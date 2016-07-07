@@ -2,9 +2,6 @@ package de.unibi.cebitec.bibiserv.jobproxy.chronos;
 
 import de.unibi.cebitec.bibiserv.jobproxy.model.framework.URLProvider;
 
-
-import java.util.List;
-
 /**
  * Created by pbelmann on 09.03.16.
  */
