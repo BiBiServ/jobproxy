@@ -28,7 +28,7 @@ public class CLI {
         Option listFrameworkOption = new Option("l",false,"List all available frameworks/plugins.");
         listFrameworkOption.setRequired(false);
         
-        Option propertiesOption = new Option("p",true,"Configuration file (java properities style)");
+        Option propertiesOption = new Option("p",true,"Configuration file (java properties style)");
         propertiesOption.setRequired(false);
         
         Option demoniseOption = new Option("d",false,"start server in daemon mode");
