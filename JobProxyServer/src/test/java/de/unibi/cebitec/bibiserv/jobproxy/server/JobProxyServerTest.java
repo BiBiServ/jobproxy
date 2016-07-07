@@ -1,4 +1,4 @@
-package de.unibi.cebitec.bibiserv.jobproxy.server;
+package de.unibi.cebitec.bibiserv.jobproxy.model;
 
 import de.unibi.cebitec.bibiserv.jobproxy.DummyFramework;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
