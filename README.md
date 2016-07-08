@@ -1,6 +1,6 @@
 # JobProxy
 
-[![](https://jitpack.io/v/jkrue/jobproxy.svg)](https://jitpack.io/#jkrue/jobproxy)
+[![](https://jitpack.io/v/BiBiServ/jobproxy.svg)](https://jitpack.io/#BiBiServ/jobproxy)
 
 JobProxy is (should be) a proxy between an application that needs access to compute resources like starting a docker container or just starting a simple shell script and the various existing resource providing frameworks. 
 
@@ -19,48 +19,40 @@ While developing an application that needs access to compute resources from a ru
 Download the latest jar with the following command:
 
 ~~~BASH
-wget https://jitpack.io/com/github/jkrue/jobproxy/JobProxyServer/RELEASE/JobProxyServer-RELEASE.jar
+wget https://jitpack.io/com/github/BiBiServ/jobproxy/JobProxyServerCLI/RELEASE/JobProxyServerCLI-RELEASE.jar
 ~~~
 
 where 
   
-  * **RELEASE** is an identifier you can find on release [page](https://github.com/jkrue/jobproxy/releases) i.e: `0.1.0.alpha.2`.
+  * **RELEASE** is an identifier you can find on release [page](https://github.com/BiBiServ/jobproxy/releases) i.e: `0.1.0.alpha.2`.
 
 #### Usage:
 
 See  [JobProxyServerCLI](JobProxyServerCLI) for
 usage example.
 
-
 ### List of implementing Frameworks:
 
 * Mesos Chronos (https://mesos.github.io/chronos/) version 2.4.0
 * DRMAA (https://www.drmaa.org/) using DRMAA V1.0 API
-* JavaDocker (https://github.com/docker-java/docker-java)
+* JavaDocker (https://github.com/spotify/docker-client)
 
 ## Developer Guide
 
-### Release/Branch Workflow
+### Release/Development Branch Workflow
 
-For each release a new branch must be created.
+There are two branches one is the **master** branch with latest working version of JobProxy and the other one is
+the **development** branch for the next release.
 
-E.g: 
-
-~~~
-beta.release.1
-~~~
-
-On a release, the list of implementing Frameworks must be extended.
-
-Then the release branch will be merged into the master.
+On a release, the development branch must be merged into the master branch and the list of implementing Frameworks must be extended.
 
 Each module has its own version number e.g.: https://github.com/jkrue/jobproxy/blob/master/JobProxyServer/pom.xml#L8
  
-If the code is updated the corresponding module version number must be updated. 
+If the code is updated, the corresponding module version number must be updated. 
 
 ### How to use jobProxy as a dependency?
 
-Just go to [this site](https://jitpack.io/#jkrue/jobproxy) and follow the instructions.
+Just go to [this site](https://jitpack.io/#BiBiServ/jobproxy) and follow the instructions.
 
 ### How to build to build JobProxy?
 
