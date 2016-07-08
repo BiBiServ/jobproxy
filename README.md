@@ -28,20 +28,15 @@ where
 
 #### Usage:
 
-Run the following command:
+See  [JobProxyServerCLI](JobProxyServerCLI) for
+usage example.
 
-~~~
-java -jar jobProxy.jar "URL:PORT"
-~~~
-
-where 
-
-  * **URL** URL is the url of zookeeper (i.e: localhost) 
-  * **PORT** The port where zookeeper is running (i.e: 2181)
 
 ### List of implementing Frameworks:
 
 * Mesos Chronos (https://mesos.github.io/chronos/) version 2.4.0
+* DRMAA (https://www.drmaa.org/) using DRMAA V1.0 API
+* JavaDocker (https://github.com/docker-java/docker-java)
 
 ## Developer Guide
 
@@ -111,4 +106,9 @@ where
 
 Just use the swagger [code generator](https://github.com/swagger-api/swagger-codegen) with our swagger.yaml to produce jobproxy client code in your favorite language.
 
+The following call produces an java client from swagger specification:
+
+~~~BASH
+swagger-codegen-cli.sh generate -i doc/REST/swagger.yaml -l java 
+~~~
 
