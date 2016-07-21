@@ -1,4 +1,4 @@
-package de.unibi.cebitec.bibiserv.jobproxy.javadocker;
+package de.unibi.cebitec.bibiserv.jobproxy.local;
 
 import com.spotify.docker.client.DefaultDockerClient;
 import com.spotify.docker.client.exceptions.DockerException;
@@ -12,23 +12,22 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.task.TMounts;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
 
-public class JavaDocker extends JobProxyInterface {
+public class Local extends JobProxyInterface {
 
     private final DefaultDockerClient dockerClient;
 
-    public JavaDocker(Properties properties) {
+    public Local(Properties properties) {
         super(properties);
         dockerClient = new DefaultDockerClient("unix:///var/run/docker.sock");
     }
 
-    @Override
-    public String addTask(Task task) throws FrameworkException {
-
+    private String handleDockerTask(Task task){
         HostConfig.Builder hostConfigBuilder = HostConfig.builder();
 
         task.getContainer().getMounts().forEach(mounts
@@ -78,6 +77,27 @@ public class JavaDocker extends JobProxyInterface {
         return id;
     }
 
+    private String handleLocalCommand(Task task) throws FrameworkException {
+        try {
+            Runtime.getRuntime().exec(task.getCmd());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new FrameworkException(e.getMessage());
+        }
+        return "";
+    }
+
+    @Override
+    public String addTask(Task task) throws FrameworkException {
+
+        if (task.getContainer() == null) {
+            return handleLocalCommand(task);
+        } else {
+            return handleDockerTask(task);
+        }
+    }
+
+
     @Override
     public Task getTask(String id) throws FrameworkException {
 
@@ -124,7 +144,6 @@ public class JavaDocker extends JobProxyInterface {
             tmounts.setMount(mount);
             container.getMounts().add(tmounts);
         });
-
         task.setContainer(container);
 
         return task;
@@ -158,6 +177,9 @@ public class JavaDocker extends JobProxyInterface {
         }
         State state = new State();
         state.setId(inspect.container().id());
+        state.setCode(inspect.container().state().exitCode().toString());
+        state.setDescription(inspect.container().name());
+
         if (!inspect.running()) {
             state.setCode(String.valueOf(inspect.exitCode()));
         }
@@ -174,7 +196,8 @@ public class JavaDocker extends JobProxyInterface {
                 states.getState().add(getState(container.id()));
             }
         } catch (FrameworkException e) {
-
+            e.printStackTrace();
+            throw new FrameworkException(e.getMessage());
         } catch (DockerException e) {
             e.printStackTrace();
             throw new FrameworkException(e.getMessage());
@@ -187,12 +210,15 @@ public class JavaDocker extends JobProxyInterface {
 
     @Override
     public String getName() {
-        return "JavaDocker";
+        return "JobProxyLocal";
     }
 
     @Override
     public String help() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Simple Jobproxy implementation for executing commands and docker container on the local system.\n" +
+        "Note!: \n " +
+        "Ressources for system native commands can not be restricted! This means that fields like mem,cpu and cputime are ignored\n" +
+        "Executed native commands are not reported by using the 'state' or 'states' endpoint.";
     }
 }
 
