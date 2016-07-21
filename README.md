@@ -53,6 +53,8 @@ If the code is updated, the corresponding module version number must be updated.
 ### How to use jobProxy as a dependency?
 
 Just go to [this site](https://jitpack.io/#BiBiServ/jobproxy) and follow the instructions.
+Please keep in mind that you can import single subproject artifacts like **JobProxyServer** and 
+not the whole **JobProxy** parent artifact.
 
 ### How to build to build JobProxy?
 
