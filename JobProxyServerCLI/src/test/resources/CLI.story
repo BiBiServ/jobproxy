@@ -15,7 +15,7 @@ Given jobproxy is installed.
 When I run jobproxy with the parameters:
 -l
 Then the exit status should be 0
-And the output should contain the values DRMAA JavaDocker Chronos
+And the output should contain the values DRMAA Local Chronos
 
 Scenario: Use Configuration File
 Given jobproxy is installed.
