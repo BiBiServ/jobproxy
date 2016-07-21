@@ -46,7 +46,6 @@ public class Delete {
 
     @DELETE
     @Path("/{id}")
-    @Consumes({MediaType.TEXT_PLAIN})
     public void delete(@PathParam("id")String id){
         try {
             JobProxyFactory.getFramework().delTask(id);
