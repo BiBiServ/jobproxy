@@ -84,6 +84,7 @@ public class CLISteps {
                 try {
                     res = client.target(properties.getProperty("serveruri", "http://localhost:9999/")).path("/ping").request().get();
                 } catch (ProcessingException e) {
+                    //ProcessingException is thrown until server is available
                 }
             }
         };

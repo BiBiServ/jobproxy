@@ -47,7 +47,6 @@
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyLocal</artifactId>
             <version>beta.1.release</version>
-
         </dependency>
         <dependency>
             <groupId>junit</groupId>
