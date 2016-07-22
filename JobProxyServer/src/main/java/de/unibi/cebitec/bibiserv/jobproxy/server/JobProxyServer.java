@@ -1,4 +1,4 @@
-package de.unibi.cebitec.bibiserv.jobproxy.model;
+package de.unibi.cebitec.bibiserv.jobproxy.server;
 
 /*
  * Copyright 2016 Jan Krueger.
@@ -16,6 +16,8 @@ package de.unibi.cebitec.bibiserv.jobproxy.model;
  * limitations under the License.
  */
 import com.sun.net.httpserver.HttpServer;
+import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
+import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Delete;
 import de.unibi.cebitec.bibiserv.jobproxy.model.rest.Ping;
