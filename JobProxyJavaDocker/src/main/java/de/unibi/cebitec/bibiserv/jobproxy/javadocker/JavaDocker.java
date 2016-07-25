@@ -12,6 +12,7 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.task.TMounts;
 import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -31,9 +32,12 @@ public class JavaDocker extends JobProxyInterface {
 
         HostConfig.Builder hostConfigBuilder = HostConfig.builder();
 
-        task.getContainer().getMounts().forEach(mounts
-                -> {
-            hostConfigBuilder.binds(mounts.getMount().getHost() + ":" + mounts.getMount().getContainer());
+        task.getContainer().getMounts().forEach(mounts -> {
+            hostConfigBuilder.appendBinds(
+                    HostConfig.Bind.from(mounts.getMount().getHost())
+                            .to(mounts.getMount().getContainer())
+                            .readOnly(mounts.getMount().getMode().toLowerCase().equals("ro") ? true : false)
+                            .build());
         });
 
         HostConfig hostConfigBuild = hostConfigBuilder.build();
