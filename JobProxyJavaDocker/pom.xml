@@ -13,7 +13,7 @@
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyModel</artifactId>
-            <version>beta.1.release</version>
+            <version>beta.1.2.release</version>
         </dependency>
         <dependency>
             <groupId>com.spotify</groupId>
