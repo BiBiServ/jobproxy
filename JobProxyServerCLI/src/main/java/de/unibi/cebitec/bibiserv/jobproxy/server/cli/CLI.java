@@ -92,7 +92,7 @@ public class CLI {
         Option demoniseOption = new Option(OPTION_FRAMEWORK_DEMONISE, false, "start server in daemon mode");
         propertiesOption.setRequired(false);
 
-        Option debugOption = new Option(OPTION_FRAMEWORK_DEBUG, true, "run server in debug mode. Logs all http request/responses. ");
+        Option debugOption = new Option(OPTION_FRAMEWORK_DEBUG, false, "run server in debug mode. Logs all http request/responses. ");
         propertiesOption.setRequired(false);
 
         String[] levels = {Level.ERROR.toString(), Level.INFO.toString(), Level.TRACE.toString(), Level.WARN.toString(),
