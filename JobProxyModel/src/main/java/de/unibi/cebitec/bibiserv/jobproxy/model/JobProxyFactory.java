@@ -75,7 +75,7 @@ public class JobProxyFactory {
                 framework = FRAMEWORKS.get(name).getConstructor(Properties.class).newInstance(properties);
                 return framework;
             }
-            throw new FrameworkException("Unknown framework '"+name+"'!");       
+            throw new FrameworkException("Unknown framework '"+name+"'!");
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException e) {
             throw new FrameworkException("Error instantiating framework '"+name+"'!",e);
         } catch (InvocationTargetException e) {
@@ -83,11 +83,12 @@ public class JobProxyFactory {
         }
     }
 
-    /** 
+    /**
      * Return a set of found FRAMEWORKS.
-     * @return 
+     * @return
      */
     public static Set<String> list() {
+        LOGGER.info("INFOOOOOOO");
         return FRAMEWORKS.keySet();
     }
 }
