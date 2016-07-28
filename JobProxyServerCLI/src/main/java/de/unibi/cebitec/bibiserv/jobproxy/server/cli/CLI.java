@@ -17,9 +17,7 @@ import java.util.Properties;
 import java.util.Scanner;
 
 public class CLI {
-
-    private static Logger ROOT_LOGGER = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-
+    
     private static String OPTION_FRAMEWORK_SELECT = "f";
 
     private static String OPTION_FRAMEWORK_LIST = "l";
@@ -120,9 +118,13 @@ public class CLI {
             CommandLine cmd = parser.parse(options, args);
 
             Level level = Optional.ofNullable(cmd.getOptionValue(OPTION_FRAMEWORK_LOG))
-                    .map(levelStr -> Level.toLevel(levelStr)).orElse(Level.ALL);
+                    .map(levelStr -> Level.toLevel(levelStr)).orElse(Level.INFO);
 
-            ROOT_LOGGER.setLevel(level);
+            if(LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) instanceof  ch.qos.logback.classic.Logger){
+                ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger)LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+                logger.setLevel(level);
+            }
+
             if (cmd.hasOption(OPTION_FRAMEWORK_LIST)) {
                 listFrameworks();
                 return;
