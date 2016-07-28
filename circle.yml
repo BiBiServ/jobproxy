@@ -5,4 +5,4 @@ machine:
       - docker
 test:
   override:
-       - mvn -f pom.xml test
+      - mvn -f jobproxy/pom.xml test
