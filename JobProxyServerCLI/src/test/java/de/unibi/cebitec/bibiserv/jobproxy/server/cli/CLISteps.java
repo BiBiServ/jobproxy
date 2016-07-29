@@ -7,9 +7,12 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -86,6 +89,11 @@ public class CLISteps {
                 } catch (ProcessingException e) {
                     //ProcessingException is thrown until server is available
                 }
+                    try {
+                        TimeUnit.SECONDS.sleep(5);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
             }
         };
         Thread webtargetThread = new Thread(webTargetRunnable);
@@ -128,10 +136,11 @@ public class CLISteps {
         assertEquals(Response.Status.Family.SUCCESSFUL, res.getStatusInfo().getFamily());
     }
 
-    @AfterStory
+    @AfterScenario
     public void afterStory() {
         if (cliThread != null) {
-            cliThread.stop();
+            cli.getServer().stopServer();
+            cliThread = null;
         }
         properties.clear();
     }

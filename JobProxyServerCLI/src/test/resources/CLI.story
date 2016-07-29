@@ -29,10 +29,10 @@ Scenario: Use Debug Option
 Given jobproxy is installed.
 When I start the jobproxy server with the parameters:
 -f ExampleFramework -debug
-Then the GET request using the url http://localhost:9998/v1/jobproxy/ping should be successful
+Then the GET request using the url http://localhost:9999/v1/jobproxy/ping should be successful
 
 Scenario: Use Logging Option
 Given jobproxy is installed.
 When I start the jobproxy server with the parameters:
 -f ExampleFramework -log INFO
-Then the GET request using the url http://localhost:9998/v1/jobproxy/ping should be successful
+Then the GET request using the url http://localhost:9999/v1/jobproxy/ping should be successful
