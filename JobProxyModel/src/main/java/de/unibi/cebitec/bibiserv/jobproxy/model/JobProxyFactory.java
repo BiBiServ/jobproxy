@@ -88,7 +88,6 @@ public class JobProxyFactory {
      * @return
      */
     public static Set<String> list() {
-        LOGGER.info("INFOOOOOOO");
         return FRAMEWORKS.keySet();
     }
 }
