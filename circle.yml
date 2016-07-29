@@ -5,4 +5,4 @@ machine:
       - docker
 test:
   override:
-      - mvn -f jobproxy/pom.xml clean compile install test
+      - cd jobproxy && mvn clean compile install package && mvn test
