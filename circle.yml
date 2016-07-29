@@ -5,7 +5,7 @@ machine:
       - docker
 dependencies:        
   override:
-      - cd jobproxy && mvn --fail-never dependency:go-offline || true
+      - mvn --fail-never dependency:go-offline || true
 test:
   override:
-      - cd jobproxy && mvn clean compile install package && mvn test
+      - mvn clean compile install package && mvn test
