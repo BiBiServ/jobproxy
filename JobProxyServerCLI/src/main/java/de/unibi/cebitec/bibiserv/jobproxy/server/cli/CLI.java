@@ -36,6 +36,8 @@ public class CLI {
 
     private Result result;
 
+    private JobProxyServer server;
+
     public CLI() {
         result = new SystemResult();
     }
@@ -60,7 +62,7 @@ public class CLI {
         result.exit(0);
     }
 
-    private void handleServer(JobProxyServer server, boolean isDebug, boolean isDaemon) {
+    private void handleServer(boolean isDebug, boolean isDaemon) {
         server.startServer(isDebug);
         if (isDaemon) {
             LOGGER.info(String.format("Server run on %s !", server.getURI()));
@@ -70,7 +72,7 @@ public class CLI {
                 LOGGER.error(ex.getMessage());
             }
         } else {
-            LOGGER.info(String.format("Server run on %s ! Press key to stop service.", server.getURI()));
+            LOGGER.info(String.format("Server runs on %s ! Press key to stop service.", server.getURI()));
             Scanner scanner = new Scanner(System.in);
             scanner.nextLine();
             server.stopServer();
@@ -92,7 +94,7 @@ public class CLI {
         Option demoniseOption = new Option(OPTION_FRAMEWORK_DEMONISE, false, "start server in daemon mode");
         propertiesOption.setRequired(false);
 
-        Option debugOption = new Option(OPTION_FRAMEWORK_DEBUG, true, "run server in debug mode. Logs all http request/responses. ");
+        Option debugOption = new Option(OPTION_FRAMEWORK_DEBUG, false, "run server in debug mode. Logs all http request/responses. ");
         propertiesOption.setRequired(false);
 
         String[] levels = {Level.ERROR.toString(), Level.INFO.toString(), Level.TRACE.toString(), Level.WARN.toString(),
@@ -141,12 +143,12 @@ public class CLI {
                     }
                 }
                 try {
-                    JobProxyServer server = new JobProxyServer(frameworkType, prop);
+                    server = new JobProxyServer(frameworkType, prop);
                     if (cmd.hasOption(OPTION_FRAMEWORK_HELP)) {
                         result.message(JobProxyFactory.getFramework().help());
                         return;
                     } else {
-                        handleServer(server, cmd.hasOption(OPTION_FRAMEWORK_DEBUG), cmd.hasOption(OPTION_FRAMEWORK_DEMONISE));
+                        handleServer(cmd.hasOption(OPTION_FRAMEWORK_DEBUG), cmd.hasOption(OPTION_FRAMEWORK_DEMONISE));
                     }
                 } catch (FrameworkException e) {
                     LOGGER.error(e.getMessage());
@@ -172,5 +174,13 @@ public class CLI {
 
     public void setResult(Result result) {
         this.result = result;
+    }
+
+    /**
+     * Getter for Testing
+     * @return JobProxyServer server
+     */
+    public JobProxyServer getServer() {
+        return server;
     }
 }

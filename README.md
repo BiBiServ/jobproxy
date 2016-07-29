@@ -2,6 +2,8 @@
 
 [![](https://jitpack.io/v/BiBiServ/jobproxy.svg)](https://jitpack.io/#BiBiServ/jobproxy)
 
+[![CircleCI](https://circleci.com/gh/BiBiServ/jobproxy/tree/development.svg?style=svg)](https://circleci.com/gh/BiBiServ/jobproxy/tree/development)
+
 JobProxy is (should be) a proxy between an application that needs access to compute resources like starting a docker container or just starting a simple shell script and the various existing resource providing frameworks. 
 
 ## Motivation
