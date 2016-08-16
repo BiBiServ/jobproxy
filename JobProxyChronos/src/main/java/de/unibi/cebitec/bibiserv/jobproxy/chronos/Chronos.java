@@ -96,7 +96,7 @@ public class Chronos extends JobProxyInterface {
     public Chronos(Properties properties) {
         super(properties);
         client = ClientBuilder.newClient().register(MoxyJsonFeature.class);
-        url = "must set from properties ...";
+        url = properties.getProperty("url", "http://localhost:4400");
     }
 
     @Override
