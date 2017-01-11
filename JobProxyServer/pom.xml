@@ -14,7 +14,7 @@
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyModel</artifactId>
-            <version>beta.1.release</version>
+	    <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>jackson-core</artifactId>
