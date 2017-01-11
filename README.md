@@ -41,6 +41,10 @@ usage example.
 
 ## Developer Guide
 
+## Development-Guidelines
+
+https://github.com/BiBiServ/Development-Guidelines
+
 ### Release/Development Branch Workflow
 
 There are two branches one is the **master** branch with latest working version of JobProxy and the other one is
