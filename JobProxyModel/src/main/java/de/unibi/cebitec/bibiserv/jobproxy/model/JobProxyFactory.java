@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
 import org.reflections.Reflections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Provides a list of all FRAMEWORKS found within the classpath
@@ -18,6 +21,7 @@ import org.reflections.Reflections;
 public class JobProxyFactory {
 
     private static final Map<String, Class<? extends de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface>> FRAMEWORKS = new HashMap<>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(JobProxyFactory.class);
 
     static {
         Reflections reflections = new Reflections("de.unibi.cebitec.bibiserv.jobproxy");
@@ -71,7 +75,7 @@ public class JobProxyFactory {
                 framework = FRAMEWORKS.get(name).getConstructor(Properties.class).newInstance(properties);
                 return framework;
             }
-            throw new FrameworkException("Unknown framework '"+name+"'!");       
+            throw new FrameworkException("Unknown framework '"+name+"'!");
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException e) {
             throw new FrameworkException("Error instantiating framework '"+name+"'!",e);
         } catch (InvocationTargetException e) {
@@ -79,9 +83,9 @@ public class JobProxyFactory {
         }
     }
 
-    /** 
+    /**
      * Return a set of found FRAMEWORKS.
-     * @return 
+     * @return
      */
     public static Set<String> list() {
         return FRAMEWORKS.keySet();

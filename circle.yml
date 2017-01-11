@@ -1,0 +1,11 @@
+machine:
+  java:
+    version: oraclejdk8
+  services:
+      - docker
+dependencies:        
+  override:
+      - mvn --fail-never dependency:go-offline || true
+test:
+  override:
+      - mvn clean compile install package && mvn test

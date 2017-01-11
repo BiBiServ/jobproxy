@@ -2,6 +2,8 @@
 
 [![](https://jitpack.io/v/BiBiServ/jobproxy.svg)](https://jitpack.io/#BiBiServ/jobproxy)
 
+[![CircleCI](https://circleci.com/gh/BiBiServ/jobproxy/tree/development.svg?style=svg)](https://circleci.com/gh/BiBiServ/jobproxy/tree/development)
+
 JobProxy is (should be) a proxy between an application that needs access to compute resources like starting a docker container or just starting a simple shell script and the various existing resource providing frameworks. 
 
 ## Motivation
@@ -39,6 +41,10 @@ usage example.
 
 ## Developer Guide
 
+### Development-Guidelines
+
+https://github.com/BiBiServ/Development-Guidelines
+
 ### Release/Development Branch Workflow
 
 There are two branches one is the **master** branch with latest working version of JobProxy and the other one is
@@ -53,6 +59,8 @@ If the code is updated, the corresponding module version number must be updated.
 ### How to use jobProxy as a dependency?
 
 Just go to [this site](https://jitpack.io/#BiBiServ/jobproxy) and follow the instructions.
+Please keep in mind that you can import single subproject artifacts like **JobProxyServer** and 
+not the whole **JobProxy** parent artifact.
 
 ### How to build to build JobProxy?
 
@@ -103,4 +111,17 @@ The following call produces an java client from swagger specification:
 ~~~BASH
 swagger-codegen-cli.sh generate -i doc/REST/swagger.yaml -l java 
 ~~~
+
+#### How to version the project?
+
+We decided that all modules should have the same version as the parent module.
+By using the below command in the project root you can update all child modules at once.
+
+~~~BASH
+mvn  versions:set -DnewVersion=<version>
+~~~
+
+where
+  
+ * version = **2.1.0.alpha.2**
 

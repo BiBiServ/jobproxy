@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.unibi.cebitec.bibiserv</groupId>
         <artifactId>JobProxy</artifactId>
-        <version>beta.1.2.release</version>
+        <version>0.1.0.beta.1.7</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,29 +14,39 @@
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyModel</artifactId>
-            <version>beta.1.2.release</version>
+	    <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-core</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyModel</artifactId>
-            <version>beta.1.2.release</version>
+            <version>${project.version}</version>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyDRMAA</artifactId>
-            <version>beta.1.2.release</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyChronos</artifactId>
-            <version>beta.1.2.release</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
-            <artifactId>JobProxyJavaDocker</artifactId>
-            <version>beta.1.2.release</version>
+            <artifactId>JobProxyLocal</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

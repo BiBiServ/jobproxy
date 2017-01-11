@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.unibi.cebitec.bibiserv</groupId>
     <artifactId>JobProxy</artifactId>
-    <version>beta.1.2.release</version>
+    <version>0.1.0.beta.1.7</version>
     <packaging>pom</packaging>
 
     <repositories>
@@ -18,11 +18,35 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.2</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <modules>
         <module>JobProxyModel</module>
         <module>JobProxyServer</module>
         <module>JobProxyChronos</module>
-        <module>JobProxyJavaDocker</module>
+        <module>JobProxyLocal</module>
         <module>JobProxyServerCLI</module>
         <module>JobProxyDRMAA</module>
     </modules>

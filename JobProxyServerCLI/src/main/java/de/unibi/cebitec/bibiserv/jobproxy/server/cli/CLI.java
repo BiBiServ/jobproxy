@@ -1,24 +1,42 @@
 package de.unibi.cebitec.bibiserv.jobproxy.server.cli;
 
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
-import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyServer;
+import de.unibi.cebitec.bibiserv.jobproxy.server.JobProxyServer;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
 import org.apache.commons.cli.*;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Scanner;
 
 public class CLI {
+    
+    private static String OPTION_FRAMEWORK_SELECT = "f";
 
-    static final Logger LOGGER = LoggerFactory.getLogger(JobProxyServer.class);
+    private static String OPTION_FRAMEWORK_LIST = "l";
+
+    private static String OPTION_FRAMEWORK_PROPERTIES = "p";
+
+    private static String OPTION_FRAMEWORK_DEMONISE = "d";
+
+    private static String OPTION_FRAMEWORK_DEBUG = "debug";
+
+    private static String OPTION_FRAMEWORK_LOG = "log";
+
+    private static String OPTION_FRAMEWORK_HELP = "h";
+
+    private org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CLI.class);
 
     private Result result;
+
+    private JobProxyServer server;
 
     public CLI() {
         result = new SystemResult();
@@ -41,48 +59,50 @@ public class CLI {
             sb.append(n);
         }
         result.message(sb.toString());
-        // and exit
         result.exit(0);
     }
 
-    private void handleServer(JobProxyServer server, boolean isDebug, boolean isDaemon) {
+    private void handleServer(boolean isDebug, boolean isDaemon) {
         server.startServer(isDebug);
         if (isDaemon) {
-            LOGGER.info(String.format("Server run on %s !",server.getURI()));
+            LOGGER.info(String.format("Server run on %s !", server.getURI()));
             try {
                 Thread.currentThread().join();
             } catch (InterruptedException ex) {
                 LOGGER.error(ex.getMessage());
             }
         } else {
-            LOGGER.info(String.format("Server run on %s ! Press key to stop service.", server.getURI()));
+            LOGGER.info(String.format("Server runs on %s ! Press key to stop service.", server.getURI()));
             Scanner scanner = new Scanner(System.in);
             scanner.nextLine();
             server.stopServer();
-
-
         }
     }
 
     public void run(String args[]) {
         Options options = new Options();
 
-        Option frameworkOption = new Option("f", true, "Framework/Plugin to be used by JobProxy.");
+        Option frameworkOption = new Option(OPTION_FRAMEWORK_SELECT, true, "Framework/Plugin to be used by JobProxy.");
         frameworkOption.setRequired(false);
 
-        Option listFrameworkOption = new Option("l", false, "List all available frameworks/plugins.");
+        Option listFrameworkOption = new Option(OPTION_FRAMEWORK_LIST, false, "List all available frameworks/plugins.");
         listFrameworkOption.setRequired(false);
-      
-        Option propertiesOption = new Option("p",true,"Configuration file (java properties style)");
+
+        Option propertiesOption = new Option(OPTION_FRAMEWORK_PROPERTIES, true, "Configuration file (java properties style)");
         propertiesOption.setRequired(false);
-        
-        Option demoniseOption = new Option("d",false,"start server in daemon mode");
+
+        Option demoniseOption = new Option(OPTION_FRAMEWORK_DEMONISE, false, "start server in daemon mode");
         propertiesOption.setRequired(false);
-        
-        Option debugOption = new Option("debug",false,"run server in debug mode. Logs all http request/responses. ");
+
+        Option debugOption = new Option(OPTION_FRAMEWORK_DEBUG, false, "run server in debug mode. Logs all http request/responses. ");
         propertiesOption.setRequired(false);
-        
-        Option helpOption = new Option("h",false,"Print general help or help for a specified framework together with '-f' option");
+
+        String[] levels = {Level.ERROR.toString(), Level.INFO.toString(), Level.TRACE.toString(), Level.WARN.toString(),
+                Level.DEBUG.toString(), Level.ALL.toString(), Level.OFF.toString()};
+        Option loggingOption = new Option(OPTION_FRAMEWORK_LOG, true, "Set Logging Level. Available Levels:" + String.join(",", levels));
+        loggingOption.setRequired(false);
+
+        Option helpOption = new Option(OPTION_FRAMEWORK_HELP, false, "Print general help or help for a specified framework together with '-f' option");
 
         propertiesOption.setRequired(false);
 
@@ -90,36 +110,45 @@ public class CLI {
         options.addOption(listFrameworkOption);
         options.addOption(propertiesOption);
         options.addOption(demoniseOption);
-        options.addOption(debugOption);       
+        options.addOption(debugOption);
+        options.addOption(loggingOption);
         options.addOption(helpOption);
 
         CommandLineParser parser = new DefaultParser();
 
         try {
             CommandLine cmd = parser.parse(options, args);
-            if (cmd.hasOption("l")) {
-                // list all frameworks
+
+            Level level = Optional.ofNullable(cmd.getOptionValue(OPTION_FRAMEWORK_LOG))
+                    .map(levelStr -> Level.toLevel(levelStr)).orElse(Level.INFO);
+
+            if(LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) instanceof  ch.qos.logback.classic.Logger){
+                ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger)LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+                logger.setLevel(level);
+            }
+
+            if (cmd.hasOption(OPTION_FRAMEWORK_LIST)) {
                 listFrameworks();
                 return;
             }
 
-            if (cmd.hasOption("f")) {
-                String frameworkType = cmd.getOptionValue("f");
+            if (cmd.hasOption(OPTION_FRAMEWORK_SELECT)) {
+                String frameworkType = cmd.getOptionValue(OPTION_FRAMEWORK_SELECT);
                 Properties prop = new Properties();
-                if (cmd.hasOption("p")) {
+                if (cmd.hasOption(OPTION_FRAMEWORK_PROPERTIES)) {
                     try {
-                        prop.load(new FileInputStream(new File(cmd.getOptionValue("p"))));
+                        prop.load(new FileInputStream(new File(cmd.getOptionValue(OPTION_FRAMEWORK_PROPERTIES))));
                     } catch (IOException e) {
                         LOGGER.error(e.getMessage());
                     }
                 }
                 try {
-                    JobProxyServer server = new JobProxyServer(frameworkType, prop);
-                    if (cmd.hasOption("h")) {
+                    server = new JobProxyServer(frameworkType, prop);
+                    if (cmd.hasOption(OPTION_FRAMEWORK_HELP)) {
                         result.message(JobProxyFactory.getFramework().help());
                         return;
                     } else {
-                        handleServer(server, cmd.hasOption("debug"), cmd.hasOption("d"));
+                        handleServer(cmd.hasOption(OPTION_FRAMEWORK_DEBUG), cmd.hasOption(OPTION_FRAMEWORK_DEMONISE));
                     }
                 } catch (FrameworkException e) {
                     LOGGER.error(e.getMessage());
@@ -134,6 +163,7 @@ public class CLI {
     }
 
     public static void main(String args[]) {
+
         CLI cli = new CLI();
         cli.run(args);
     }
@@ -144,5 +174,13 @@ public class CLI {
 
     public void setResult(Result result) {
         this.result = result;
+    }
+
+    /**
+     * Getter for Testing
+     * @return JobProxyServer server
+     */
+    public JobProxyServer getServer() {
+        return server;
     }
 }
