@@ -112,3 +112,16 @@ The following call produces an java client from swagger specification:
 swagger-codegen-cli.sh generate -i doc/REST/swagger.yaml -l java 
 ~~~
 
+#### How to version the project?
+
+We decided that all modules should have the same version as the parent module.
+By using the below command in the project root you can update all child modules at once.
+
+~~~BASH
+mvn  versions:set -DnewVersion=<version>
+~~~
+
+where
+  
+ * version = **2.1.0.alpha.2**
+
