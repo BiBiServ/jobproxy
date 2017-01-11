@@ -1,6 +1,7 @@
 package de.unibi.cebitec.bibiserv.jobproxy.local;
 
 import com.spotify.docker.client.DefaultDockerClient;
+import com.spotify.docker.client.DockerClient;
 import com.spotify.docker.client.exceptions.DockerException;
 import com.spotify.docker.client.messages.*;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyInterface;
@@ -168,9 +169,9 @@ public class Local extends JobProxyInterface {
 
     @Override
     public State getState(String id) throws FrameworkException {
-        ExecState inspect;
+        ContainerInfo container;
         try {
-            inspect = dockerClient.execInspect(id);
+            container = dockerClient.inspectContainer(id);
         } catch (DockerException e) {
             e.printStackTrace();
             throw new FrameworkException(e.getMessage());
@@ -179,14 +180,13 @@ public class Local extends JobProxyInterface {
             throw new FrameworkException(e.getMessage());
         }
         State state = new State();
-        state.setId(inspect.container().id());
-        state.setCode(inspect.container().state().exitCode().toString());
-        state.setDescription(inspect.container().name());
+        state.setId(container.id());
+        state.setDescription(container.name());
 
-        if (!inspect.running()) {
-            state.setCode(String.valueOf(inspect.exitCode()));
+        if (!container.state().running()) {
+            state.setCode(String.valueOf(container.state().exitCode()));
         }
-        state.setDescription(inspect.container().name());
+        state.setDescription(container.name());
         return state;
     }
 
@@ -194,7 +194,7 @@ public class Local extends JobProxyInterface {
     public States getState() throws FrameworkException {
         States states = new States();
         try {
-            List<Container> containers = dockerClient.listContainers();
+            List<Container> containers = dockerClient.listContainers(DockerClient.ListContainersParam.allContainers());
             for (Container container : containers) {
                 states.getState().add(getState(container.id()));
             }
