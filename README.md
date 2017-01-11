@@ -41,7 +41,7 @@ usage example.
 
 ## Developer Guide
 
-## Development-Guidelines
+### Development-Guidelines
 
 https://github.com/BiBiServ/Development-Guidelines
 
