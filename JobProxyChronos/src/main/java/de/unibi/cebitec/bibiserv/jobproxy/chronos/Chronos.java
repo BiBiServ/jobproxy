@@ -96,7 +96,7 @@ public class Chronos extends JobProxyInterface {
     public Chronos(Properties properties) {
         super(properties);
         client = ClientBuilder.newClient().register(MoxyJsonFeature.class);
-        url = "must set from properties ...";
+        url = properties.getProperty("url", "http://localhost:4400");
     }
 
     @Override
@@ -239,10 +239,16 @@ public class Chronos extends JobProxyInterface {
         //transform to jobproxy state
         List<State> jobProxyStates = chronosJobs.stream().map(chronosState -> {
             State state = chronosState.getState();
-            if (map.get(state.getId()).getLastExit().equals("failure")) {
-                state.setCode("1");
-            } else {
-                state.setCode("0");
+            String lastExitState = map.get(state.getId()).getLastExit();
+            switch(lastExitState) {
+                case "failure":
+                    state.setCode("1");
+                    break;
+                case "success":
+                    state.setCode("0");
+                    break;
+                default:
+                    state.setCode("2");
             }
             return state;
         }).collect(toList());

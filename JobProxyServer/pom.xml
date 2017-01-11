@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.unibi.cebitec.bibiserv</groupId>
         <artifactId>JobProxy</artifactId>
-        <version>beta.1.release</version>
+        <version>beta.1.2.release</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -29,19 +29,19 @@
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyModel</artifactId>
-            <version>beta.1.release</version>
+            <version>beta.1.2.release</version>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyDRMAA</artifactId>
-            <version>beta.1.release</version>
+            <version>beta.1.2.release</version>
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyChronos</artifactId>
-            <version>beta.1.release</version>
+            <version>beta.1.2.release</version>
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
