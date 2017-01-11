@@ -35,7 +35,6 @@
                                 <requireMavenVersion>
                                     <version>3.2</version>
                                 </requireMavenVersion>
-                                <dependencyConvergence/>
                             </rules>
                         </configuration>
                     </execution>
