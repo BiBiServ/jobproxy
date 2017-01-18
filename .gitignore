@@ -16,3 +16,6 @@ buildNumber.properties
 
 # Exclude maven wrapper
 !/.mvn/wrapper/maven-wrapper.jar
+
+#vagrant folder containing machines
+**/.vagrant/
