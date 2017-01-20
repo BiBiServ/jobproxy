@@ -13,3 +13,15 @@ cd -
 
 #start vagrant
 vagrant up
+
+#First test: ping
+PING_RESPONSE=$(curl 127.0.0.1:9999/v1/jobproxy/ping)
+if [[ $PING_RESPONSE == *"alive"* ]]; then
+  echo "[PING TEST] passed"
+else
+  echo "[PING TEST] failed"
+  vagrant destroy -f
+  exit
+fi
+
+
