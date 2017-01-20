@@ -24,4 +24,8 @@ else
   exit
 fi
 
+#second test submitting a job
+curl -H "Content-Type: application/json" -X POST -d @task_test.json http://127.0.0.1:9999/v1/jobproxy/submit
+
+#third test running a job in docker container
 

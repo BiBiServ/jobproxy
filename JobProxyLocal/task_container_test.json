@@ -1,0 +1,17 @@
+{
+   "user":"juser",
+   "cores":"1",
+   "memory":"128",
+   "cputime":"10",
+   "cmd":"/usr/bin/touch /jobproxy_logs/jobproxy_touch.txt",
+   "container":{
+      "image":"ubuntu",
+      "mounts":{
+          "mount":{
+            "container":"/jobproxy_logs",
+            "host":"/jobproxy_logs",
+            "mode":"RW"
+           }
+         }
+   }
+}
