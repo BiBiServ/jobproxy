@@ -17,5 +17,9 @@ buildNumber.properties
 # Exclude maven wrapper
 !/.mvn/wrapper/maven-wrapper.jar
 
-#vagrant folder containing machines
+#vagrant folder containing machines and log files
 **/.vagrant/
+**/*console.log
+**/jobproxy_test.log
+**/jobproxy_test.pid
+**/jobproxy_touch.txt
