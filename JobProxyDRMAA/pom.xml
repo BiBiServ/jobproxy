@@ -4,7 +4,7 @@
     <parent>
         <groupId>de.unibi.cebitec.bibiserv</groupId>
         <artifactId>JobProxy</artifactId>
-        <version>0.1.0.beta.1.7</version>
+        <version>0.1.0.beta.1.8</version>
     </parent>
     <artifactId>JobProxyDRMAA</artifactId>
     <dependencies>
