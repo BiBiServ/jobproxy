@@ -96,7 +96,7 @@ public class Chronos extends JobProxyInterface {
     public Chronos(Properties properties) {
         super(properties);
         client = ClientBuilder.newClient().register(MoxyJsonFeature.class);
-        url = properties.getProperty("url", "http://localhost:4400");
+        url = properties.getProperty("url", "http://localhost:8080");
     }
 
     @Override
@@ -144,7 +144,7 @@ public class Chronos extends JobProxyInterface {
 
         jc.setShell(true);
         // request Chronos for a new task
-        WebTarget webtarget = client.target(url).path("/scheduler/iso8601");
+        WebTarget webtarget = client.target(url).path("/v1/scheduler/iso8601");
 
         try {
             Response response = webtarget.
@@ -160,7 +160,7 @@ public class Chronos extends JobProxyInterface {
 
     @Override
     public Task getTask(String id) throws FrameworkException {
-        WebTarget webtarget = client.target(url).path("/scheduler/jobs");
+        WebTarget webtarget = client.target(url).path("/v1/scheduler/jobs");
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
         checkResponse(response);
         Task task = new Task();
@@ -170,7 +170,7 @@ public class Chronos extends JobProxyInterface {
 
     @Override
     public void delTask(String id) throws FrameworkException {
-        WebTarget webtarget = client.target(url).path("/scheduler/job/" + id);
+        WebTarget webtarget = client.target(url).path("/v1/scheduler/job/" + id);
         Response response = webtarget.request().delete();
         checkResponse(response);
     }
@@ -209,12 +209,12 @@ public class Chronos extends JobProxyInterface {
      *
      */
     private List<State> getJobProxyStates() throws FrameworkException {
-        WebTarget webtarget = client.target(url).path("/scheduler/jobs");
+        WebTarget webtarget = client.target(url).path("/v1/scheduler/jobs");
 
         Response response = webtarget.request(MediaType.APPLICATION_JSON).get();
         checkResponse(response);
 
-        WebTarget webtargetCSV = client.target(url).path("/scheduler/graph/csv");
+        WebTarget webtargetCSV = client.target(url).path("/v1/scheduler/graph/csv");
 
         Response chronosStates = webtargetCSV.request(MediaType.TEXT_PLAIN).get();
         checkResponse(chronosStates);
