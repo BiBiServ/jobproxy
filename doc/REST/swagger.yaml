@@ -4,7 +4,7 @@ swagger: '2.0'
 info:
   title: JobProxy
   description: JobProxy REST API for running task independent of the framework
-  version: "0.1.0.alpha.4"
+  version: "0.1.0.alpha.9"
 basePath: /v1
 # array of all schemes that your API supports
 schemes:

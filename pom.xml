@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.unibi.cebitec.bibiserv</groupId>
     <artifactId>JobProxy</artifactId>
-    <version>0.1.0.beta.1.8</version>
+    <version>0.1.0.beta.1.9</version>
     <packaging>pom</packaging>
 
     <repositories>

@@ -7,7 +7,7 @@ JobProxy REST API for running task independent of the framework
 
 
 ### Version information
-*Version* : 0.1.0.alpha.4
+*Version* : 0.1.0.alpha.9
 
 
 ### URI scheme
@@ -38,9 +38,9 @@ The delete endpoint accepts a task id and deletes the corresponding task.
 
 #### Parameters
 
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Path**|**id**  <br>*required*||string||
+|Type|Name|Schema|
+|---|---|---|
+|**Path**|**id**  <br>*required*|string|
 
 
 #### Responses
@@ -86,9 +86,9 @@ The states endpoint accepts a task id.
 
 #### Parameters
 
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Path**|**id**  <br>*required*||string||
+|Type|Name|Schema|
+|---|---|---|
+|**Path**|**id**  <br>*required*|string|
 
 
 #### Responses
@@ -118,9 +118,9 @@ on a fraemwork.
 
 #### Parameters
 
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Body**|**Task**  <br>*required*||[Task](#task)||
+|Type|Name|Schema|
+|---|---|---|
+|**Body**|**Task**  <br>*required*|[Task](#task)|
 
 
 #### Responses
@@ -188,9 +188,9 @@ Port of the host and the container system.
 Ports container could shoult map to the host system.
 
 
-|Name|Description|Schema|
-|---|---|---|
-|**port**  <br>*required*||[Port](#port)|
+|Name|Schema|
+|---|---|
+|**port**  <br>*required*|[Port](#port)|
 
 
 <a name="task"></a>
