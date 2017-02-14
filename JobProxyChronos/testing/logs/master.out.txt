@@ -1,0 +1,763 @@
+==> master: [vagrant-hostsupdater] Checking for host entries
+==> master: [vagrant-hostsupdater]   found entry for: 10.0.0.2 master
+==> master: Running provisioner: shell...
+    master: Running: inline script
+==> master: mesg: 
+==> master: ttyname failed
+==> master: : 
+==> master: Inappropriate ioctl for device
+==> master: Executing: /tmp/tmp.aPecKWvJvb/gpg.1.sh --keyserver
+==> master: keyserver.ubuntu.com
+==> master: --recv
+==> master: E56151BF
+==> master: gpg: requesting key E56151BF from hkp server keyserver.ubuntu.com
+==> master: gpg: key E56151BF: public key "Mesosphere Archive Automatic Signing Key <support@mesosphere.io>" imported
+==> master: gpg: Total number processed: 1
+==> master: gpg:               imported: 1  (RSA: 1)
+==> master: deb http://repos.mesosphere.io/ubuntu xenial main
+==> master: Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [102 kB]
+==> master: Hit:3 http://archive.ubuntu.com/ubuntu xenial InRelease
+==> master: Get:4 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [102 kB]
+==> master: Get:5 http://archive.ubuntu.com/ubuntu xenial-backports InRelease [102 kB]
+==> master: Get:2 http://repos.mesosphere.com/ubuntu xenial InRelease [4,880 B]
+==> master: Get:6 http://archive.ubuntu.com/ubuntu xenial/main Sources [868 kB]
+==> master: Get:7 http://security.ubuntu.com/ubuntu xenial-security/main Sources [59.3 kB]
+==> master: Get:8 http://security.ubuntu.com/ubuntu xenial-security/restricted Sources [2,288 B]
+==> master: Get:9 http://security.ubuntu.com/ubuntu xenial-security/universe Sources [19.3 kB]
+==> master: Get:10 http://archive.ubuntu.com/ubuntu xenial/restricted Sources [4,808 B]
+==> master: Get:11 http://security.ubuntu.com/ubuntu xenial-security/multiverse Sources [1,144 B]
+==> master: Get:12 http://archive.ubuntu.com/ubuntu xenial/universe Sources [7,728 kB]
+==> master: Get:13 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [211 kB]
+==> master: Get:15 http://security.ubuntu.com/ubuntu xenial-security/main Translation-en [88.5 kB]
+==> master: Get:16 http://security.ubuntu.com/ubuntu xenial-security/restricted amd64 Packages [6,828 B]
+==> master: Get:17 http://security.ubuntu.com/ubuntu xenial-security/restricted Translation-en [2,272 B]
+==> master: Get:14 http://repos.mesosphere.com/ubuntu xenial/main amd64 Packages [4,369 B]
+==> master: Get:18 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [73.8 kB]
+==> master: Get:19 http://security.ubuntu.com/ubuntu xenial-security/universe Translation-en [41.7 kB]
+==> master: Get:20 http://security.ubuntu.com/ubuntu xenial-security/multiverse Translation-en [1,232 B]
+==> master: Get:21 http://archive.ubuntu.com/ubuntu xenial/multiverse Sources [179 kB]
+==> master: Get:22 http://archive.ubuntu.com/ubuntu xenial-updates/main Sources [230 kB]
+==> master: Get:23 http://archive.ubuntu.com/ubuntu xenial-updates/restricted Sources [2,688 B]
+==> master: Get:24 http://archive.ubuntu.com/ubuntu xenial-updates/universe Sources [130 kB]
+==> master: Get:25 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse Sources [4,552 B]
+==> master: Get:26 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [474 kB]
+==> master: Get:27 http://archive.ubuntu.com/ubuntu xenial-updates/main Translation-en [188 kB]
+==> master: Get:28 http://archive.ubuntu.com/ubuntu xenial-updates/restricted amd64 Packages [7,176 B]
+==> master: Get:29 http://archive.ubuntu.com/ubuntu xenial-updates/restricted Translation-en [2,396 B]
+==> master: Get:30 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [396 kB]
+==> master: Get:31 http://archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en [149 kB]
+==> master: Get:32 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages [8,080 B]
+==> master: Get:33 http://archive.ubuntu.com/ubuntu xenial-backports/main Sources [3,200 B]
+==> master: Get:34 http://archive.ubuntu.com/ubuntu xenial-backports/universe Sources [1,868 B]
+==> master: Get:35 http://archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [4,672 B]
+==> master: Get:36 http://archive.ubuntu.com/ubuntu xenial-backports/main Translation-en [3,200 B]
+==> master: Get:37 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [2,512 B]
+==> master: Get:38 http://archive.ubuntu.com/ubuntu xenial-backports/universe Translation-en [1,216 B]
+==> master: Fetched 11.2 MB in 2s (3,904 kB/s)
+==> master: Reading package lists...
+==> master: Reading package lists...
+==> master: Building dependency tree...
+==> master: Reading state information...
+==> master: The following additional packages will be installed:
+==> master:   libpython2.7-minimal libpython2.7-stdlib python2.7-minimal
+==> master: Suggested packages:
+==> master:   python2.7-doc binutils binfmt-support
+==> master: The following NEW packages will be installed:
+==> master:   libpython2.7-minimal libpython2.7-stdlib python2.7 python2.7-minimal
+==> master: 0 upgraded, 4 newly installed, 0 to remove and 55 not upgraded.
+==> master: Need to get 3,743 kB of archives.
+==> master: After this operation, 15.8 MB of additional disk space will be used.
+==> master: Get:1 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-minimal amd64 2.7.12-1ubuntu0~16.04.1 [339 kB]
+==> master: Get:2 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7-minimal amd64 2.7.12-1ubuntu0~16.04.1 [1,295 kB]
+==> master: Get:3 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-stdlib amd64 2.7.12-1ubuntu0~16.04.1 [1,884 kB]
+==> master: Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7 amd64 2.7.12-1ubuntu0~16.04.1 [224 kB]
+==> master: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+==> master: Fetched 3,743 kB in 0s (7,291 kB/s)
+==> master: Selecting previously unselected package libpython2.7-minimal:amd64.
+==> master: (Reading database ... 
+==> master: (Reading database ... 5%
+==> master: (Reading database ... 10%
+==> master: (Reading database ... 15%
+==> master: (Reading database ... 20%
+==> master: (Reading database ... 25%
+==> master: (Reading database ... 30%
+==> master: (Reading database ... 35%
+==> master: (Reading database ... 40%
+==> master: (Reading database ... 45%
+==> master: (Reading database ... 50%
+==> master: (Reading database ... 55%
+==> master: (Reading database ... 60%
+==> master: (Reading database ... 65%
+==> master: (Reading database ... 70%
+==> master: (Reading database ... 75%
+==> master: (Reading database ... 80%
+==> master: (Reading database ... 85%
+==> master: (Reading database ... 90%
+==> master: (Reading database ... 95%
+==> master: (Reading database ... 100%
+==> master: (Reading database ... 
+==> master: 53810 files and directories currently installed.)
+==> master: Preparing to unpack .../libpython2.7-minimal_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+==> master: Unpacking libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+==> master: Selecting previously unselected package python2.7-minimal.
+==> master: Preparing to unpack .../python2.7-minimal_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+==> master: Unpacking python2.7-minimal (2.7.12-1ubuntu0~16.04.1) ...
+==> master: Selecting previously unselected package libpython2.7-stdlib:amd64.
+==> master: Preparing to unpack .../libpython2.7-stdlib_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+==> master: Unpacking libpython2.7-stdlib:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+==> master: Selecting previously unselected package python2.7.
+==> master: Preparing to unpack .../python2.7_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
+==> master: Unpacking python2.7 (2.7.12-1ubuntu0~16.04.1) ...
+==> master: Processing triggers for man-db (2.7.5-1) ...
+==> master: Processing triggers for mime-support (3.59ubuntu1) ...
+==> master: Setting up libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+==> master: Setting up python2.7-minimal (2.7.12-1ubuntu0~16.04.1) ...
+==> master: Linking and byte-compiling packages for runtime python2.7...
+==> master: Setting up libpython2.7-stdlib:amd64 (2.7.12-1ubuntu0~16.04.1) ...
+==> master: Setting up python2.7 (2.7.12-1ubuntu0~16.04.1) ...
+==> master: Reading package lists...
+==> master: Building dependency tree...
+==> master: 
+==> master: Reading state information...
+==> master: The following additional packages will be installed:
+==> master:   bridge-utils cgroupfs-mount containerd runc ubuntu-fan
+==> master: Suggested packages:
+==> master:   mountall aufs-tools debootstrap docker-doc rinse zfs-fuse | zfsutils
+==> master: The following NEW packages will be installed:
+==> master:   bridge-utils cgroupfs-mount containerd docker.io runc ubuntu-fan
+==> master: 0 upgraded, 6 newly installed, 0 to remove and 55 not upgraded.
+==> master: Need to get 16.0 MB of archives.
+==> master: After this operation, 83.3 MB of additional disk space will be used.
+==> master: Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 bridge-utils amd64 1.5-9ubuntu1 [28.6 kB]
+==> master: Get:2 http://archive.ubuntu.com/ubuntu xenial/universe amd64 cgroupfs-mount all 1.2 [4,970 B]
+==> master: Get:3 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 runc amd64 1.0.0~rc1-0ubuntu2~16.04.1.1 [1,467 kB]
+==> master: Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 containerd amd64 0.2.3-0ubuntu1~16.04 [4,017 kB]
+==> master: Get:5 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 docker.io amd64 1.12.3-0ubuntu4~16.04.2 [10.5 MB]
+==> master: Get:6 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 ubuntu-fan all 0.9.1 [30.1 kB]
+==> master: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+==> master: Fetched 16.0 MB in 1s (9,684 kB/s)
+==> master: Selecting previously unselected package bridge-utils.
+==> master: (Reading database ... 
+==> master: (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%
+==> master: (Reading database ... 65%
+==> master: (Reading database ... 70%
+==> master: (Reading database ... 75%
+==> master: (Reading database ... 80%
+==> master: (Reading database ... 85%
+==> master: (Reading database ... 90%
+==> master: (Reading database ... 95%
+==> master: (Reading database ... 100%(Reading database ... 54526 files and directories currently installed.)
+==> master: Preparing to unpack .../bridge-utils_1.5-9ubuntu1_amd64.deb ...
+==> master: Unpacking bridge-utils (1.5-9ubuntu1) ...
+==> master: Selecting previously unselected package cgroupfs-mount.
+==> master: Preparing to unpack .../cgroupfs-mount_1.2_all.deb ...
+==> master: Unpacking cgroupfs-mount (1.2) ...
+==> master: Selecting previously unselected package runc.
+==> master: Preparing to unpack .../runc_1.0.0~rc1-0ubuntu2~16.04.1.1_amd64.deb ...
+==> master: Unpacking runc (1.0.0~rc1-0ubuntu2~16.04.1.1) ...
+==> master: Selecting previously unselected package containerd.
+==> master: Preparing to unpack .../containerd_0.2.3-0ubuntu1~16.04_amd64.deb ...
+==> master: Unpacking containerd (0.2.3-0ubuntu1~16.04) ...
+==> master: Selecting previously unselected package docker.io.
+==> master: Preparing to unpack .../docker.io_1.12.3-0ubuntu4~16.04.2_amd64.deb ...
+==> master: Unpacking docker.io (1.12.3-0ubuntu4~16.04.2) ...
+==> master: Selecting previously unselected package ubuntu-fan.
+==> master: Preparing to unpack .../ubuntu-fan_0.9.1_all.deb ...
+==> master: Unpacking ubuntu-fan (0.9.1) ...
+==> master: Processing triggers for man-db (2.7.5-1) ...
+==> master: Processing triggers for ureadahead (0.100.0-19) ...
+==> master: Processing triggers for systemd (229-4ubuntu13) ...
+==> master: Setting up bridge-utils (1.5-9ubuntu1) ...
+==> master: Setting up cgroupfs-mount (1.2) ...
+==> master: Setting up runc (1.0.0~rc1-0ubuntu2~16.04.1.1) ...
+==> master: Setting up containerd (0.2.3-0ubuntu1~16.04) ...
+==> master: Setting up docker.io (1.12.3-0ubuntu4~16.04.2) ...
+==> master: Adding group `docker' (GID 117) ...
+==> master: Done.
+==> master: Setting up ubuntu-fan (0.9.1) ...
+==> master: Processing triggers for systemd (229-4ubuntu13) ...
+==> master: Processing triggers for ureadahead (0.100.0-19) ...
+==> master: Reading package lists...
+==> master: Building dependency tree...
+==> master: 
+==> master: Reading state information...
+==> master: The following additional packages will be installed:
+==> master:   ca-certificates-java default-jre-headless fontconfig-config
+==> master:   fonts-dejavu-core java-common libapr1 libaprutil1 libavahi-client3
+==> master:   libavahi-common-data libavahi-common3 libcups2 libcurl3 libevent-core-2.0-5
+==> master:   libevent-dev libevent-extra-2.0-5 libevent-openssl-2.0-5
+==> master:   libevent-pthreads-2.0-5 libfontconfig1 libjline-java libjpeg-turbo8 libjpeg8
+==> master:   liblcms2-2 liblog4cxx10v5 liblog4j1.2-java libnetty-3.9-java libnspr4
+==> master:   libnss3 libnss3-nssdb libpcsclite1 libserf-1-1 libservlet2.5-java
+==> master:   libslf4j-java libsvn1 libxerces2-java libxi6 libxml-commons-external-java
+==> master:   libxml-commons-resolver1.1-java libxrender1 libxtst6 libzookeeper-java
+==> master:   libzookeeper-mt2 openjdk-8-jre-headless unzip x11-common
+==> master: Suggested packages:
+==> master:   default-jre cups-common libjline-java-doc liblcms2-utils zip libgnumail-java
+==> master:   liblog4j1.2-java-doc pcscd libcommons-logging-java libxerces2-java-doc
+==> master:   libxerces2-java-gcj libxml-commons-resolver1.1-java-doc
+==> master:   libzookeeper-java-doc openjdk-8-jre-jamvm libnss-mdns fonts-dejavu-extra
+==> master:   fonts-ipafont-gothic fonts-ipafont-mincho ttf-wqy-microhei | ttf-wqy-zenhei
+==> master:   fonts-indic
+==> master: The following NEW packages will be installed:
+==> master:   ca-certificates-java default-jre-headless fontconfig-config
+==> master:   fonts-dejavu-core java-common libapr1 libaprutil1 libavahi-client3
+==> master:   libavahi-common-data libavahi-common3 libcups2 libcurl3 libevent-core-2.0-5
+==> master:   libevent-dev libevent-extra-2.0-5 libevent-openssl-2.0-5
+==> master:   libevent-pthreads-2.0-5 libfontconfig1 libjline-java libjpeg-turbo8 libjpeg8
+==> master:   liblcms2-2 liblog4cxx10v5 liblog4j1.2-java libnetty-3.9-java libnspr4
+==> master:   libnss3 libnss3-nssdb libpcsclite1 libserf-1-1 libservlet2.5-java
+==> master:   libslf4j-java libsvn1 libxerces2-java libxi6 libxml-commons-external-java
+==> master:   libxml-commons-resolver1.1-java libxrender1 libxtst6 libzookeeper-java
+==> master:   libzookeeper-mt2 marathon mesos openjdk-8-jre-headless unzip x11-common
+==> master:   zookeeper zookeeper-bin zookeeperd
+==> master: 0 upgraded, 49 newly installed, 0 to remove and 55 not upgraded.
+==> master: Need to get 170 MB of archives.
+==> master: After this operation, 376 MB of additional disk space will be used.
+==> master: Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-core-2.0-5 amd64 2.0.21-stable-2 [69.4 kB]
+==> master: Get:4 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-extra-2.0-5 amd64 2.0.21-stable-2 [51.3 kB]
+==> master: Get:2 http://repos.mesosphere.com/ubuntu xenial/main amd64 marathon amd64 1.3.10-1.0.627.ubuntu1604 [83.3 MB]
+==> master: Get:5 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-openssl-2.0-5 amd64 2.0.21-stable-2 [11.2 kB]
+==> master: Get:6 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-pthreads-2.0-5 amd64 2.0.21-stable-2 [5,338 B]
+==> master: Get:7 http://archive.ubuntu.com/ubuntu xenial/main amd64 libjpeg-turbo8 amd64 1.4.2-0ubuntu3 [111 kB]
+==> master: Get:8 http://archive.ubuntu.com/ubuntu xenial/main amd64 liblcms2-2 amd64 2.6-3ubuntu2 [137 kB]
+==> master: Get:9 http://archive.ubuntu.com/ubuntu xenial/main amd64 libapr1 amd64 1.5.2-3 [86.0 kB]
+==> master: Get:10 http://archive.ubuntu.com/ubuntu xenial/main amd64 libaprutil1 amd64 1.5.4-1build1 [77.1 kB]
+==> master: Get:11 http://archive.ubuntu.com/ubuntu xenial/main amd64 libserf-1-1 amd64 1.3.8-1 [45.5 kB]
+==> master: Get:12 http://archive.ubuntu.com/ubuntu xenial/main amd64 x11-common all 1:7.7+13ubuntu3 [22.4 kB]
+==> master: Get:13 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxtst6 amd64 2:1.2.2-1 [14.1 kB]
+==> master: Get:14 http://archive.ubuntu.com/ubuntu xenial/main amd64 java-common all 0.56ubuntu2 [7,742 B]
+==> master: Get:15 http://archive.ubuntu.com/ubuntu xenial/main amd64 default-jre-headless amd64 2:1.8-56ubuntu2 [4,380 B]
+==> master: Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libnspr4 amd64 2:4.12-0ubuntu0.16.04.1 [112 kB]
+==> master: Get:17 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libnss3-nssdb all 2:3.26.2-0ubuntu0.16.04.2 [10.6 kB]
+==> master: Get:18 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libnss3 amd64 2:3.26.2-0ubuntu0.16.04.2 [1,153 kB]
+==> master: Get:19 http://archive.ubuntu.com/ubuntu xenial/main amd64 ca-certificates-java all 20160321 [12.9 kB]
+==> master: Get:20 http://archive.ubuntu.com/ubuntu xenial/main amd64 libavahi-common-data amd64 0.6.32~rc+dfsg-1ubuntu2 [21.7 kB]
+==> master: Get:21 http://archive.ubuntu.com/ubuntu xenial/main amd64 libavahi-common3 amd64 0.6.32~rc+dfsg-1ubuntu2 [21.6 kB]
+==> master: Get:22 http://archive.ubuntu.com/ubuntu xenial/main amd64 libavahi-client3 amd64 0.6.32~rc+dfsg-1ubuntu2 [25.1 kB]
+==> master: Get:23 http://archive.ubuntu.com/ubuntu xenial/main amd64 libcups2 amd64 2.1.3-4 [197 kB]
+==> master: Get:24 http://archive.ubuntu.com/ubuntu xenial/main amd64 libjpeg8 amd64 8c-2ubuntu8 [2,194 B]
+==> master: Get:25 http://archive.ubuntu.com/ubuntu xenial/main amd64 fonts-dejavu-core all 2.35-1 [1,039 kB]
+==> master: Get:26 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 fontconfig-config all 2.11.94-0ubuntu1.1 [49.9 kB]
+==> master: Get:27 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libfontconfig1 amd64 2.11.94-0ubuntu1.1 [131 kB]
+==> master: Get:28 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpcsclite1 amd64 1.8.14-1ubuntu1.16.04.1 [21.4 kB]
+==> master: Get:29 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxi6 amd64 2:1.7.6-1 [28.6 kB]
+==> master: Get:30 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxrender1 amd64 1:0.9.9-0ubuntu1 [18.5 kB]
+==> master: Get:31 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 openjdk-8-jre-headless amd64 8u121-b13-0ubuntu1.16.04.2 [26.9 MB]
+==> master: Get:3 http://repos.mesosphere.com/ubuntu xenial/main amd64 mesos amd64 1.1.0-2.0.107.ubuntu1604 [48.7 MB]
+==> master: Get:32 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libcurl3 amd64 7.47.0-1ubuntu2.2 [186 kB]
+==> master: Get:33 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-dev amd64 2.0.21-stable-2 [210 kB]
+==> master: Get:34 http://archive.ubuntu.com/ubuntu xenial/universe amd64 libjline-java all 1.0-2 [69.4 kB]
+==> master: Get:35 http://archive.ubuntu.com/ubuntu xenial/universe amd64 liblog4cxx10v5 amd64 0.10.0-10ubuntu1 [416 kB]
+==> master: Get:36 http://archive.ubuntu.com/ubuntu xenial/universe amd64 liblog4j1.2-java all 1.2.17-7ubuntu1 [426 kB]
+==> master: Get:37 http://archive.ubuntu.com/ubuntu xenial/universe amd64 libnetty-3.9-java all 3.9.0.Final-1 [1,066 kB]
+==> master: Get:38 http://archive.ubuntu.com/ubuntu xenial/universe amd64 libservlet2.5-java all 6.0.45+dfsg-1 [212 kB]
+==> master: Get:39 http://archive.ubuntu.com/ubuntu xenial/universe amd64 libslf4j-java all 1.7.14-3 [124 kB]
+==> master: Get:40 http://archive.ubuntu.com/ubuntu xenial/main amd64 libsvn1 amd64 1.9.3-2ubuntu1 [1,168 kB]
+==> master: Get:41 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxml-commons-resolver1.1-java all 1.2-7build1 [91.6 kB]
+==> master: Get:42 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxml-commons-external-java all 1.4.01-2build1 [245 kB]
+==> master: Get:43 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxerces2-java all 2.11.0-7 [1,362 kB]
+==> master: Get:44 http://archive.ubuntu.com/ubuntu xenial/universe amd64 libzookeeper-java all 3.4.8-1 [1,270 kB]
+==> master: Get:45 http://archive.ubuntu.com/ubuntu xenial/universe amd64 libzookeeper-mt2 amd64 3.4.8-1 [41.0 kB]
+==> master: Get:46 http://archive.ubuntu.com/ubuntu xenial/main amd64 unzip amd64 6.0-20ubuntu1 [158 kB]
+==> master: Get:47 http://archive.ubuntu.com/ubuntu xenial/universe amd64 zookeeper all 3.4.8-1 [107 kB]
+==> master: Get:48 http://archive.ubuntu.com/ubuntu xenial/universe amd64 zookeeper-bin amd64 3.4.8-1 [57.9 kB]
+==> master: Get:49 http://archive.ubuntu.com/ubuntu xenial/universe amd64 zookeeperd all 3.4.8-1 [8,566 B]
+==> master: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+==> master: Fetched 170 MB in 16s (10.3 MB/s)
+==> master: Selecting previously unselected package libevent-core-2.0-5:amd64.
+==> master: (Reading database ... 
+==> master: (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%
+==> master: (Reading database ... 55%(Reading database ... 60%
+==> master: (Reading database ... 65%
+==> master: (Reading database ... 70%
+==> master: (Reading database ... 75%
+==> master: (Reading database ... 80%
+==> master: (Reading database ... 85%
+==> master: (Reading database ... 90%
+==> master: (Reading database ... 95%
+==> master: (Reading database ... 100%(Reading database ... 54713 files and directories currently installed.)
+==> master: Preparing to unpack .../libevent-core-2.0-5_2.0.21-stable-2_amd64.deb ...
+==> master: Unpacking libevent-core-2.0-5:amd64 (2.0.21-stable-2) ...
+==> master: Selecting previously unselected package libevent-extra-2.0-5:amd64.
+==> master: Preparing to unpack .../libevent-extra-2.0-5_2.0.21-stable-2_amd64.deb ...
+==> master: Unpacking libevent-extra-2.0-5:amd64 (2.0.21-stable-2) ...
+==> master: Selecting previously unselected package libevent-openssl-2.0-5:amd64.
+==> master: Preparing to unpack .../libevent-openssl-2.0-5_2.0.21-stable-2_amd64.deb ...
+==> master: Unpacking libevent-openssl-2.0-5:amd64 (2.0.21-stable-2) ...
+==> master: Selecting previously unselected package libevent-pthreads-2.0-5:amd64.
+==> master: Preparing to unpack .../libevent-pthreads-2.0-5_2.0.21-stable-2_amd64.deb ...
+==> master: Unpacking libevent-pthreads-2.0-5:amd64 (2.0.21-stable-2) ...
+==> master: Selecting previously unselected package libjpeg-turbo8:amd64.
+==> master: Preparing to unpack .../libjpeg-turbo8_1.4.2-0ubuntu3_amd64.deb ...
+==> master: Unpacking libjpeg-turbo8:amd64 (1.4.2-0ubuntu3) ...
+==> master: Selecting previously unselected package liblcms2-2:amd64.
+==> master: Preparing to unpack .../liblcms2-2_2.6-3ubuntu2_amd64.deb ...
+==> master: Unpacking liblcms2-2:amd64 (2.6-3ubuntu2) ...
+==> master: Selecting previously unselected package libapr1:amd64.
+==> master: Preparing to unpack .../libapr1_1.5.2-3_amd64.deb ...
+==> master: Unpacking libapr1:amd64 (1.5.2-3) ...
+==> master: Selecting previously unselected package libaprutil1:amd64.
+==> master: Preparing to unpack .../libaprutil1_1.5.4-1build1_amd64.deb ...
+==> master: Unpacking libaprutil1:amd64 (1.5.4-1build1) ...
+==> master: Selecting previously unselected package libserf-1-1:amd64.
+==> master: Preparing to unpack .../libserf-1-1_1.3.8-1_amd64.deb ...
+==> master: Unpacking libserf-1-1:amd64 (1.3.8-1) ...
+==> master: Selecting previously unselected package x11-common.
+==> master: Preparing to unpack .../x11-common_1%3a7.7+13ubuntu3_all.deb ...
+==> master: Unpacking x11-common (1:7.7+13ubuntu3) ...
+==> master: Selecting previously unselected package libxtst6:amd64.
+==> master: Preparing to unpack .../libxtst6_2%3a1.2.2-1_amd64.deb ...
+==> master: Unpacking libxtst6:amd64 (2:1.2.2-1) ...
+==> master: Selecting previously unselected package java-common.
+==> master: Preparing to unpack .../java-common_0.56ubuntu2_all.deb ...
+==> master: Unpacking java-common (0.56ubuntu2) ...
+==> master: Selecting previously unselected package default-jre-headless.
+==> master: Preparing to unpack .../default-jre-headless_2%3a1.8-56ubuntu2_amd64.deb ...
+==> master: Unpacking default-jre-headless (2:1.8-56ubuntu2) ...
+==> master: Selecting previously unselected package libnspr4:amd64.
+==> master: Preparing to unpack .../libnspr4_2%3a4.12-0ubuntu0.16.04.1_amd64.deb ...
+==> master: Unpacking libnspr4:amd64 (2:4.12-0ubuntu0.16.04.1) ...
+==> master: Selecting previously unselected package libnss3-nssdb.
+==> master: Preparing to unpack .../libnss3-nssdb_2%3a3.26.2-0ubuntu0.16.04.2_all.deb ...
+==> master: Unpacking libnss3-nssdb (2:3.26.2-0ubuntu0.16.04.2) ...
+==> master: Selecting previously unselected package libnss3:amd64.
+==> master: Preparing to unpack .../libnss3_2%3a3.26.2-0ubuntu0.16.04.2_amd64.deb ...
+==> master: Unpacking libnss3:amd64 (2:3.26.2-0ubuntu0.16.04.2) ...
+==> master: Selecting previously unselected package ca-certificates-java.
+==> master: Preparing to unpack .../ca-certificates-java_20160321_all.deb ...
+==> master: Unpacking ca-certificates-java (20160321) ...
+==> master: Selecting previously unselected package libavahi-common-data:amd64.
+==> master: Preparing to unpack .../libavahi-common-data_0.6.32~rc+dfsg-1ubuntu2_amd64.deb ...
+==> master: Unpacking libavahi-common-data:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+==> master: Selecting previously unselected package libavahi-common3:amd64.
+==> master: Preparing to unpack .../libavahi-common3_0.6.32~rc+dfsg-1ubuntu2_amd64.deb ...
+==> master: Unpacking libavahi-common3:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+==> master: Selecting previously unselected package libavahi-client3:amd64.
+==> master: Preparing to unpack .../libavahi-client3_0.6.32~rc+dfsg-1ubuntu2_amd64.deb ...
+==> master: Unpacking libavahi-client3:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+==> master: Selecting previously unselected package libcups2:amd64.
+==> master: Preparing to unpack .../libcups2_2.1.3-4_amd64.deb ...
+==> master: Unpacking libcups2:amd64 (2.1.3-4) ...
+==> master: Selecting previously unselected package libjpeg8:amd64.
+==> master: Preparing to unpack .../libjpeg8_8c-2ubuntu8_amd64.deb ...
+==> master: Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
+==> master: Selecting previously unselected package fonts-dejavu-core.
+==> master: Preparing to unpack .../fonts-dejavu-core_2.35-1_all.deb ...
+==> master: Unpacking fonts-dejavu-core (2.35-1) ...
+==> master: Selecting previously unselected package fontconfig-config.
+==> master: Preparing to unpack .../fontconfig-config_2.11.94-0ubuntu1.1_all.deb ...
+==> master: Unpacking fontconfig-config (2.11.94-0ubuntu1.1) ...
+==> master: Selecting previously unselected package libfontconfig1:amd64.
+==> master: Preparing to unpack .../libfontconfig1_2.11.94-0ubuntu1.1_amd64.deb ...
+==> master: Unpacking libfontconfig1:amd64 (2.11.94-0ubuntu1.1) ...
+==> master: Selecting previously unselected package libpcsclite1:amd64.
+==> master: Preparing to unpack .../libpcsclite1_1.8.14-1ubuntu1.16.04.1_amd64.deb ...
+==> master: Unpacking libpcsclite1:amd64 (1.8.14-1ubuntu1.16.04.1) ...
+==> master: Selecting previously unselected package libxi6:amd64.
+==> master: Preparing to unpack .../libxi6_2%3a1.7.6-1_amd64.deb ...
+==> master: Unpacking libxi6:amd64 (2:1.7.6-1) ...
+==> master: Selecting previously unselected package libxrender1:amd64.
+==> master: Preparing to unpack .../libxrender1_1%3a0.9.9-0ubuntu1_amd64.deb ...
+==> master: Unpacking libxrender1:amd64 (1:0.9.9-0ubuntu1) ...
+==> master: Selecting previously unselected package openjdk-8-jre-headless:amd64.
+==> master: Preparing to unpack .../openjdk-8-jre-headless_8u121-b13-0ubuntu1.16.04.2_amd64.deb ...
+==> master: Unpacking openjdk-8-jre-headless:amd64 (8u121-b13-0ubuntu1.16.04.2) ...
+==> master: Selecting previously unselected package libcurl3:amd64.
+==> master: Preparing to unpack .../libcurl3_7.47.0-1ubuntu2.2_amd64.deb ...
+==> master: Unpacking libcurl3:amd64 (7.47.0-1ubuntu2.2) ...
+==> master: Selecting previously unselected package libevent-dev.
+==> master: Preparing to unpack .../libevent-dev_2.0.21-stable-2_amd64.deb ...
+==> master: Unpacking libevent-dev (2.0.21-stable-2) ...
+==> master: Selecting previously unselected package libjline-java.
+==> master: Preparing to unpack .../libjline-java_1.0-2_all.deb ...
+==> master: Unpacking libjline-java (1.0-2) ...
+==> master: Selecting previously unselected package liblog4cxx10v5:amd64.
+==> master: Preparing to unpack .../liblog4cxx10v5_0.10.0-10ubuntu1_amd64.deb ...
+==> master: Unpacking liblog4cxx10v5:amd64 (0.10.0-10ubuntu1) ...
+==> master: Selecting previously unselected package liblog4j1.2-java.
+==> master: Preparing to unpack .../liblog4j1.2-java_1.2.17-7ubuntu1_all.deb ...
+==> master: Unpacking liblog4j1.2-java (1.2.17-7ubuntu1) ...
+==> master: Selecting previously unselected package libnetty-3.9-java.
+==> master: Preparing to unpack .../libnetty-3.9-java_3.9.0.Final-1_all.deb ...
+==> master: Unpacking libnetty-3.9-java (3.9.0.Final-1) ...
+==> master: Selecting previously unselected package libservlet2.5-java.
+==> master: Preparing to unpack .../libservlet2.5-java_6.0.45+dfsg-1_all.deb ...
+==> master: Unpacking libservlet2.5-java (6.0.45+dfsg-1) ...
+==> master: Selecting previously unselected package libslf4j-java.
+==> master: Preparing to unpack .../libslf4j-java_1.7.14-3_all.deb ...
+==> master: Unpacking libslf4j-java (1.7.14-3) ...
+==> master: Selecting previously unselected package libsvn1:amd64.
+==> master: Preparing to unpack .../libsvn1_1.9.3-2ubuntu1_amd64.deb ...
+==> master: Unpacking libsvn1:amd64 (1.9.3-2ubuntu1) ...
+==> master: Selecting previously unselected package libxml-commons-resolver1.1-java.
+==> master: Preparing to unpack .../libxml-commons-resolver1.1-java_1.2-7build1_all.deb ...
+==> master: Unpacking libxml-commons-resolver1.1-java (1.2-7build1) ...
+==> master: Selecting previously unselected package libxml-commons-external-java.
+==> master: Preparing to unpack .../libxml-commons-external-java_1.4.01-2build1_all.deb ...
+==> master: Unpacking libxml-commons-external-java (1.4.01-2build1) ...
+==> master: Selecting previously unselected package libxerces2-java.
+==> master: Preparing to unpack .../libxerces2-java_2.11.0-7_all.deb ...
+==> master: Unpacking libxerces2-java (2.11.0-7) ...
+==> master: Selecting previously unselected package libzookeeper-java.
+==> master: Preparing to unpack .../libzookeeper-java_3.4.8-1_all.deb ...
+==> master: Unpacking libzookeeper-java (3.4.8-1) ...
+==> master: Selecting previously unselected package libzookeeper-mt2:amd64.
+==> master: Preparing to unpack .../libzookeeper-mt2_3.4.8-1_amd64.deb ...
+==> master: Unpacking libzookeeper-mt2:amd64 (3.4.8-1) ...
+==> master: Selecting previously unselected package unzip.
+==> master: Preparing to unpack .../unzip_6.0-20ubuntu1_amd64.deb ...
+==> master: Unpacking unzip (6.0-20ubuntu1) ...
+==> master: Selecting previously unselected package zookeeper.
+==> master: Preparing to unpack .../zookeeper_3.4.8-1_all.deb ...
+==> master: Unpacking zookeeper (3.4.8-1) ...
+==> master: Selecting previously unselected package zookeeper-bin.
+==> master: Preparing to unpack .../zookeeper-bin_3.4.8-1_amd64.deb ...
+==> master: Unpacking zookeeper-bin (3.4.8-1) ...
+==> master: Selecting previously unselected package zookeeperd.
+==> master: Preparing to unpack .../zookeeperd_3.4.8-1_all.deb ...
+==> master: Unpacking zookeeperd (3.4.8-1) ...
+==> master: Selecting previously unselected package marathon.
+==> master: Preparing to unpack .../marathon_1.3.10-1.0.627.ubuntu1604_amd64.deb ...
+==> master: Unpacking marathon (1.3.10-1.0.627.ubuntu1604) ...
+==> master: Selecting previously unselected package mesos.
+==> master: Preparing to unpack .../mesos_1.1.0-2.0.107.ubuntu1604_amd64.deb ...
+==> master: Unpacking mesos (1.1.0-2.0.107.ubuntu1604) ...
+==> master: Processing triggers for libc-bin (2.23-0ubuntu5) ...
+==> master: Processing triggers for systemd (229-4ubuntu13) ...
+==> master: Processing triggers for ureadahead (0.100.0-19) ...
+==> master: Processing triggers for man-db (2.7.5-1) ...
+==> master: Processing triggers for ca-certificates (20160104ubuntu1) ...
+==> master: Updating certificates in /etc/ssl/certs...
+==> master: 0 added, 0 removed; done.
+==> master: Running hooks in /etc/ca-certificates/update.d...
+==> master: done.
+==> master: Processing triggers for mime-support (3.59ubuntu1) ...
+==> master: Setting up libevent-core-2.0-5:amd64 (2.0.21-stable-2) ...
+==> master: Setting up libevent-extra-2.0-5:amd64 (2.0.21-stable-2) ...
+==> master: Setting up libevent-openssl-2.0-5:amd64 (2.0.21-stable-2) ...
+==> master: Setting up libevent-pthreads-2.0-5:amd64 (2.0.21-stable-2) ...
+==> master: Setting up libjpeg-turbo8:amd64 (1.4.2-0ubuntu3) ...
+==> master: Setting up liblcms2-2:amd64 (2.6-3ubuntu2) ...
+==> master: Setting up libapr1:amd64 (1.5.2-3) ...
+==> master: Setting up libaprutil1:amd64 (1.5.4-1build1) ...
+==> master: Setting up libserf-1-1:amd64 (1.3.8-1) ...
+==> master: Setting up x11-common (1:7.7+13ubuntu3) ...
+==> master: update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+==> master: Setting up libxtst6:amd64 (2:1.2.2-1) ...
+==> master: Setting up java-common (0.56ubuntu2) ...
+==> master: Setting up libnspr4:amd64 (2:4.12-0ubuntu0.16.04.1) ...
+==> master: Setting up libavahi-common-data:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+==> master: Setting up libavahi-common3:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+==> master: Setting up libavahi-client3:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+==> master: Setting up libcups2:amd64 (2.1.3-4) ...
+==> master: Setting up libjpeg8:amd64 (8c-2ubuntu8) ...
+==> master: Setting up fonts-dejavu-core (2.35-1) ...
+==> master: Setting up fontconfig-config (2.11.94-0ubuntu1.1) ...
+==> master: Setting up libfontconfig1:amd64 (2.11.94-0ubuntu1.1) ...
+==> master: Setting up libpcsclite1:amd64 (1.8.14-1ubuntu1.16.04.1) ...
+==> master: Setting up libxi6:amd64 (2:1.7.6-1) ...
+==> master: Setting up libxrender1:amd64 (1:0.9.9-0ubuntu1) ...
+==> master: Setting up libcurl3:amd64 (7.47.0-1ubuntu2.2) ...
+==> master: Setting up libevent-dev (2.0.21-stable-2) ...
+==> master: Setting up libjline-java (1.0-2) ...
+==> master: Setting up liblog4cxx10v5:amd64 (0.10.0-10ubuntu1) ...
+==> master: Setting up liblog4j1.2-java (1.2.17-7ubuntu1) ...
+==> master: Setting up libnetty-3.9-java (3.9.0.Final-1) ...
+==> master: Setting up libservlet2.5-java (6.0.45+dfsg-1) ...
+==> master: Setting up libslf4j-java (1.7.14-3) ...
+==> master: Setting up libsvn1:amd64 (1.9.3-2ubuntu1) ...
+==> master: Setting up libxml-commons-resolver1.1-java (1.2-7build1) ...
+==> master: Setting up libxml-commons-external-java (1.4.01-2build1) ...
+==> master: Setting up libxerces2-java (2.11.0-7) ...
+==> master: Setting up libzookeeper-java (3.4.8-1) ...
+==> master: Setting up libzookeeper-mt2:amd64 (3.4.8-1) ...
+==> master: Setting up unzip (6.0-20ubuntu1) ...
+==> master: Setting up zookeeper-bin (3.4.8-1) ...
+==> master: Setting up libnss3-nssdb (2:3.26.2-0ubuntu0.16.04.2) ...
+==> master: Setting up libnss3:amd64 (2:3.26.2-0ubuntu0.16.04.2) ...
+==> master: Setting up openjdk-8-jre-headless:amd64 (8u121-b13-0ubuntu1.16.04.2) ...
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/rmid to provide /usr/bin/rmid (rmid) in auto mode
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java to provide /usr/bin/java (java) in auto mode
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/jjs to provide /usr/bin/jjs (jjs) in auto mode
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/pack200 to provide /usr/bin/pack200 (pack200) in auto mode
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/unpack200 to provide /usr/bin/unpack200 (unpack200) in auto mode
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/orbd to provide /usr/bin/orbd (orbd) in auto mode
+==> master: update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/servertool to provide /usr/bin/servertool (servertool) in auto mode
+==> master: update-alternatives: 
+==> master: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/tnameserv to provide /usr/bin/tnameserv (tnameserv) in auto mode
+==> master: update-alternatives: 
+==> master: using /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
+==> master: Setting up ca-certificates-java (20160321) ...
+==> master: Adding debian:Global_Chambersign_Root_-_2008.pem
+==> master: Adding debian:QuoVadis_Root_CA_1_G3.pem
+==> master: Adding debian:Equifax_Secure_CA.pem
+==> master: Adding debian:RSA_Security_2048_v3.pem
+==> master: Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
+==> master: Adding debian:SecureSign_RootCA11.pem
+==> master: Adding debian:AddTrust_External_Root.pem
+==> master: Adding debian:EBG_Elektronik_Sertifika_Hizmet_Sağlayıcısı.pem
+==> master: Adding debian:TC_TrustCenter_Class_3_CA_II.pem
+==> master: Adding debian:ApplicationCA_-_Japanese_Government.pem
+==> master: Adding debian:StartCom_Certification_Authority.pem
+==> master: Adding debian:Entrust_Root_Certification_Authority.pem
+==> master: Adding debian:ACEDICOM_Root.pem
+==> master: Adding debian:TÜBİTAK_UEKAE_Kök_Sertifika_Hizmet_Sağlayıcısı_-_Sürüm_3.pem
+==> master: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G2.pem
+==> master: Adding debian:TÜRKTRUST_Elektronik_Sertifika_Hizmet_Sağlayıcısı_H6.pem
+==> master: Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
+==> master: Adding debian:certSIGN_ROOT_CA.pem
+==> master: Adding debian:GeoTrust_Primary_Certification_Authority.pem
+==> master: Adding debian:DST_ACES_CA_X6.pem
+==> master: Adding debian:Verisign_Class_2_Public_Primary_Certification_Authority_-_G3.pem
+==> master: Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
+==> master: Adding debian:Actalis_Authentication_Root_CA.pem
+==> master: Adding debian:Staat_der_Nederlanden_Root_CA_-_G2.pem
+==> master: Adding debian:IdenTrust_Commercial_Root_CA_1.pem
+==> master: Adding debian:Staat_der_Nederlanden_EV_Root_CA.pem
+==> master: Adding debian:EC-ACC.pem
+==> master: Adding debian:GeoTrust_Global_CA.pem
+==> master: Adding debian:Izenpe.com.pem
+==> master: Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
+==> master: Adding debian:AC_Raíz_Certicámara_S.A..pem
+==> master: Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+==> master: Adding debian:Comodo_AAA_Services_root.pem
+==> master: Adding debian:SwissSign_Platinum_CA_-_G2.pem
+==> master: Adding debian:QuoVadis_Root_CA_3_G3.pem
+==> master: Adding debian:AddTrust_Public_Services_Root.pem
+==> master: Adding debian:CA_Disig_Root_R1.pem
+==> master: Adding debian:GeoTrust_Global_CA_2.pem
+==> master: Adding debian:DST_Root_CA_X3.pem
+==> master: Adding debian:DigiCert_Global_Root_CA.pem
+==> master: Adding debian:Certum_Trusted_Network_CA.pem
+==> master: Adding debian:Chambers_of_Commerce_Root_-_2008.pem
+==> master: Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
+==> master: Adding debian:Security_Communication_EV_RootCA1.pem
+==> master: Adding debian:S-TRUST_Universal_Root_CA.pem
+==> master: Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
+==> master: Adding debian:Certum_Root_CA.pem
+==> master: Adding debian:TWCA_Root_Certification_Authority.pem
+==> master: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G3.pem
+==> master: Adding debian:Comodo_Secure_Services_root.pem
+==> master: Adding debian:Swisscom_Root_EV_CA_2.pem
+==> master: Adding debian:S-TRUST_Authentication_and_Encryption_Root_CA_2005_PN.pem
+==> master: Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+==> master: 
+==> master: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority_-_G3.pem
+==> master: Adding debian:IGC_A.pem
+==> master: Adding debian:GeoTrust_Universal_CA_2.pem
+==> master: Adding debian:SwissSign_Silver_CA_-_G2.pem
+==> master: Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
+==> master: Adding debian:thawte_Primary_Root_CA.pem
+==> master: Adding debian:Baltimore_CyberTrust_Root.pem
+==> master: Adding debian:UTN_USERFirst_Hardware_Root_CA.pem
+==> master: Adding debian:Juur-SK.pem
+==> master: Adding debian:TeliaSonera_Root_CA_v1.pem
+==> master: Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
+==> master: Adding debian:Starfield_Class_2_CA.pem
+==> master: Adding debian:Equifax_Secure_eBusiness_CA_1.pem
+==> master: Adding debian:OISTE_WISeKey_Global_Root_GA_CA.pem
+==> master: Adding debian:DigiCert_Assured_ID_Root_G3.pem
+==> master: Adding debian:GlobalSign_Root_CA_-_R3.pem
+==> master: Adding debian:Verisign_Class_2_Public_Primary_Certification_Authority_-_G2.pem
+==> master: Adding debian:Camerfirma_Chambers_of_Commerce_Root.pem
+==> master: Adding debian:Certinomis_-_Autorité_Racine.pem
+==> master: Adding debian:NetLock_Express_=Class_C=_Root.pem
+==> master: Adding debian:Equifax_Secure_Global_eBusiness_CA.pem
+==> master: Adding debian:SecureTrust_CA.pem
+==> master: Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
+==> master: Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
+==> master: Adding debian:ACCVRAIZ1.pem
+==> master: 
+==> master: Adding debian:E-Tugra_Certification_Authority.pem
+==> master: Adding debian:QuoVadis_Root_CA.pem
+==> master: Adding debian:ePKI_Root_Certification_Authority.pem
+==> master: Adding debian:CA_Disig_Root_R2.pem
+==> master: Adding debian:AffirmTrust_Premium_ECC.pem
+==> master: Adding debian:Buypass_Class_2_Root_CA.pem
+==> master: Adding debian:Taiwan_GRCA.pem
+==> master: Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
+==> master: Adding debian:NetLock_Notary_=Class_A=_Root.pem
+==> master: Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
+==> master: Adding debian:China_Internet_Network_Information_Center_EV_Certificates_Root.pem
+==> master: Adding debian:Staat_der_Nederlanden_Root_CA.pem
+==> master: Adding debian:QuoVadis_Root_CA_3.pem
+==> master: Adding debian:UTN_USERFirst_Email_Root_CA.pem
+==> master: Adding debian:VeriSign_Universal_Root_Certification_Authority.pem
+==> master: Adding debian:ComSign_CA.pem
+==> master: Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+==> master: Adding debian:Go_Daddy_Class_2_CA.pem
+==> master: Adding debian:CNNIC_ROOT.pem
+==> master: Adding debian:COMODO_Certification_Authority.pem
+==> master: Adding debian:Certinomis_-_Root_CA.pem
+==> master: Adding debian:GeoTrust_Primary_Certification_Authority_-_G3.pem
+==> master: Adding debian:Microsec_e-Szigno_Root_CA.pem
+==> master: Adding debian:Swisscom_Root_CA_1.pem
+==> master: Adding debian:StartCom_Certification_Authority_2.pem
+==> master: Adding debian:GlobalSign_Root_CA_-_R2.pem
+==> master: Adding debian:Atos_TrustedRoot_2011.pem
+==> master: Adding debian:Deutsche_Telekom_Root_CA_2.pem
+==> master: Adding debian:AddTrust_Qualified_Certificates_Root.pem
+==> master: Adding debian:DigiCert_Global_Root_G2.pem
+==> master: Adding debian:Swisscom_Root_CA_2.pem
+==> master: Adding debian:Cybertrust_Global_Root.pem
+==> master: Adding debian:Buypass_Class_2_CA_1.pem
+==> master: Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem
+==> master: Adding debian:CA_WoSign_ECC_Root.pem
+==> master: Adding debian:NetLock_Business_=Class_B=_Root.pem
+==> master: Adding debian:Network_Solutions_Certificate_Authority.pem
+==> master: Adding debian:WoSign_China.pem
+==> master: Adding debian:CA_Disig.pem
+==> master: Adding debian:WellsSecure_Public_Root_Certificate_Authority.pem
+==> master: Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
+==> master: Adding debian:AffirmTrust_Networking.pem
+==> master: Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G4.pem
+==> master: Adding debian:QuoVadis_Root_CA_2.pem
+==> master: Adding debian:TWCA_Global_Root_CA.pem
+==> master: Adding debian:DigiCert_Assured_ID_Root_G2.pem
+==> master: Adding debian:Camerfirma_Global_Chambersign_Root.pem
+==> master: Adding debian:XRamp_Global_CA_Root.pem
+==> master: Adding debian:NetLock_Qualified_=Class_QA=_Root.pem
+==> master: Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
+==> master: Adding debian:Sonera_Class_2_Root_CA.pem
+==> master: Adding debian:Staat_der_Nederlanden_Root_CA_-_G3.pem
+==> master: Adding debian:AffirmTrust_Premium.pem
+==> master: Adding debian:Hongkong_Post_Root_CA_1.pem
+==> master: Adding debian:DigiCert_Global_Root_G3.pem
+==> master: Adding debian:Trustis_FPS_Root_CA.pem
+==> master: Adding debian:Certplus_Class_2_Primary_CA.pem
+==> master: Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
+==> master: Adding debian:Buypass_Class_3_Root_CA.pem
+==> master: Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem
+==> master: Adding debian:Security_Communication_RootCA2.pem
+==> master: Adding debian:PSCProcert.pem
+==> master: Adding debian:Sonera_Class_1_Root_CA.pem
+==> master: Adding debian:Security_Communication_Root_CA.pem
+==> master: Adding debian:CFCA_EV_ROOT.pem
+==> master: Adding debian:StartCom_Certification_Authority_G2.pem
+==> master: Adding debian:GeoTrust_Primary_Certification_Authority_-_G2.pem
+==> master: Adding debian:SwissSign_Gold_CA_-_G2.pem
+==> master: Adding debian:GeoTrust_Universal_CA.pem
+==> master: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority.pem
+==> master: Adding debian:DigiCert_Trusted_Root_G4.pem
+==> master: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority_-_G2.pem
+==> master: Adding debian:COMODO_ECC_Certification_Authority.pem
+==> master: Adding debian:USERTrust_RSA_Certification_Authority.pem
+==> master: Adding debian:COMODO_RSA_Certification_Authority.pem
+==> master: Adding debian:USERTrust_ECC_Certification_Authority.pem
+==> master: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority.pem
+==> master: Adding debian:Certification_Authority_of_WoSign_G2.pem
+==> master: Adding debian:QuoVadis_Root_CA_2_G3.pem
+==> master: Adding debian:TURKTRUST_Certificate_Services_Provider_Root_2007.pem
+==> master: Adding debian:Comodo_Trusted_Services_root.pem
+==> master: Adding debian:DigiCert_Assured_ID_Root_CA.pem
+==> master: Adding debian:EE_Certification_Centre_Root_CA.pem
+==> master: Adding debian:TÜRKTRUST_Elektronik_Sertifika_Hizmet_Sağlayıcısı_H5.pem
+==> master: Adding debian:thawte_Primary_Root_CA_-_G2.pem
+==> master: Adding debian:Secure_Global_CA.pem
+==> master: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_2.pem
+==> master: Adding debian:AffirmTrust_Commercial.pem
+==> master: Adding debian:Visa_eCommerce_Root.pem
+==> master: Adding debian:Root_CA_Generalitat_Valenciana.pem
+==> master: Adding debian:GlobalSign_Root_CA.pem
+==> master: Adding debian:Certigna.pem
+==> master: Adding debian:thawte_Primary_Root_CA_-_G3.pem
+==> master: Adding debian:WoSign.pem
+==> master: Adding debian:AddTrust_Low-Value_Services_Root.pem
+==> master: done.
+==> master: Setting up default-jre-headless (2:1.8-56ubuntu2) ...
+==> master: Setting up zookeeper (3.4.8-1) ...
+==> master: adduser: Warning: The home directory `/var/lib/zookeeper' does not belong to the user you are currently creating.
+==> master: update-alternatives: using /etc/zookeeper/conf_example to provide /etc/zookeeper/conf (zookeeper-conf) in auto mode
+==> master: Setting up zookeeperd (3.4.8-1) ...
+==> master: Setting up marathon (1.3.10-1.0.627.ubuntu1604) ...
+==> master: Setting up mesos (1.1.0-2.0.107.ubuntu1604) ...
+==> master: Processing triggers for libc-bin (2.23-0ubuntu5) ...
+==> master: Processing triggers for systemd (229-4ubuntu13) ...
+==> master: Processing triggers for ureadahead (0.100.0-19) ...
+==> master: Processing triggers for ca-certificates (20160104ubuntu1) ...
+==> master: Updating certificates in /etc/ssl/certs...
+==> master: 0 added, 0 removed; done.
+==> master: Running hooks in /etc/ca-certificates/update.d...
+==> master: done.
+==> master: done.
+==> master: WARNING: 
+==> master: apt
+==> master:  
+==> master: does not have a stable CLI interface. 
+==> master: Use with caution in scripts.
+==> master: Reading package lists...
+==> master: Building dependency tree...
+==> master: Reading state information...
+==> master: Package 'openjdk-9-jre-headless' is not installed, so not removed
+==> master: 0 upgraded, 0 newly installed, 0 to remove and 55 not upgraded.
+==> master: manual
+==> master: ZooKeeper JMX enabled by default
+==> master: Using config: /etc/zookeeper/conf/zoo.cfg
+==> master: ZooKeeper JMX enabled by default
+==> master: Using config: /etc/zookeeper/conf/zoo.cfg
+==> master: Stopping zookeeper ... no zookeeper to stop (could not find file /var/lib/zookeeper/zookeeper_server.pid)
+==> master: ZooKeeper JMX enabled by default
+==> master: Using config: /etc/zookeeper/conf/zoo.cfg
+==> master: Starting zookeeper ... 
+==> master: STARTED
+==> master: Unable to find image 'mesosphere/chronos:v3.0.0' locally
+==> master: v3.0.0: Pulling from mesosphere/chronos
+==> master: 386a066cd84a: Pulling fs layer
+==> master: 75ea84187083: Pulling fs layer
+==> master: 3e2e387eb26a: Pulling fs layer
+==> master: eef540699244: Pulling fs layer
+==> master: 1624a2f8d114: Pulling fs layer
+==> master: 7018f4ec6e0a: Pulling fs layer
+==> master: 6ca3bc2ad3b3: Pulling fs layer
+==> master: 00a02e1aa8f0: Pulling fs layer
+==> master: 56161dd0682d: Pulling fs layer
+==> master: 8417ec432a90: Pulling fs layer
+==> master: 7018f4ec6e0a: Waiting
+==> master: 6ca3bc2ad3b3: Waiting
+==> master: 00a02e1aa8f0: Waiting
+==> master: 56161dd0682d: Waiting
+==> master: 8417ec432a90: Waiting
+==> master: eef540699244: Waiting
+==> master: 1624a2f8d114: Waiting
+==> master: 3e2e387eb26a: Verifying Checksum
+==> master: 3e2e387eb26a: Download complete
+==> master: eef540699244: Download complete
+==> master: 1624a2f8d114: Verifying Checksum
+==> master: 1624a2f8d114: Download complete
+==> master: 75ea84187083: Verifying Checksum
+==> master: 75ea84187083: Download complete
+==> master: 6ca3bc2ad3b3: Verifying Checksum
+==> master: 6ca3bc2ad3b3: Download complete
+==> master: 386a066cd84a: Verifying Checksum
+==> master: 386a066cd84a: Download complete
+==> master: 7018f4ec6e0a: Verifying Checksum
+==> master: 7018f4ec6e0a: Download complete
+==> master: 8417ec432a90: Verifying Checksum
+==> master: 8417ec432a90: Download complete
+==> master: 56161dd0682d: Verifying Checksum
+==> master: 56161dd0682d: Download complete
+==> master: 00a02e1aa8f0: Verifying Checksum
+==> master: 00a02e1aa8f0: 
+==> master: Download complete
+==> master: 386a066cd84a: Pull complete
+==> master: 75ea84187083: Pull complete
+==> master: 3e2e387eb26a: 
+==> master: Pull complete
+==> master: eef540699244: 
+==> master: Pull complete
+==> master: 1624a2f8d114: Pull complete
+==> master: 7018f4ec6e0a: Pull complete
+==> master: 6ca3bc2ad3b3: Pull complete
+==> master: 00a02e1aa8f0: Pull complete
+==> master: 56161dd0682d: Pull complete
+==> master: 8417ec432a90: Pull complete
+==> master: Digest: sha256:e887dadf2d419ab02c710b9feea5b8e92475a797d22988a07cdd576b2712efea
+==> master: Status: Downloaded newer image for mesosphere/chronos:v3.0.0
+==> master: 287dd9bfd950573709a6ea9337d1ef6be79cc588a46b2e539b8ec8c18ea3c925
+==> master: Running provisioner: shell...
+    master: Running: inline script
+==> master: mesg: ttyname failed: Inappropriate ioctl for device
+SUCCESS
