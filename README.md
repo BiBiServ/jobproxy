@@ -125,3 +125,34 @@ where
   
  * version = **2.1.0.alpha.2**
 
+## Vagrant test environments
+
+Vagrant is a handy tool which helps to setup "quasi"-real test environment for testing JobProxy's Modules.
+### Installing requirements for Vagrant environment
+If you want to test JobProxy Modules you will need the following tools:
+| Tool | Installation command for ubuntu |
+| ------ | ------ |
+| VirtualBox | ``` $ sudo apt-get install virtualbox virtualbox-dkms ``` |
+| Vagrant | You can find package for Ubuntu/Debian  [here](https://www.vagrantup.com/downloads.html)|
+| Vagrant Hostmanager | ``` $ vagrant plugin install vagrant-hostmanager ``` |
+| GNU Parallel | ``` $ sudo apt-get install parallel ``` |
+
+### Starting the environment
+After all prerequisites are done you should be able to start the environment.
+##### Important Note
+**since Vagrant is not able to start multiple machines in parallel due to instable behavior of VirtualBox ([s. here ](https://www.vagrantup.com/docs/virtualbox/usage.html)), the start via ``` $ vagrant up ``` takes long time ans is therefore not used.**
+
+To start the Vagrant environment navigate to the subfolder containing the Vagrant file and run
+
+```sh
+$ ./parallel_provision.sh
+```
+This script lets start all machines sequentally without configuration and performs configuration in parallel after all machines are boot up.
+
+### Example: JobProxyChronos
+```sh
+$ cd JobProxyChronos/vagrant
+$ ./parallel_provision.sh
+```
+
+After the script is done you will get 1 Master node running ZooKepper and Chronos and 3 slave Mesos nodes. You'll also be able to access Mesos framework at http://10.0.0.2:5050 and Chronos Web GUI at http://10.0.0.2:8080  
