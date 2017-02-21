@@ -6,11 +6,11 @@ vagrant suspend
 vagrant destroy -f
 vagrant box remove -f "ubuntu/xenial64"
 
-#build the project
-#cd ../..
-#mvn clean compile
-#mvn package
-#cd -
+build the project
+cd ../..
+mvn clean compile
+mvn package
+cd -
 
 #start vagrant via parallel provisioning
 ./parallel_provision.sh
