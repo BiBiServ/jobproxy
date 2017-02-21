@@ -2,61 +2,49 @@
 ==> slave-3: [vagrant-hostsupdater]   found entry for: 10.0.0.5 slave-3
 ==> slave-3: Running provisioner: shell...
     slave-3: Running: inline script
-==> slave-3: mesg: ttyname failed: 
-==> slave-3: Inappropriate ioctl for device
-==> slave-3: Executing: /tmp/tmp.0dZQ8pxRrV/gpg.1.sh --keyserver
+==> slave-3: mesg: ttyname failed: Inappropriate ioctl for device
+==> slave-3: Executing: /tmp/tmp.jVaTiUq3R9/gpg.1.sh --keyserver
 ==> slave-3: keyserver.ubuntu.com
 ==> slave-3: --recv
 ==> slave-3: E56151BF
-==> slave-3: gpg: 
-==> slave-3: requesting key E56151BF from hkp server keyserver.ubuntu.com
-==> slave-3: gpg: 
-==> slave-3: key E56151BF: public key "Mesosphere Archive Automatic Signing Key <support@mesosphere.io>" imported
-==> slave-3: gpg: 
-==> slave-3: Total number processed: 1
-==> slave-3: gpg: 
-==> slave-3:               imported: 1
-==> slave-3:   (RSA: 1)
+==> slave-3: gpg: requesting key E56151BF from hkp server keyserver.ubuntu.com
+==> slave-3: gpg: key E56151BF: public key "Mesosphere Archive Automatic Signing Key <support@mesosphere.io>" imported
+==> slave-3: gpg: Total number processed: 1
+==> slave-3: gpg:               imported: 1  (RSA: 1)
 ==> slave-3: deb http://repos.mesosphere.io/ubuntu xenial main
 ==> slave-3: Hit:2 http://archive.ubuntu.com/ubuntu xenial InRelease
 ==> slave-3: Get:3 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [102 kB]
 ==> slave-3: Get:4 http://security.ubuntu.com/ubuntu xenial-security InRelease [102 kB]
 ==> slave-3: Get:5 http://archive.ubuntu.com/ubuntu xenial-backports InRelease [102 kB]
-==> slave-3: Get:6 http://archive.ubuntu.com/ubuntu xenial/main Sources [868 kB]
 ==> slave-3: Get:1 http://repos.mesosphere.com/ubuntu xenial InRelease [4,880 B]
+==> slave-3: Get:6 http://archive.ubuntu.com/ubuntu xenial/main Sources [868 kB]
 ==> slave-3: Get:7 http://archive.ubuntu.com/ubuntu xenial/restricted Sources [4,808 B]
 ==> slave-3: Get:8 http://archive.ubuntu.com/ubuntu xenial/universe Sources [7,728 kB]
-==> slave-3: Get:9 http://repos.mesosphere.com/ubuntu xenial/main amd64 Packages [4,369 B]
-==> slave-3: Get:10 http://security.ubuntu.com/ubuntu xenial-security/main Sources [59.3 kB]
-==> slave-3: Get:11 http://archive.ubuntu.com/ubuntu xenial/multiverse Sources [179 kB]
-==> slave-3: Get:12 http://archive.ubuntu.com/ubuntu xenial-updates/main Sources [230 kB]
-==> slave-3: Get:13 http://security.ubuntu.com/ubuntu xenial-security/restricted Sources [2,288 B]
-==> slave-3: Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/restricted Sources [2,688 B]
-==> slave-3: Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/universe Sources [130 kB]
-==> slave-3: Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse Sources [4,552 B]
-==> slave-3: Get:17 http://security.ubuntu.com/ubuntu xenial-security/universe Sources [19.3 kB]
-==> slave-3: Get:18 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [474 kB]
-==> slave-3: Get:19 http://security.ubuntu.com/ubuntu xenial-security/multiverse Sources [1,144 B]
-==> slave-3: Get:20 http://archive.ubuntu.com/ubuntu xenial-updates/main Translation-en [188 kB]
-==> slave-3: Get:21 http://archive.ubuntu.com/ubuntu xenial-updates/restricted amd64 Packages [7,176 B]
-==> slave-3: Get:22 http://archive.ubuntu.com/ubuntu xenial-updates/restricted Translation-en [2,396 B]
-==> slave-3: Get:23 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [211 kB]
-==> slave-3: Get:24 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [396 kB]
-==> slave-3: Get:25 http://archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en [149 kB]
-==> slave-3: Get:26 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages [8,080 B]
-==> slave-3: Get:27 http://archive.ubuntu.com/ubuntu xenial-backports/main Sources [3,200 B]
-==> slave-3: Get:28 http://archive.ubuntu.com/ubuntu xenial-backports/universe Sources [1,868 B]
-==> slave-3: Get:29 http://archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [4,672 B]
-==> slave-3: Get:30 http://archive.ubuntu.com/ubuntu xenial-backports/main Translation-en [3,200 B]
-==> slave-3: Get:31 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [2,512 B]
-==> slave-3: Get:32 http://security.ubuntu.com/ubuntu xenial-security/main Translation-en [88.5 kB]
-==> slave-3: Get:33 http://archive.ubuntu.com/ubuntu xenial-backports/universe Translation-en [1,216 B]
-==> slave-3: Get:34 http://security.ubuntu.com/ubuntu xenial-security/restricted amd64 Packages [6,828 B]
-==> slave-3: Get:35 http://security.ubuntu.com/ubuntu xenial-security/restricted Translation-en [2,272 B]
-==> slave-3: Get:36 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [73.8 kB]
-==> slave-3: Get:37 http://security.ubuntu.com/ubuntu xenial-security/universe Translation-en [41.7 kB]
-==> slave-3: Get:38 http://security.ubuntu.com/ubuntu xenial-security/multiverse Translation-en [1,232 B]
-==> slave-3: Fetched 11.2 MB in 3s (3,696 kB/s)
+==> slave-3: Get:9 http://archive.ubuntu.com/ubuntu xenial/multiverse Sources [179 kB]
+==> slave-3: Get:10 http://archive.ubuntu.com/ubuntu xenial-updates/main Sources [231 kB]
+==> slave-3: Get:11 http://archive.ubuntu.com/ubuntu xenial-updates/restricted Sources [2,688 B]
+==> slave-3: Get:13 http://archive.ubuntu.com/ubuntu xenial-updates/universe Sources [130 kB]
+==> slave-3: Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse Sources [4,556 B]
+==> slave-3: Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [474 kB]
+==> slave-3: Get:12 http://repos.mesosphere.com/ubuntu xenial/main amd64 Packages [4,564 B]
+==> slave-3: Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/main Translation-en [187 kB]
+==> slave-3: Get:17 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [398 kB]
+==> slave-3: Get:18 http://archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en [150 kB]
+==> slave-3: Get:19 http://archive.ubuntu.com/ubuntu xenial-backports/main Sources [3,200 B]
+==> slave-3: Get:20 http://security.ubuntu.com/ubuntu xenial-security/main Sources [60.1 kB]
+==> slave-3: Get:21 http://archive.ubuntu.com/ubuntu xenial-backports/universe Sources [1,868 B]
+==> slave-3: Get:22 http://archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [4,672 B]
+==> slave-3: Get:23 http://archive.ubuntu.com/ubuntu xenial-backports/main Translation-en [3,200 B]
+==> slave-3: Get:24 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [2,512 B]
+==> slave-3: Get:25 http://archive.ubuntu.com/ubuntu xenial-backports/universe Translation-en [1,216 B]
+==> slave-3: Get:26 http://security.ubuntu.com/ubuntu xenial-security/restricted Sources [2,288 B]
+==> slave-3: Get:27 http://security.ubuntu.com/ubuntu xenial-security/universe Sources [20.1 kB]
+==> slave-3: Get:28 http://security.ubuntu.com/ubuntu xenial-security/multiverse Sources [1,148 B]
+==> slave-3: Get:29 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [215 kB]
+==> slave-3: Get:30 http://security.ubuntu.com/ubuntu xenial-security/main Translation-en [90.0 kB]
+==> slave-3: Get:31 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [75.7 kB]
+==> slave-3: Get:32 http://security.ubuntu.com/ubuntu xenial-security/universe Translation-en [42.4 kB]
+==> slave-3: Fetched 11.2 MB in 5s (1,877 kB/s)
 ==> slave-3: Reading package lists...
 ==> slave-3: Reading package lists...
 ==> slave-3: Building dependency tree...
@@ -68,7 +56,7 @@
 ==> slave-3:   python2.7-doc binutils binfmt-support
 ==> slave-3: The following NEW packages will be installed:
 ==> slave-3:   libpython2.7-minimal libpython2.7-stdlib python2.7 python2.7-minimal
-==> slave-3: 0 upgraded, 4 newly installed, 0 to remove and 55 not upgraded.
+==> slave-3: 0 upgraded, 4 newly installed, 0 to remove and 7 not upgraded.
 ==> slave-3: Need to get 3,743 kB of archives.
 ==> slave-3: After this operation, 15.8 MB of additional disk space will be used.
 ==> slave-3: Get:1 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-minimal amd64 2.7.12-1ubuntu0~16.04.1 [339 kB]
@@ -76,12 +64,13 @@
 ==> slave-3: Get:3 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-stdlib amd64 2.7.12-1ubuntu0~16.04.1 [1,884 kB]
 ==> slave-3: Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7 amd64 2.7.12-1ubuntu0~16.04.1 [224 kB]
 ==> slave-3: dpkg-preconfigure: unable to re-open stdin: No such file or directory
-==> slave-3: Fetched 3,743 kB in 0s (6,279 kB/s)
+==> slave-3: Fetched 3,743 kB in 0s (6,610 kB/s)
 ==> slave-3: Selecting previously unselected package libpython2.7-minimal:amd64.
 ==> slave-3: (Reading database ... 
-==> slave-3: (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%
-==> slave-3: (Reading database ... 55%
-==> slave-3: (Reading database ... 60%
+==> slave-3: (Reading database ... 5%
+==> slave-3: (Reading database ... 10%
+==> slave-3: (Reading database ... 15%(Reading database ... 20%(Reading database ... 25%
+==> slave-3: (Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%
 ==> slave-3: (Reading database ... 65%
 ==> slave-3: (Reading database ... 70%
 ==> slave-3: (Reading database ... 75%
@@ -89,8 +78,9 @@
 ==> slave-3: (Reading database ... 85%
 ==> slave-3: (Reading database ... 90%
 ==> slave-3: (Reading database ... 95%
-==> slave-3: (Reading database ... 100%(Reading database ... 
-==> slave-3: 53810 files and directories currently installed.)
+==> slave-3: (Reading database ... 100%
+==> slave-3: (Reading database ... 
+==> slave-3: 53815 files and directories currently installed.)
 ==> slave-3: Preparing to unpack .../libpython2.7-minimal_2.7.12-1ubuntu0~16.04.1_amd64.deb ...
 ==> slave-3: Unpacking libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.1) ...
 ==> slave-3: Selecting previously unselected package python2.7-minimal.
@@ -111,6 +101,7 @@
 ==> slave-3: Setting up python2.7 (2.7.12-1ubuntu0~16.04.1) ...
 ==> slave-3: Reading package lists...
 ==> slave-3: Building dependency tree...
+==> slave-3: 
 ==> slave-3: Reading state information...
 ==> slave-3: The following additional packages will be installed:
 ==> slave-3:   bridge-utils cgroupfs-mount containerd runc ubuntu-fan
@@ -118,7 +109,7 @@
 ==> slave-3:   mountall aufs-tools debootstrap docker-doc rinse zfs-fuse | zfsutils
 ==> slave-3: The following NEW packages will be installed:
 ==> slave-3:   bridge-utils cgroupfs-mount containerd docker.io runc ubuntu-fan
-==> slave-3: 0 upgraded, 6 newly installed, 0 to remove and 55 not upgraded.
+==> slave-3: 0 upgraded, 6 newly installed, 0 to remove and 7 not upgraded.
 ==> slave-3: Need to get 16.0 MB of archives.
 ==> slave-3: After this operation, 83.3 MB of additional disk space will be used.
 ==> slave-3: Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 bridge-utils amd64 1.5-9ubuntu1 [28.6 kB]
@@ -126,17 +117,15 @@
 ==> slave-3: Get:3 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 runc amd64 1.0.0~rc1-0ubuntu2~16.04.1.1 [1,467 kB]
 ==> slave-3: Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 containerd amd64 0.2.3-0ubuntu1~16.04 [4,017 kB]
 ==> slave-3: Get:5 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 docker.io amd64 1.12.3-0ubuntu4~16.04.2 [10.5 MB]
-==> slave-3: Get:6 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 ubuntu-fan all 0.9.1 [30.1 kB]
+==> slave-3: Get:6 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 ubuntu-fan all 0.9.2 [30.7 kB]
 ==> slave-3: dpkg-preconfigure: unable to re-open stdin: No such file or directory
-==> slave-3: Fetched 16.0 MB in 1s (9,441 kB/s)
+==> slave-3: Fetched 16.0 MB in 1s (9,887 kB/s)
 ==> slave-3: Selecting previously unselected package bridge-utils.
 ==> slave-3: (Reading database ... 
 ==> slave-3: (Reading database ... 5%
-==> slave-3: (Reading database ... 10%
-==> slave-3: (Reading database ... 15%(Reading database ... 20%(Reading database ... 25%
-==> slave-3: (Reading database ... 30%
-==> slave-3: (Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%
-==> slave-3: (Reading database ... 55%
+==> slave-3: (Reading database ... 10%(Reading database ... 15%
+==> slave-3: (Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%
+==> slave-3: (Reading database ... 50%(Reading database ... 55%
 ==> slave-3: (Reading database ... 60%
 ==> slave-3: (Reading database ... 65%
 ==> slave-3: (Reading database ... 70%
@@ -145,7 +134,7 @@
 ==> slave-3: (Reading database ... 85%
 ==> slave-3: (Reading database ... 90%
 ==> slave-3: (Reading database ... 95%
-==> slave-3: (Reading database ... 100%(Reading database ... 54526 files and directories currently installed.)
+==> slave-3: (Reading database ... 100%(Reading database ... 54531 files and directories currently installed.)
 ==> slave-3: Preparing to unpack .../bridge-utils_1.5-9ubuntu1_amd64.deb ...
 ==> slave-3: Unpacking bridge-utils (1.5-9ubuntu1) ...
 ==> slave-3: Selecting previously unselected package cgroupfs-mount.
@@ -161,11 +150,11 @@
 ==> slave-3: Preparing to unpack .../docker.io_1.12.3-0ubuntu4~16.04.2_amd64.deb ...
 ==> slave-3: Unpacking docker.io (1.12.3-0ubuntu4~16.04.2) ...
 ==> slave-3: Selecting previously unselected package ubuntu-fan.
-==> slave-3: Preparing to unpack .../ubuntu-fan_0.9.1_all.deb ...
-==> slave-3: Unpacking ubuntu-fan (0.9.1) ...
+==> slave-3: Preparing to unpack .../ubuntu-fan_0.9.2_all.deb ...
+==> slave-3: Unpacking ubuntu-fan (0.9.2) ...
 ==> slave-3: Processing triggers for man-db (2.7.5-1) ...
 ==> slave-3: Processing triggers for ureadahead (0.100.0-19) ...
-==> slave-3: Processing triggers for systemd (229-4ubuntu13) ...
+==> slave-3: Processing triggers for systemd (229-4ubuntu16) ...
 ==> slave-3: Setting up bridge-utils (1.5-9ubuntu1) ...
 ==> slave-3: Setting up cgroupfs-mount (1.2) ...
 ==> slave-3: Setting up runc (1.0.0~rc1-0ubuntu2~16.04.1.1) ...
@@ -173,8 +162,8 @@
 ==> slave-3: Setting up docker.io (1.12.3-0ubuntu4~16.04.2) ...
 ==> slave-3: Adding group `docker' (GID 117) ...
 ==> slave-3: Done.
-==> slave-3: Setting up ubuntu-fan (0.9.1) ...
-==> slave-3: Processing triggers for systemd (229-4ubuntu13) ...
+==> slave-3: Setting up ubuntu-fan (0.9.2) ...
+==> slave-3: Processing triggers for systemd (229-4ubuntu16) ...
 ==> slave-3: Processing triggers for ureadahead (0.100.0-19) ...
 ==> slave-3: Reading package lists...
 ==> slave-3: Building dependency tree...
@@ -207,10 +196,11 @@
 ==> slave-3:   libxml-commons-resolver1.1-java libxrender1 libxtst6 libzookeeper-java
 ==> slave-3:   libzookeeper-mt2 mesos openjdk-9-jre-headless x11-common zookeeper
 ==> slave-3:   zookeeper-bin zookeeperd
-==> slave-3: 0 upgraded, 43 newly installed, 0 to remove and 55 not upgraded.
+==> slave-3: 0 upgraded, 43 newly installed, 0 to remove and 7 not upgraded.
 ==> slave-3: Need to get 241 MB of archives.
 ==> slave-3: After this operation, 485 MB of additional disk space will be used.
 ==> slave-3: Get:2 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-core-2.0-5 amd64 2.0.21-stable-2 [69.4 kB]
+==> slave-3: Get:1 http://repos.mesosphere.com/ubuntu xenial/main amd64 mesos amd64 1.1.0-2.0.107.ubuntu1604 [48.7 MB]
 ==> slave-3: Get:3 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-extra-2.0-5 amd64 2.0.21-stable-2 [51.3 kB]
 ==> slave-3: Get:4 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-openssl-2.0-5 amd64 2.0.21-stable-2 [11.2 kB]
 ==> slave-3: Get:5 http://archive.ubuntu.com/ubuntu xenial/main amd64 libevent-pthreads-2.0-5 amd64 2.0.21-stable-2 [5,338 B]
@@ -219,7 +209,6 @@
 ==> slave-3: Get:8 http://archive.ubuntu.com/ubuntu xenial/main amd64 libapr1 amd64 1.5.2-3 [86.0 kB]
 ==> slave-3: Get:9 http://archive.ubuntu.com/ubuntu xenial/main amd64 libaprutil1 amd64 1.5.4-1build1 [77.1 kB]
 ==> slave-3: Get:10 http://archive.ubuntu.com/ubuntu xenial/main amd64 libserf-1-1 amd64 1.3.8-1 [45.5 kB]
-==> slave-3: Get:1 http://repos.mesosphere.com/ubuntu xenial/main amd64 mesos amd64 1.1.0-2.0.107.ubuntu1604 [48.7 MB]
 ==> slave-3: Get:11 http://archive.ubuntu.com/ubuntu xenial/main amd64 x11-common all 1:7.7+13ubuntu3 [22.4 kB]
 ==> slave-3: Get:12 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxtst6 amd64 2:1.2.2-1 [14.1 kB]
 ==> slave-3: Get:13 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libnspr4 amd64 2:4.12-0ubuntu0.16.04.1 [112 kB]
@@ -254,20 +243,10 @@
 ==> slave-3: Get:42 http://archive.ubuntu.com/ubuntu xenial/universe amd64 zookeeper-bin amd64 3.4.8-1 [57.9 kB]
 ==> slave-3: Get:43 http://archive.ubuntu.com/ubuntu xenial/universe amd64 zookeeperd all 3.4.8-1 [8,566 B]
 ==> slave-3: dpkg-preconfigure: unable to re-open stdin: No such file or directory
-==> slave-3: Fetched 241 MB in 22s (10.9 MB/s)
+==> slave-3: Fetched 241 MB in 21s (11.4 MB/s)
 ==> slave-3: Selecting previously unselected package libevent-core-2.0-5:amd64.
 ==> slave-3: (Reading database ... 
-==> slave-3: (Reading database ... 5%
-==> slave-3: (Reading database ... 10%
-==> slave-3: (Reading database ... 15%
-==> slave-3: (Reading database ... 20%
-==> slave-3: (Reading database ... 25%
-==> slave-3: (Reading database ... 30%
-==> slave-3: (Reading database ... 35%
-==> slave-3: (Reading database ... 40%
-==> slave-3: (Reading database ... 45%
-==> slave-3: (Reading database ... 50%
-==> slave-3: (Reading database ... 55%
+==> slave-3: (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%
 ==> slave-3: (Reading database ... 60%
 ==> slave-3: (Reading database ... 65%
 ==> slave-3: (Reading database ... 70%
@@ -276,9 +255,7 @@
 ==> slave-3: (Reading database ... 85%
 ==> slave-3: (Reading database ... 90%
 ==> slave-3: (Reading database ... 95%
-==> slave-3: (Reading database ... 100%
-==> slave-3: (Reading database ... 
-==> slave-3: 54713 files and directories currently installed.)
+==> slave-3: (Reading database ... 100%(Reading database ... 54718 files and directories currently installed.)
 ==> slave-3: Preparing to unpack .../libevent-core-2.0-5_2.0.21-stable-2_amd64.deb ...
 ==> slave-3: Unpacking libevent-core-2.0-5:amd64 (2.0.21-stable-2) ...
 ==> slave-3: Selecting previously unselected package libevent-extra-2.0-5:amd64.
@@ -408,7 +385,8 @@
 ==> slave-3: Preparing to unpack .../mesos_1.1.0-2.0.107.ubuntu1604_amd64.deb ...
 ==> slave-3: Unpacking mesos (1.1.0-2.0.107.ubuntu1604) ...
 ==> slave-3: Processing triggers for libc-bin (2.23-0ubuntu5) ...
-==> slave-3: Processing triggers for systemd (229-4ubuntu13) ...
+==> slave-3: Processing triggers for systemd (229-4ubuntu16) ...
+==> slave-3: Failed to execute operation: Connection timed out
 ==> slave-3: Processing triggers for ureadahead (0.100.0-19) ...
 ==> slave-3: Processing triggers for man-db (2.7.5-1) ...
 ==> slave-3: Processing triggers for ca-certificates (20160104ubuntu1) ...
@@ -458,206 +436,197 @@
 ==> slave-3: Setting up openjdk-9-jre-headless:amd64 (9~b114-0ubuntu1) ...
 ==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/rmid to provide /usr/bin/rmid (rmid) in auto mode
 ==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/java to provide /usr/bin/java (java) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/bin/jjs to provide /usr/bin/jjs (jjs) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/bin/pack200 to provide /usr/bin/pack200 (pack200) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/bin/unpack200 to provide /usr/bin/unpack200 (unpack200) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/bin/orbd to provide /usr/bin/orbd (orbd) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/bin/servertool to provide /usr/bin/servertool (servertool) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/bin/tnameserv to provide /usr/bin/tnameserv (tnameserv) in auto mode
-==> slave-3: update-alternatives: 
-==> slave-3: using /usr/lib/jvm/java-9-openjdk-amd64/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/jjs to provide /usr/bin/jjs (jjs) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/pack200 to provide /usr/bin/pack200 (pack200) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/unpack200 to provide /usr/bin/unpack200 (unpack200) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/orbd to provide /usr/bin/orbd (orbd) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/servertool to provide /usr/bin/servertool (servertool) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/bin/tnameserv to provide /usr/bin/tnameserv (tnameserv) in auto mode
+==> slave-3: update-alternatives: using /usr/lib/jvm/java-9-openjdk-amd64/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
 ==> slave-3: Setting up zookeeper (3.4.8-1) ...
 ==> slave-3: adduser: Warning: The home directory `/var/lib/zookeeper' does not belong to the user you are currently creating.
 ==> slave-3: update-alternatives: using /etc/zookeeper/conf_example to provide /etc/zookeeper/conf (zookeeper-conf) in auto mode
 ==> slave-3: Setting up zookeeperd (3.4.8-1) ...
 ==> slave-3: Setting up mesos (1.1.0-2.0.107.ubuntu1604) ...
 ==> slave-3: Setting up ca-certificates-java (20160321) ...
-==> slave-3: Adding debian:Global_Chambersign_Root_-_2008.pem
-==> slave-3: Adding debian:QuoVadis_Root_CA_1_G3.pem
-==> slave-3: Adding debian:Equifax_Secure_CA.pem
-==> slave-3: Adding debian:RSA_Security_2048_v3.pem
-==> slave-3: Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
-==> slave-3: Adding debian:SecureSign_RootCA11.pem
-==> slave-3: Adding debian:AddTrust_External_Root.pem
-==> slave-3: Adding debian:EBG_Elektronik_Sertifika_Hizmet_Sağlayıcısı.pem
-==> slave-3: Adding debian:TC_TrustCenter_Class_3_CA_II.pem
-==> slave-3: Adding debian:ApplicationCA_-_Japanese_Government.pem
-==> slave-3: Adding debian:StartCom_Certification_Authority.pem
-==> slave-3: Adding debian:Entrust_Root_Certification_Authority.pem
-==> slave-3: Adding debian:ACEDICOM_Root.pem
-==> slave-3: Adding debian:TÜBİTAK_UEKAE_Kök_Sertifika_Hizmet_Sağlayıcısı_-_Sürüm_3.pem
-==> slave-3: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G2.pem
-==> slave-3: Adding debian:TÜRKTRUST_Elektronik_Sertifika_Hizmet_Sağlayıcısı_H6.pem
-==> slave-3: Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
-==> slave-3: Adding debian:certSIGN_ROOT_CA.pem
-==> slave-3: Adding debian:GeoTrust_Primary_Certification_Authority.pem
-==> slave-3: Adding debian:DST_ACES_CA_X6.pem
-==> slave-3: Adding debian:Verisign_Class_2_Public_Primary_Certification_Authority_-_G3.pem
-==> slave-3: Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
-==> slave-3: Adding debian:Actalis_Authentication_Root_CA.pem
-==> slave-3: Adding debian:Staat_der_Nederlanden_Root_CA_-_G2.pem
-==> slave-3: Adding debian:IdenTrust_Commercial_Root_CA_1.pem
-==> slave-3: Adding debian:Staat_der_Nederlanden_EV_Root_CA.pem
-==> slave-3: Adding debian:EC-ACC.pem
-==> slave-3: Adding debian:GeoTrust_Global_CA.pem
-==> slave-3: Adding debian:Izenpe.com.pem
-==> slave-3: Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
-==> slave-3: Adding debian:AC_Raíz_Certicámara_S.A..pem
-==> slave-3: Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
-==> slave-3: Adding debian:Comodo_AAA_Services_root.pem
-==> slave-3: Adding debian:SwissSign_Platinum_CA_-_G2.pem
-==> slave-3: Adding debian:QuoVadis_Root_CA_3_G3.pem
-==> slave-3: Adding debian:AddTrust_Public_Services_Root.pem
-==> slave-3: Adding debian:CA_Disig_Root_R1.pem
-==> slave-3: Adding debian:GeoTrust_Global_CA_2.pem
-==> slave-3: Adding debian:DST_Root_CA_X3.pem
-==> slave-3: Adding debian:DigiCert_Global_Root_CA.pem
-==> slave-3: Adding debian:Certum_Trusted_Network_CA.pem
-==> slave-3: Adding debian:Chambers_of_Commerce_Root_-_2008.pem
-==> slave-3: Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
-==> slave-3: Adding debian:Security_Communication_EV_RootCA1.pem
-==> slave-3: Adding debian:S-TRUST_Universal_Root_CA.pem
-==> slave-3: Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
-==> slave-3: Adding debian:Certum_Root_CA.pem
-==> slave-3: Adding debian:TWCA_Root_Certification_Authority.pem
-==> slave-3: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G3.pem
 ==> slave-3: Adding debian:Comodo_Secure_Services_root.pem
-==> slave-3: Adding debian:Swisscom_Root_EV_CA_2.pem
-==> slave-3: Adding debian:S-TRUST_Authentication_and_Encryption_Root_CA_2005_PN.pem
-==> slave-3: Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
-==> slave-3: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority_-_G3.pem
-==> slave-3: Adding debian:IGC_A.pem
-==> slave-3: Adding debian:GeoTrust_Universal_CA_2.pem
-==> slave-3: Adding debian:SwissSign_Silver_CA_-_G2.pem
-==> slave-3: Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
-==> slave-3: Adding debian:thawte_Primary_Root_CA.pem
-==> slave-3: Adding debian:Baltimore_CyberTrust_Root.pem
-==> slave-3: Adding debian:UTN_USERFirst_Hardware_Root_CA.pem
-==> slave-3: Adding debian:Juur-SK.pem
-==> slave-3: Adding debian:TeliaSonera_Root_CA_v1.pem
-==> slave-3: Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
 ==> slave-3: Adding debian:Starfield_Class_2_CA.pem
-==> slave-3: Adding debian:Equifax_Secure_eBusiness_CA_1.pem
-==> slave-3: Adding debian:OISTE_WISeKey_Global_Root_GA_CA.pem
-==> slave-3: Adding debian:DigiCert_Assured_ID_Root_G3.pem
-==> slave-3: Adding debian:GlobalSign_Root_CA_-_R3.pem
+==> slave-3: Adding debian:Verisign_Class_2_Public_Primary_Certification_Authority_-_G3.pem
+==> slave-3: Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
+==> slave-3: Adding debian:RSA_Security_2048_v3.pem
 ==> slave-3: Adding debian:Verisign_Class_2_Public_Primary_Certification_Authority_-_G2.pem
-==> slave-3: Adding debian:Camerfirma_Chambers_of_Commerce_Root.pem
-==> slave-3: Adding debian:Certinomis_-_Autorité_Racine.pem
-==> slave-3: Adding debian:NetLock_Express_=Class_C=_Root.pem
-==> slave-3: Adding debian:Equifax_Secure_Global_eBusiness_CA.pem
-==> slave-3: Adding debian:SecureTrust_CA.pem
-==> slave-3: Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
-==> slave-3: Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
-==> slave-3: Adding debian:ACCVRAIZ1.pem
-==> slave-3: Adding debian:E-Tugra_Certification_Authority.pem
-==> slave-3: Adding debian:QuoVadis_Root_CA.pem
-==> slave-3: Adding debian:ePKI_Root_Certification_Authority.pem
-==> slave-3: Adding debian:CA_Disig_Root_R2.pem
-==> slave-3: Adding debian:AffirmTrust_Premium_ECC.pem
-==> slave-3: Adding debian:Buypass_Class_2_Root_CA.pem
-==> slave-3: Adding debian:Taiwan_GRCA.pem
-==> slave-3: Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
-==> slave-3: Adding debian:NetLock_Notary_=Class_A=_Root.pem
-==> slave-3: Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
-==> slave-3: Adding debian:China_Internet_Network_Information_Center_EV_Certificates_Root.pem
-==> slave-3: Adding debian:Staat_der_Nederlanden_Root_CA.pem
-==> slave-3: Adding debian:QuoVadis_Root_CA_3.pem
-==> slave-3: Adding debian:UTN_USERFirst_Email_Root_CA.pem
-==> slave-3: Adding debian:VeriSign_Universal_Root_Certification_Authority.pem
-==> slave-3: Adding debian:ComSign_CA.pem
-==> slave-3: Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+==> slave-3: Adding debian:OISTE_WISeKey_Global_Root_GA_CA.pem
 ==> slave-3: Adding debian:Go_Daddy_Class_2_CA.pem
-==> slave-3: Adding debian:CNNIC_ROOT.pem
-==> slave-3: Adding debian:COMODO_Certification_Authority.pem
-==> slave-3: Adding debian:Certinomis_-_Root_CA.pem
-==> slave-3: Adding debian:GeoTrust_Primary_Certification_Authority_-_G3.pem
-==> slave-3: Adding debian:Microsec_e-Szigno_Root_CA.pem
-==> slave-3: Adding debian:Swisscom_Root_CA_1.pem
-==> slave-3: Adding debian:StartCom_Certification_Authority_2.pem
-==> slave-3: Adding debian:GlobalSign_Root_CA_-_R2.pem
-==> slave-3: Adding debian:Atos_TrustedRoot_2011.pem
-==> slave-3: Adding debian:Deutsche_Telekom_Root_CA_2.pem
-==> slave-3: Adding debian:AddTrust_Qualified_Certificates_Root.pem
-==> slave-3: Adding debian:DigiCert_Global_Root_G2.pem
-==> slave-3: Adding debian:Swisscom_Root_CA_2.pem
-==> slave-3: Adding debian:Cybertrust_Global_Root.pem
-==> slave-3: Adding debian:Buypass_Class_2_CA_1.pem
-==> slave-3: Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem
-==> slave-3: Adding debian:CA_WoSign_ECC_Root.pem
-==> slave-3: Adding debian:NetLock_Business_=Class_B=_Root.pem
-==> slave-3: Adding debian:Network_Solutions_Certificate_Authority.pem
-==> slave-3: Adding debian:WoSign_China.pem
-==> slave-3: Adding debian:CA_Disig.pem
-==> slave-3: Adding debian:WellsSecure_Public_Root_Certificate_Authority.pem
-==> slave-3: Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
-==> slave-3: Adding debian:AffirmTrust_Networking.pem
-==> slave-3: Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G4.pem
-==> slave-3: Adding debian:QuoVadis_Root_CA_2.pem
-==> slave-3: Adding debian:TWCA_Global_Root_CA.pem
-==> slave-3: Adding debian:DigiCert_Assured_ID_Root_G2.pem
-==> slave-3: Adding debian:Camerfirma_Global_Chambersign_Root.pem
-==> slave-3: Adding debian:XRamp_Global_CA_Root.pem
-==> slave-3: Adding debian:NetLock_Qualified_=Class_QA=_Root.pem
-==> slave-3: Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
-==> slave-3: Adding debian:Sonera_Class_2_Root_CA.pem
-==> slave-3: Adding debian:Staat_der_Nederlanden_Root_CA_-_G3.pem
-==> slave-3: Adding debian:AffirmTrust_Premium.pem
-==> slave-3: Adding debian:Hongkong_Post_Root_CA_1.pem
-==> slave-3: Adding debian:DigiCert_Global_Root_G3.pem
-==> slave-3: Adding debian:Trustis_FPS_Root_CA.pem
-==> slave-3: Adding debian:Certplus_Class_2_Primary_CA.pem
-==> slave-3: Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
-==> slave-3: Adding debian:Buypass_Class_3_Root_CA.pem
-==> slave-3: Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem
-==> slave-3: Adding debian:Security_Communication_RootCA2.pem
-==> slave-3: Adding debian:PSCProcert.pem
 ==> slave-3: Adding debian:Sonera_Class_1_Root_CA.pem
-==> slave-3: Adding debian:Security_Communication_Root_CA.pem
-==> slave-3: Adding debian:CFCA_EV_ROOT.pem
-==> slave-3: Adding debian:StartCom_Certification_Authority_G2.pem
-==> slave-3: Adding debian:GeoTrust_Primary_Certification_Authority_-_G2.pem
-==> slave-3: Adding debian:SwissSign_Gold_CA_-_G2.pem
-==> slave-3: Adding debian:GeoTrust_Universal_CA.pem
-==> slave-3: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority.pem
-==> slave-3: Adding debian:DigiCert_Trusted_Root_G4.pem
-==> slave-3: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority_-_G2.pem
-==> slave-3: Adding debian:COMODO_ECC_Certification_Authority.pem
-==> slave-3: Adding debian:USERTrust_RSA_Certification_Authority.pem
-==> slave-3: Adding debian:COMODO_RSA_Certification_Authority.pem
+==> slave-3: Adding debian:Swisscom_Root_CA_2.pem
+==> slave-3: Adding debian:VeriSign_Universal_Root_Certification_Authority.pem
+==> slave-3: Adding debian:ApplicationCA_-_Japanese_Government.pem
+==> slave-3: Adding debian:China_Internet_Network_Information_Center_EV_Certificates_Root.pem
+==> slave-3: Adding debian:AffirmTrust_Networking.pem
+==> slave-3: Adding debian:DigiCert_Global_Root_G3.pem
 ==> slave-3: Adding debian:USERTrust_ECC_Certification_Authority.pem
-==> slave-3: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority.pem
-==> slave-3: Adding debian:Certification_Authority_of_WoSign_G2.pem
-==> slave-3: Adding debian:QuoVadis_Root_CA_2_G3.pem
-==> slave-3: Adding debian:TURKTRUST_Certificate_Services_Provider_Root_2007.pem
-==> slave-3: Adding debian:Comodo_Trusted_Services_root.pem
-==> slave-3: Adding debian:DigiCert_Assured_ID_Root_CA.pem
-==> slave-3: Adding debian:EE_Certification_Centre_Root_CA.pem
-==> slave-3: Adding debian:TÜRKTRUST_Elektronik_Sertifika_Hizmet_Sağlayıcısı_H5.pem
+==> slave-3: Adding debian:CA_WoSign_ECC_Root.pem
+==> slave-3: Adding debian:Buypass_Class_2_Root_CA.pem
 ==> slave-3: Adding debian:thawte_Primary_Root_CA_-_G2.pem
-==> slave-3: Adding debian:Secure_Global_CA.pem
-==> slave-3: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_2.pem
-==> slave-3: Adding debian:AffirmTrust_Commercial.pem
-==> slave-3: Adding debian:Visa_eCommerce_Root.pem
-==> slave-3: Adding debian:Root_CA_Generalitat_Valenciana.pem
+==> slave-3: Adding debian:Actalis_Authentication_Root_CA.pem
+==> slave-3: Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
 ==> slave-3: Adding debian:GlobalSign_Root_CA.pem
-==> slave-3: Adding debian:Certigna.pem
-==> slave-3: Adding debian:thawte_Primary_Root_CA_-_G3.pem
+==> slave-3: Adding debian:QuoVadis_Root_CA.pem
+==> slave-3: Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem
+==> slave-3: Adding debian:Comodo_Trusted_Services_root.pem
+==> slave-3: Adding debian:Security_Communication_Root_CA.pem
+==> slave-3: Adding debian:ACCVRAIZ1.pem
+==> slave-3: Adding debian:CFCA_EV_ROOT.pem
+==> slave-3: Adding debian:ePKI_Root_Certification_Authority.pem
+==> slave-3: Adding debian:NetLock_Business_=Class_B=_Root.pem
+==> slave-3: Adding debian:UTN_USERFirst_Email_Root_CA.pem
+==> slave-3: Adding debian:AddTrust_Public_Services_Root.pem
+==> slave-3: Adding debian:UTN_USERFirst_Hardware_Root_CA.pem
+==> slave-3: Adding debian:Camerfirma_Chambers_of_Commerce_Root.pem
+==> slave-3: Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
+==> slave-3: Adding debian:Staat_der_Nederlanden_Root_CA.pem
+==> slave-3: Adding debian:WoSign_China.pem
+==> slave-3: Adding debian:Equifax_Secure_Global_eBusiness_CA.pem
+==> slave-3: Adding debian:S-TRUST_Authentication_and_Encryption_Root_CA_2005_PN.pem
+==> slave-3: Adding debian:Swisscom_Root_EV_CA_2.pem
 ==> slave-3: Adding debian:WoSign.pem
+==> slave-3: Adding debian:Equifax_Secure_CA.pem
+==> slave-3: Adding debian:TeliaSonera_Root_CA_v1.pem
+==> slave-3: Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
+==> slave-3: Adding debian:Hongkong_Post_Root_CA_1.pem
+==> slave-3: Adding debian:Sonera_Class_2_Root_CA.pem
+==> slave-3: Adding debian:QuoVadis_Root_CA_2.pem
+==> slave-3: Adding debian:QuoVadis_Root_CA_3_G3.pem
+==> slave-3: Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
+==> slave-3: Adding debian:DST_Root_CA_X3.pem
+==> slave-3: Adding debian:WellsSecure_Public_Root_Certificate_Authority.pem
+==> slave-3: Adding debian:NetLock_Notary_=Class_A=_Root.pem
+==> slave-3: Adding debian:Deutsche_Telekom_Root_CA_2.pem
+==> slave-3: Adding debian:COMODO_RSA_Certification_Authority.pem
+==> slave-3: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G3.pem
+==> slave-3: Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
+==> slave-3: Adding debian:Taiwan_GRCA.pem
+==> slave-3: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority_-_G2.pem
+==> slave-3: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_2.pem
+==> slave-3: Adding debian:GeoTrust_Global_CA_2.pem
+==> slave-3: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G2.pem
+==> slave-3: Adding debian:Security_Communication_EV_RootCA1.pem
+==> slave-3: Adding debian:DigiCert_Assured_ID_Root_G2.pem
+==> slave-3: Adding debian:Certum_Root_CA.pem
+==> slave-3: Adding debian:IdenTrust_Commercial_Root_CA_1.pem
+==> slave-3: Adding debian:GeoTrust_Primary_Certification_Authority_-_G3.pem
+==> slave-3: Adding debian:USERTrust_RSA_Certification_Authority.pem
+==> slave-3: Adding debian:SwissSign_Gold_CA_-_G2.pem
+==> slave-3: Adding debian:TWCA_Global_Root_CA.pem
+==> slave-3: Adding debian:TURKTRUST_Certificate_Services_Provider_Root_2007.pem
+==> slave-3: Adding debian:ACEDICOM_Root.pem
+==> slave-3: Adding debian:GeoTrust_Primary_Certification_Authority_-_G2.pem
+==> slave-3: Adding debian:NetLock_Qualified_=Class_QA=_Root.pem
+==> slave-3: Adding debian:Equifax_Secure_eBusiness_CA_1.pem
+==> slave-3: Adding debian:COMODO_Certification_Authority.pem
+==> slave-3: Adding debian:Izenpe.com.pem
+==> slave-3: Adding debian:DigiCert_Trusted_Root_G4.pem
+==> slave-3: Adding debian:SwissSign_Silver_CA_-_G2.pem
+==> slave-3: Adding debian:Visa_eCommerce_Root.pem
+==> slave-3: Adding debian:DST_ACES_CA_X6.pem
+==> slave-3: Adding debian:CA_Disig.pem
+==> slave-3: Adding debian:Certplus_Class_2_Primary_CA.pem
+==> slave-3: Adding debian:Juur-SK.pem
+==> slave-3: Adding debian:Staat_der_Nederlanden_Root_CA_-_G3.pem
+==> slave-3: Adding debian:NetLock_Express_=Class_C=_Root.pem
+==> slave-3: Adding debian:certSIGN_ROOT_CA.pem
+==> slave-3: Adding debian:ComSign_CA.pem
+==> slave-3: Adding debian:Global_Chambersign_Root_-_2008.pem
+==> slave-3: Adding debian:GeoTrust_Global_CA.pem
+==> slave-3: Adding debian:Root_CA_Generalitat_Valenciana.pem
+==> slave-3: Adding debian:GeoTrust_Primary_Certification_Authority.pem
+==> slave-3: Adding debian:AffirmTrust_Commercial.pem
+==> slave-3: Adding debian:GlobalSign_Root_CA_-_R2.pem
+==> slave-3: Adding debian:thawte_Primary_Root_CA_-_G3.pem
+==> slave-3: Adding debian:DigiCert_Assured_ID_Root_CA.pem
+==> slave-3: Adding debian:PSCProcert.pem
+==> slave-3: Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
+==> slave-3: Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+==> slave-3: Adding debian:EE_Certification_Centre_Root_CA.pem
+==> slave-3: Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority.pem
+==> slave-3: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority.pem
+==> slave-3: Adding debian:Trustis_FPS_Root_CA.pem
+==> slave-3: Adding debian:AddTrust_Qualified_Certificates_Root.pem
+==> slave-3: Adding debian:Cybertrust_Global_Root.pem
+==> slave-3: Adding debian:Secure_Global_CA.pem
+==> slave-3: Adding debian:CA_Disig_Root_R1.pem
+==> slave-3: Adding debian:Certinomis_-_Root_CA.pem
+==> slave-3: Adding debian:XRamp_Global_CA_Root.pem
+==> slave-3: Adding debian:CNNIC_ROOT.pem
+==> slave-3: Adding debian:IGC_A.pem
+==> slave-3: Adding debian:Buypass_Class_2_CA_1.pem
+==> slave-3: Adding debian:S-TRUST_Universal_Root_CA.pem
+==> slave-3: Adding debian:SecureTrust_CA.pem
+==> slave-3: Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G4.pem
+==> slave-3: Adding debian:Comodo_AAA_Services_root.pem
+==> slave-3: Adding debian:AC_Raíz_Certicámara_S.A..pem
+==> slave-3: Adding debian:TÜBİTAK_UEKAE_Kök_Sertifika_Hizmet_Sağlayıcısı_-_Sürüm_3.pem
+==> slave-3: Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+==> slave-3: Adding debian:Certum_Trusted_Network_CA.pem
+==> slave-3: Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
+==> slave-3: Adding debian:TC_TrustCenter_Class_3_CA_II.pem
+==> slave-3: Adding debian:Atos_TrustedRoot_2011.pem
+==> slave-3: Adding debian:DigiCert_Global_Root_CA.pem
+==> slave-3: Adding debian:TÜRKTRUST_Elektronik_Sertifika_Hizmet_Sağlayıcısı_H6.pem
+==> slave-3: Adding debian:EBG_Elektronik_Sertifika_Hizmet_Sağlayıcısı.pem
+==> slave-3: Adding debian:E-Tugra_Certification_Authority.pem
+==> slave-3: Adding debian:GeoTrust_Universal_CA.pem
+==> slave-3: Adding debian:DigiCert_Global_Root_G2.pem
+==> slave-3: Adding debian:Chambers_of_Commerce_Root_-_2008.pem
+==> slave-3: Adding debian:TWCA_Root_Certification_Authority.pem
+==> slave-3: Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+==> slave-3: Adding debian:QuoVadis_Root_CA_3.pem
+==> slave-3: Adding debian:EC-ACC.pem
+==> slave-3: Adding debian:Staat_der_Nederlanden_Root_CA_-_G2.pem
+==> slave-3: Adding debian:AffirmTrust_Premium.pem
+==> slave-3: Adding debian:AffirmTrust_Premium_ECC.pem
+==> slave-3: Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
+==> slave-3: Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
+==> slave-3: Adding debian:TÜRKTRUST_Elektronik_Sertifika_Hizmet_Sağlayıcısı_H5.pem
+==> slave-3: Adding debian:SwissSign_Platinum_CA_-_G2.pem
+==> slave-3: Adding debian:Entrust_Root_Certification_Authority.pem
+==> slave-3: Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
+==> slave-3: Adding debian:Baltimore_CyberTrust_Root.pem
+==> slave-3: Adding debian:Certigna.pem
+==> slave-3: Adding debian:Camerfirma_Global_Chambersign_Root.pem
+==> slave-3: Adding debian:Buypass_Class_3_Root_CA.pem
 ==> slave-3: Adding debian:AddTrust_Low-Value_Services_Root.pem
+==> slave-3: Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem
+==> slave-3: Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority_-_G3.pem
+==> slave-3: Adding debian:QuoVadis_Root_CA_2_G3.pem
+==> slave-3: Adding debian:SecureSign_RootCA11.pem
+==> slave-3: Adding debian:Security_Communication_RootCA2.pem
+==> slave-3: Adding debian:thawte_Primary_Root_CA.pem
+==> slave-3: Adding debian:Network_Solutions_Certificate_Authority.pem
+==> slave-3: Adding debian:Certinomis_-_Autorité_Racine.pem
+==> slave-3: Adding debian:StartCom_Certification_Authority_G2.pem
+==> slave-3: Adding debian:GeoTrust_Universal_CA_2.pem
+==> slave-3: Adding debian:CA_Disig_Root_R2.pem
+==> slave-3: Adding debian:GlobalSign_Root_CA_-_R3.pem
+==> slave-3: Adding debian:DigiCert_Assured_ID_Root_G3.pem
+==> slave-3: Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
+==> slave-3: Adding debian:Certification_Authority_of_WoSign_G2.pem
+==> slave-3: Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
+==> slave-3: Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
+==> slave-3: Adding debian:Swisscom_Root_CA_1.pem
+==> slave-3: Adding debian:QuoVadis_Root_CA_1_G3.pem
+==> slave-3: Adding debian:AddTrust_External_Root.pem
+==> slave-3: Adding debian:Staat_der_Nederlanden_EV_Root_CA.pem
+==> slave-3: Adding debian:StartCom_Certification_Authority_2.pem
+==> slave-3: Adding debian:StartCom_Certification_Authority.pem
+==> slave-3: Adding debian:Microsec_e-Szigno_Root_CA.pem
+==> slave-3: Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
+==> slave-3: Adding debian:COMODO_ECC_Certification_Authority.pem
 ==> slave-3: done.
 ==> slave-3: Processing triggers for libc-bin (2.23-0ubuntu5) ...
-==> slave-3: Processing triggers for systemd (229-4ubuntu13) ...
+==> slave-3: Processing triggers for systemd (229-4ubuntu16) ...
 ==> slave-3: Processing triggers for ureadahead (0.100.0-19) ...
 ==> slave-3: Processing triggers for ca-certificates (20160104ubuntu1) ...
 ==> slave-3: Updating certificates in /etc/ssl/certs...
@@ -669,6 +638,8 @@
 ==> slave-3: 10.0.0.5
 ==> slave-3: Running provisioner: shell...
     slave-3: Running: inline script
-==> slave-3: mesg: ttyname failed: 
+==> slave-3: mesg: 
+==> slave-3: ttyname failed
+==> slave-3: : 
 ==> slave-3: Inappropriate ioctl for device
 SUCCESS
