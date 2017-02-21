@@ -23,3 +23,6 @@ buildNumber.properties
 **/jobproxy_test.log
 **/jobproxy_test.pid
 **/jobproxy_touch.txt
+**/testing/logs/
+**.swp
+**/testing/**log_*
