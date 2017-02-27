@@ -130,6 +130,7 @@ where
 Vagrant is a handy tool which helps to setup "quasi"-real test environment for testing JobProxy's Modules.
 ### Installing requirements for Vagrant environment
 If you want to test JobProxy Modules you will need the following tools:
+
 | Tool | Installation command for ubuntu |
 | ------ | ------ |
 | VirtualBox | ``` $ sudo apt-get install virtualbox virtualbox-dkms ``` |
@@ -151,8 +152,8 @@ This script lets start all machines sequentally without configuration and perfor
 
 ### Example: JobProxyChronos
 ```sh
-$ cd JobProxyChronos/vagrant
+$ cd JobProxyChronos/testing
 $ ./parallel_provision.sh
 ```
 
-After the script is done you will get 1 Master node running ZooKepper and Chronos and 3 slave Mesos nodes. You'll also be able to access Mesos framework at http://10.0.0.2:5050 and Chronos Web GUI at http://10.0.0.2:8080  
+After the script is done you will get 1 Master node running ZooKepper and Chronos and 3 slave Mesos nodes. You'll also be able to access Mesos framework at http://10.0.0.2:5050 and Chronos Web GUI at http://10.0.0.2:8081  
