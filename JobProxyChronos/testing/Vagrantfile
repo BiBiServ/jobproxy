@@ -1,0 +1,44 @@
+#pass right locale to all boxes
+ENV["LC_ALL"] = "en_US.UTF-8"
+
+Vagrant.configure("2") do |config|
+
+#common options
+config.vm.box = "ubuntu/xenial64"
+
+config.hostmanager.enabled = true
+config.hostmanager.manage_host = true
+config.hostmanager.manage_guest = true
+config.hostmanager.ignore_private_ip = false
+#config.hostmanager.include_offline = true
+
+#mount mesos binaries
+config.vm.synced_folder "mesos_mount/", "/mesos"
+
+#create master
+  config.vm.define "master" do |master|
+    master.vm.network :private_network, ip: "10.0.0.2"
+    master.vm.hostname = "master"
+    master.vm.network "forwarded_port", guest: 5050, host: 5151
+    master.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+    end
+    master.vm.provision "shell",  inline: "/mesos/install_master.sh"
+    master.vm.provision "shell",  inline: "/mesos/start_master.sh"
+  end
+
+#create slaves
+  (1..3).each do |i|
+    config.vm.define "slave-#{i}" do |slave|
+      slave.vm.network :private_network, ip: "10.0.0.#{i+2}"
+      slave.vm.hostname = "slave-#{i}"
+      slave.vm.provider "virtualbox" do |v|
+        v.memory = 1024
+      end
+      slave.vm.provision "shell",  inline: "/mesos/install_slave.sh"
+      slave.vm.provision "shell",  inline: "/mesos/start_slave.sh 10.0.0.#{i+2}"
+    end
+  end
+
+end
+
