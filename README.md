@@ -57,6 +57,17 @@ Each module has its own version number e.g.: https://github.com/jkrue/jobproxy/b
  
 If the code is updated, the corresponding module version number must be updated. 
 
+## Model updates
+
+If you update the classes in the JobProxyModel, please make sure to update the swagger specification, by running:
+
+~~~BASH
+mvn swagger:generate
+~~~
+
+inside the JobProxyModel directory. This command will update the swagger.yaml inside the `doc/REST` directory.
+Then please update the documentation (see below `How to extend our REST documentation?`). 
+
 ### How to use jobProxy as a dependency?
 
 Just go to [this site](https://jitpack.io/#BiBiServ/jobproxy) and follow the instructions.

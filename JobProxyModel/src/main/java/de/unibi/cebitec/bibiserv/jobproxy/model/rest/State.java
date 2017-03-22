@@ -21,6 +21,9 @@ import de.unibi.cebitec.bibiserv.jobproxy.model.state.States;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,18 +35,16 @@ import org.slf4j.LoggerFactory;
  *  @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
 @Path("/v1/jobproxy/state")
+@Api()
 public class State {
 
     final Logger logger = LoggerFactory.getLogger(State.class);
 
-    /**
-     * Returns  the state of all tasks in machine readable format (either xml or json 
-     * depending on  request-header mime-type)
-     * 
-     * @return 
-     */
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @ApiOperation(value = "Returns  the state of all tasks.",
+            notes = "Returns  the state of all tasks in machine readable format (either xml or json \n" +
+                    "     * depending on  request-header mime-type)")
     public States stateGet(){
         States states = null;
         try {
@@ -55,16 +56,12 @@ public class State {
         return states;
     }
 
-    /**
-     * Returns the state of one task with given id in machine readable format.
-     * (either xml or json depending on  request-header mime-type)
-     *
-     * @param id of the task asked for
-     * @return
-     */
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @ApiOperation(value = "Returns the state of one task.",
+            notes = "Returns the state of one task with given id in machine readable format.\n" +
+                    "     * (either xml or json depending on  request-header mime-type)")
     public de.unibi.cebitec.bibiserv.jobproxy.model.state.State statePost(@PathParam("id")String id){
         de.unibi.cebitec.bibiserv.jobproxy.model.state.State state = null;
 

@@ -19,15 +19,15 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.rest;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.BadGatewayException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
@@ -37,6 +37,7 @@ import javax.ws.rs.core.Response;
  *  @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
 @Path("/v1/jobproxy/delete")
+@Api()
 public class Delete {
 
     final Logger logger = LoggerFactory.getLogger(State.class);
@@ -46,6 +47,8 @@ public class Delete {
 
     @DELETE
     @Path("/{id}")
+    @ApiOperation(value = "Delete a Task.",
+            notes = "Delete a Task.")
     public void delete(@PathParam("id")String id){
         try {
             JobProxyFactory.getFramework().delTask(id);
