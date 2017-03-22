@@ -49,6 +49,7 @@
         <module>JobProxyLocal</module>
         <module>JobProxyServerCLI</module>
         <module>JobProxyDRMAA</module>
+        <module>JobProxyKubernetes</module>
     </modules>
     <dependencies>
         <dependency>

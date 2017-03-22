@@ -38,6 +38,7 @@ usage example.
 * Mesos Chronos (https://mesos.github.io/chronos/) version 2.4.0
 * DRMAA (https://www.drmaa.org/) using DRMAA V1.0 API
 * JavaDocker (https://github.com/spotify/docker-client)
+* Kubernetes (https://kubernetes.io)
 
 ## Developer Guide
 
