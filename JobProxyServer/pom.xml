@@ -35,6 +35,11 @@
         </dependency>
         <dependency>
             <groupId>de.unibi.cebitec.bibiserv</groupId>
+            <artifactId>JobProxyKubernetes</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.unibi.cebitec.bibiserv</groupId>
             <artifactId>JobProxyLocal</artifactId>
             <version>${project.version}</version>
         </dependency>
