@@ -40,11 +40,11 @@ public class State {
 
     final Logger logger = LoggerFactory.getLogger(State.class);
 
-    @GET
-    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @ApiOperation(value = "Returns  the state of all tasks.",
             notes = "Returns  the state of all tasks in machine readable format (either xml or json \n" +
                     "     * depending on  request-header mime-type)")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public States stateGet(){
         States states = null;
         try {

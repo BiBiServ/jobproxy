@@ -1,12 +1,17 @@
 package de.unibi.cebitec.bibiserv.jobproxy.model.task;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "task")
 public class Task {
 
     @NotNull
