@@ -24,6 +24,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import io.swagger.annotations.*;
 
 /**
  * A simple class providing a simple ping
@@ -31,17 +32,16 @@ import java.util.Date;
  * @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
 @Path("/v1/jobproxy/ping")
+@Api()
 public class Ping {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(Ping.class);
 
-    /**
-     * Just a simple ping command.
-     * 
-     * @return 
-     */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
+    @ApiOperation(value = "Just a simple ping command.",
+            notes = "Just a simple ping command.",
+            response = String.class)
     public String ping(){
         LOGGER.info("Ping");
         return "alive ("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())+")";

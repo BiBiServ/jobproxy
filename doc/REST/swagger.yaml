@@ -1,159 +1,203 @@
-# this is an example of the Uber API
-# as a demonstration of an API spec in YAML
-swagger: '2.0'
+---
+swagger: "2.0"
 info:
-  title: JobProxy
-  description: JobProxy REST API for running task independent of the framework
-  version: "0.1.0.alpha.9"
-basePath: /v1
-# array of all schemes that your API supports
-schemes:
-  - http
-  - https
-produces:
-  - application/json
+  description: "JobProxy REST API for running task independent of the framework"
+  version: "0.1.0.beta.1.9"
+  title: "JobProxy"
+  termsOfService: "https://github.com/BiBiServ/jobproxy"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 paths:
-  /jobproxy/submit:
-    post:
-      summary: Tasks to be run
-      description: |
-        The submit endpoint accepts a task definition which is used to run
-        on a fraemwork.
-      parameters:
-        - name: "Task"
-          in: "body"
-          required: true
-          schema:
-            $ref: '#/definitions/Task'
-      consumes:
-        - application/json
-        - application/xml
-      responses:
-        200:
-          description: Accepted Task
-  /jobproxy/state/{id}:
-    get:
-      summary: Tasks state
-      description: |
-        The states endpoint accepts a task id.
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      consumes:
-        - application/json
-        - application/xml
-      responses:
-        200:
-          description: Accepted Task ID
-  /jobproxy/state:
-    get:
-      summary: Tasks states
-      description: |
-        Returns task states.
-      responses:
-        200:
-          description: Task IDs returned
-  /jobproxy/delete/{id}:
+  /v1/jobproxy/delete/{id}:
     delete:
-      summary: Delete a Task
-      description: |
-        The delete endpoint accepts a task id and deletes the corresponding task.
+      summary: "Delete a Task."
+      description: "Delete a Task."
+      operationId: "delete"
       parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      consumes:
-        - text/plain
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
       responses:
-        204:
-          description: Task is deleted
+        default:
+          description: "successful operation"
+  /v1/jobproxy/ping:
+    get:
+      summary: "Just a simple ping command."
+      description: "Just a simple ping command."
+      operationId: "ping"
+      produces:
+      - "text/plain"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
+  /v1/jobproxy/state:
+    get:
+      summary: "Returns  the state of all tasks."
+      description: "Returns  the state of all tasks in machine readable format (either\
+        \ xml or json \n     * depending on  request-header mime-type)"
+      operationId: "stateGet"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/States"
+  /v1/jobproxy/state/{id}:
+    get:
+      summary: "Returns the state of one task."
+      description: "Returns the state of one task with given id in machine readable\
+        \ format.\n     * (either xml or json depending on  request-header mime-type)"
+      operationId: "statePost"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/State"
+  /v1/jobproxy/submit:
+    post:
+      summary: "Submit a task"
+      description: "Submit a task"
+      operationId: "submit"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "text/plain"
+      parameters:
+      - in: "body"
+        name: "task"
+        required: false
+        schema:
+          $ref: "#/definitions/Task"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"
 definitions:
-  Task:
-    type: object
+  Mount:
+    type: "object"
     required:
-     - user
+    - "container"
+    - "host"
+    - "mode"
     properties:
-      user:
-        type: string
-        description: Task specification representing a specific Task a Framework should run.
-      cores:
-        type: number
-        description: Cores a Task should use.
-      memory:
-        type: number
-        description: Memory used by a task.
-      cputime:
-        type: number
-        description: Cpu time a task is allowed to use.
-      stdout:
-        type: string
-        description: Path to a file for stdout a task could produce.
-      stderr:
-        type: string
-        description: Path to a file for stderr a task could produce.
-      cmd:
-        type: string
-        description: A command specified for a task
+      host:
+        type: "string"
+        minLength: 1
+        maxLength: 2147483647
       container:
-        $ref: '#/definitions/Container'
-  Container:
-    description: Optional Docker container.
-    type: object
+        type: "string"
+        minLength: 1
+        maxLength: 2147483647
+      mode:
+        type: "string"
+        minLength: 1
+        maxLength: 2147483647
+  Port:
+    type: "object"
+    properties:
+      host:
+        type: "integer"
+        format: "int32"
+      container:
+        type: "integer"
+        format: "int32"
+  State:
+    type: "object"
     required:
-     - image
+    - "code"
+    - "id"
+    properties:
+      id:
+        type: "string"
+      code:
+        type: "string"
+      description:
+        type: "string"
+      stdout:
+        type: "string"
+      stderr:
+        type: "string"
+  States:
+    type: "object"
+    required:
+    - "state"
+    properties:
+      state:
+        type: "array"
+        items:
+          $ref: "#/definitions/State"
+  TContainer:
+    type: "object"
+    required:
+    - "image"
     properties:
       image:
-        type: string
-        description: Docker image specification
+        type: "string"
+        minLength: 1
+        maxLength: 2147483647
       ports:
-        $ref: '#/definitions/Ports'
-      volumes:
-        $ref: '#/definitions/Mounts'
-  Mounts:
-    description: Optional Volumes for Docker containers.
-    type: array
-    minItems: 1
-    items: 
-      $ref: '#/definitions/Mount'
-  Mount:
-    description: Optional Volumes for Docker containers.
-    type: object
+        type: "array"
+        items:
+          $ref: "#/definitions/TPorts"
+      mounts:
+        type: "array"
+        items:
+          $ref: "#/definitions/TMounts"
+  TMounts:
+    type: "object"
     required:
-     - host
-     - container
-     - mode
+    - "mount"
     properties:
-      host:
-        type: string
-        description: Path to a file or directory on the host system
-      container:
-        type: string
-        description: Path to a file or directory inside the container
-      mode:
-        type: string
-        enum: ["RW", "RO"]
-        description: Mound file or directory writeable (RW) or readonly (RO)
-  Ports:
-    description: Ports container could shoult map to the host system.
-    type: object
+      mount:
+        $ref: "#/definitions/Mount"
+  TPorts:
+    type: "object"
     required:
-      - port
+    - "port"
     properties:
       port:
-        $ref: '#/definitions/Port'
-  Port:
-    description: Port of the host and the container system.
-    type: object
+        $ref: "#/definitions/Port"
+  Task:
+    type: "object"
     required:
-      - host
-      - container
+    - "user"
     properties:
-      host:
-        type: number
-        description: Port of the host system.
+      user:
+        type: "string"
+        minLength: 1
+        maxLength: 2147483647
+      cores:
+        type: "integer"
+        format: "int32"
+      memory:
+        type: "integer"
+        format: "int32"
+      cputime:
+        type: "integer"
+        format: "int32"
+      stdout:
+        type: "string"
+      stderr:
+        type: "string"
+      cmd:
+        type: "string"
       container:
-        type: number
-        description: Port of the container.
+        $ref: "#/definitions/TContainer"

@@ -20,7 +20,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.unibi.cebitec.bibiserv.jobproxy.model.JobProxyFactory;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.BadGatewayException;
 import de.unibi.cebitec.bibiserv.jobproxy.model.exceptions.FrameworkException;
-import de.unibi.cebitec.bibiserv.jobproxy.model.task.Task;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +40,7 @@ import javax.ws.rs.core.Response;
  *  @author Jan Krueger - jkrueger(at)cebitec.uni-bielefeld.de
  */
 @Path("/v1/jobproxy/submit")
+@Api()
 public class Submit {
     
     private final static Logger LOGGER = LoggerFactory.getLogger(Submit.class);
@@ -48,7 +51,9 @@ public class Submit {
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces(MediaType.TEXT_PLAIN)
-    public String submit(@Valid Task task){
+    @ApiOperation(value = "Submit a task",
+            notes = "Submit a task")
+    public String submit(@Valid @ApiParam(name = "task") de.unibi.cebitec.bibiserv.jobproxy.model.task.Task task){
         try {
             ObjectMapper mapper = new ObjectMapper();
             LOGGER.info(String.format("Submitted task %s ", mapper.writerWithDefaultPrettyPrinter().writeValueAsString(task)));

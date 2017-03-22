@@ -37,10 +37,20 @@ public class TaskTest {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<Task>> errors = validator.validate(task);
-        assertTrue(errors.size() == 2);
-        assertTrue(errors.stream().filter(error -> error.getMessage().equals(Misc.EMPTY_ERROR_MESSAGE)).findAny().isPresent());
+        assertTrue(errors.size() == 1);
         assertTrue(errors.stream().filter(error -> error.getMessage().equals(Misc.NULL_ERROR_MESSAGE)).findAny().isPresent());
     }
 
-   
+    @Test
+    public void taskRequiresNotEmptyUser(){
+        Task task = new Task();
+        task.setUser("");
+        task.setCmd(DummyFramework.TASK_CMD);
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Task>> errors = validator.validate(task);
+        assertTrue(errors.size() == 1);
+        assertTrue(errors.stream().filter(error -> error.getMessage().contains(Misc.MIN_ERROR_MESSAGE)).findAny().isPresent());
+    }
 }

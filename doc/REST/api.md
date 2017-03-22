@@ -7,17 +7,13 @@ JobProxy REST API for running task independent of the framework
 
 
 ### Version information
-*Version* : 0.1.0.alpha.9
+*Version* : 0.1.0.beta.1.9
 
 
-### URI scheme
-*BasePath* : /v1  
-*Schemes* : HTTP, HTTPS
-
-
-### Produces
-
-* `application/json`
+### License information
+*License* : Apache 2.0  
+*License URL* : http://www.apache.org/licenses/LICENSE-2.0.html  
+*Terms of service* : https://github.com/BiBiServ/jobproxy
 
 
 
@@ -25,15 +21,15 @@ JobProxy REST API for running task independent of the framework
 <a name="paths"></a>
 ## Paths
 
-<a name="jobproxy-delete-id-delete"></a>
-### Delete a Task
+<a name="delete"></a>
+### Delete a Task.
 ```
-DELETE /jobproxy/delete/{id}
+DELETE /v1/jobproxy/delete/{id}
 ```
 
 
 #### Description
-The delete endpoint accepts a task id and deletes the corresponding task.
+Delete a Task.
 
 
 #### Parameters
@@ -47,41 +43,67 @@ The delete endpoint accepts a task id and deletes the corresponding task.
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**204**|Task is deleted|No Content|
+|**default**|successful operation|No Content|
 
 
-#### Consumes
+<a name="ping"></a>
+### Just a simple ping command.
+```
+GET /v1/jobproxy/ping
+```
+
+
+#### Description
+Just a simple ping command.
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|successful operation|string|
+
+
+#### Produces
 
 * `text/plain`
 
 
-<a name="jobproxy-state-get"></a>
-### Tasks states
+<a name="stateget"></a>
+### Returns  the state of all tasks.
 ```
-GET /jobproxy/state
+GET /v1/jobproxy/state
 ```
 
 
 #### Description
-Returns task states.
+Returns  the state of all tasks in machine readable format (either xml or json 
+     * depending on  request-header mime-type)
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Task IDs returned|No Content|
+|**200**|successful operation|[States](#states)|
 
 
-<a name="jobproxy-state-id-get"></a>
-### Tasks state
+#### Produces
+
+* `application/json`
+* `application/xml`
+
+
+<a name="statepost"></a>
+### Returns the state of one task.
 ```
-GET /jobproxy/state/{id}
+GET /v1/jobproxy/state/{id}
 ```
 
 
 #### Description
-The states endpoint accepts a task id.
+Returns the state of one task with given id in machine readable format.
+     * (either xml or json depending on  request-header mime-type)
 
 
 #### Parameters
@@ -95,45 +117,49 @@ The states endpoint accepts a task id.
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Accepted Task ID|No Content|
+|**200**|successful operation|[State](#state)|
 
 
-#### Consumes
+#### Produces
 
 * `application/json`
 * `application/xml`
 
 
-<a name="jobproxy-submit-post"></a>
-### Tasks to be run
+<a name="submit"></a>
+### Submit a task
 ```
-POST /jobproxy/submit
+POST /v1/jobproxy/submit
 ```
 
 
 #### Description
-The submit endpoint accepts a task definition which is used to run
-on a fraemwork.
+Submit a task
 
 
 #### Parameters
 
 |Type|Name|Schema|
 |---|---|---|
-|**Body**|**Task**  <br>*required*|[Task](#task)|
+|**Body**|**task**  <br>*optional*|[Task](#task)|
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Accepted Task|No Content|
+|**200**|successful operation|string|
 
 
 #### Consumes
 
 * `application/json`
 * `application/xml`
+
+
+#### Produces
+
+* `text/plain`
 
 
 
@@ -141,52 +167,65 @@ on a fraemwork.
 <a name="definitions"></a>
 ## Definitions
 
-<a name="container"></a>
-### Container
-Optional Docker container.
-
-
-|Name|Description|Schema|
-|---|---|---|
-|**image**  <br>*required*|Docker image specification|string|
-|**ports**  <br>*optional*||[Ports](#ports)|
-|**volumes**  <br>*optional*||[Mounts](#mounts)|
-
-
 <a name="mount"></a>
 ### Mount
-Optional Volumes for Docker containers.
-
 
 |Name|Description|Schema|
 |---|---|---|
-|**container**  <br>*required*|Path to a file or directory inside the container|string|
-|**host**  <br>*required*|Path to a file or directory on the host system|string|
-|**mode**  <br>*required*|Mound file or directory writeable (RW) or readonly (RO)|enum (RW, RO)|
-
-
-<a name="mounts"></a>
-### Mounts
-Optional Volumes for Docker containers.
-
-*Type* : < [Mount](#mount) > array
+|**container**  <br>*required*|**Length** : `1 - 2147483647`|string|
+|**host**  <br>*required*|**Length** : `1 - 2147483647`|string|
+|**mode**  <br>*required*|**Length** : `1 - 2147483647`|string|
 
 
 <a name="port"></a>
 ### Port
-Port of the host and the container system.
 
+|Name|Schema|
+|---|---|
+|**container**  <br>*optional*|integer(int32)|
+|**host**  <br>*optional*|integer(int32)|
+
+
+<a name="state"></a>
+### State
+
+|Name|Schema|
+|---|---|
+|**code**  <br>*required*|string|
+|**description**  <br>*optional*|string|
+|**id**  <br>*required*|string|
+|**stderr**  <br>*optional*|string|
+|**stdout**  <br>*optional*|string|
+
+
+<a name="states"></a>
+### States
+
+|Name|Schema|
+|---|---|
+|**state**  <br>*required*|< [State](#state) > array|
+
+
+<a name="tcontainer"></a>
+### TContainer
 
 |Name|Description|Schema|
 |---|---|---|
-|**container**  <br>*required*|Port of the container.|number|
-|**host**  <br>*required*|Port of the host system.|number|
+|**image**  <br>*required*|**Length** : `1 - 2147483647`|string|
+|**mounts**  <br>*optional*||< [TMounts](#tmounts) > array|
+|**ports**  <br>*optional*||< [TPorts](#tports) > array|
 
 
-<a name="ports"></a>
-### Ports
-Ports container could shoult map to the host system.
+<a name="tmounts"></a>
+### TMounts
 
+|Name|Schema|
+|---|---|
+|**mount**  <br>*required*|[Mount](#mount)|
+
+
+<a name="tports"></a>
+### TPorts
 
 |Name|Schema|
 |---|---|
@@ -198,14 +237,14 @@ Ports container could shoult map to the host system.
 
 |Name|Description|Schema|
 |---|---|---|
-|**cmd**  <br>*optional*|A command specified for a task|string|
-|**container**  <br>*optional*||[Container](#container)|
-|**cores**  <br>*optional*|Cores a Task should use.|number|
-|**cputime**  <br>*optional*|Cpu time a task is allowed to use.|number|
-|**memory**  <br>*optional*|Memory used by a task.|number|
-|**stderr**  <br>*optional*|Path to a file for stderr a task could produce.|string|
-|**stdout**  <br>*optional*|Path to a file for stdout a task could produce.|string|
-|**user**  <br>*required*|Task specification representing a specific Task a Framework should run.|string|
+|**cmd**  <br>*optional*||string|
+|**container**  <br>*optional*||[TContainer](#tcontainer)|
+|**cores**  <br>*optional*||integer(int32)|
+|**cputime**  <br>*optional*||integer(int32)|
+|**memory**  <br>*optional*||integer(int32)|
+|**stderr**  <br>*optional*||string|
+|**stdout**  <br>*optional*||string|
+|**user**  <br>*required*|**Length** : `1 - 2147483647`|string|
 
 
 
