@@ -61,7 +61,7 @@ public class MountTest {
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<TMounts.Mount>> errors = validator.validate(mount);
         assertTrue(errors.size() == 1);
-        assertTrue(errors.stream().filter(error -> error.getMessage().equals(Misc.EMPTY_ERROR_MESSAGE)).findAny().isPresent());
+        assertTrue(errors.stream().filter(error -> error.getMessage().equals(Misc.NULL_ERROR_MESSAGE)).findAny().isPresent());
 
     }
 

@@ -23,9 +23,19 @@ public class ContainerTest{
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<TContainer>> errors = validator.validate(container);
-        assertTrue(errors.size() == 2);
-        assertTrue(errors.stream().filter(error -> error.getMessage().equals(Misc.EMPTY_ERROR_MESSAGE)).findAny().isPresent());
+        assertTrue(errors.size() == 1);
         assertTrue(errors.stream().filter(error -> error.getMessage().equals(Misc.NULL_ERROR_MESSAGE)).findAny().isPresent());
+    }
+
+    @Test
+    public void containerImageNotEmpty(){
+        TContainer container = new TContainer();
+        container.setImage("");
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<TContainer>> errors = validator.validate(container);
+        assertTrue(errors.size() == 1);
+        assertTrue(errors.stream().filter(error -> error.getMessage().contains(Misc.MIN_ERROR_MESSAGE)).findAny().isPresent());
     }
 
     @Test

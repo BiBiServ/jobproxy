@@ -2,6 +2,7 @@ package de.unibi.cebitec.bibiserv.jobproxy.model.task;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -45,14 +46,17 @@ public class TMounts {
     public static class Mount {
 
         @Size(min=1)
+        @NotNull
         @ApiModelProperty(required = true)
         protected String host;
 
         @Size(min=1)
+        @NotNull
         @ApiModelProperty(required = true)
         protected String container;
 
         @Size(min=1)
+        @NotNull
         @ApiModelProperty(required = true)
         private String mode;
 
