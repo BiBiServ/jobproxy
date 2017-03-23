@@ -4,6 +4,9 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,8 @@ import java.util.List;
  * Container description
  *
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "tcontainer")
 public class TContainer {
 
     @Size(min = 1)
