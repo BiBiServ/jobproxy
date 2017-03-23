@@ -203,7 +203,7 @@ Submit a task
 
 |Name|Schema|
 |---|---|
-|**state**  <br>*required*|< [State](#state) > array|
+|**state**  <br>*optional*|< [State](#state) > array|
 
 
 <a name="tcontainer"></a>
