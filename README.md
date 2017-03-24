@@ -101,11 +101,11 @@ latest REST API [documentation](doc/REST/api.md).
 
 #### How to extend our REST documentation?
 
-We are generating markup out of our swagger yaml by using the [swagger2markup-cli](http://swagger2markup.github.io/swagger2markup/1.0.1-SNAPSHOT/#_command_line_interface) tool.
+We are generating markup out of our swagger yaml by using the [swagger2markup-cli](https://bintray.com/swagger2markup/Maven/download_file?file_path=io%2Fgithub%2Fswagger2markup%2Fswagger2markup-cli%2F1.3.1%2Fswagger2markup-cli-1.3.1.jar) tool.
 With the following command:
 
 ~~~BASH
-java -jar swagger2markup-cli-1.0.0.jar convert -c config.properties -i swagger.yaml -f doc.md
+java -jar swagger2markup-cli-1.3.1.jar convert -c config.properties -i swagger.yaml -f api
 ~~~
 
 where

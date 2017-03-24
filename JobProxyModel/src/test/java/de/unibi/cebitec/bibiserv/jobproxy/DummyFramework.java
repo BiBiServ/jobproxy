@@ -24,7 +24,7 @@ public class DummyFramework extends JobProxyInterface {
     public static String STATE_CODE = "0";
 
     public static String TASK_ID = "taskid";
-    public static String TASK_CMD = "cmd";
+    public static String[] TASK_CMD = {"/bin/echo", "HelloWorld"};
     public static String TASK_USER = "user";
 
     public static String CONTAINER_IMAGE = "image";

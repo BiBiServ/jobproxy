@@ -32,7 +32,7 @@ public class Task {
 
     protected String stderr;
 
-    protected String cmd;
+    protected String[] cmd;
 
     @Valid
     protected TContainer container;
@@ -189,7 +189,7 @@ public class Task {
      *     {@link String }
      *     
      */
-    public String getCmd() {
+    public String[] getCmd() {
         return cmd;
     }
 
@@ -201,7 +201,7 @@ public class Task {
      *     {@link String }
      *     
      */
-    public void setCmd(String value) {
+    public void setCmd(String[] value) {
         this.cmd = value;
     }
 
