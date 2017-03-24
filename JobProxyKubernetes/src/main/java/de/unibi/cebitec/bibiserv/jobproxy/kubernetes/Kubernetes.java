@@ -68,7 +68,7 @@ public class Kubernetes extends JobProxyInterface {
                 .addToRequests("memory", new Quantity(t.getMemory().toString()))
                 .endResources()
                 .withImage(t.getContainer().getImage())
-                .withCommand(t.getCmd().split(" "))
+                .withCommand(t.getCmd())
                 .withVolumeMounts(containerVolumes).build();
 
         ObjectMeta meta = new ObjectMetaBuilder().withNamespace(KUBERNETES_NAMESPACE).withName(containerUUID).build();
@@ -94,7 +94,7 @@ public class Kubernetes extends JobProxyInterface {
                 .addToLimits("cpu", new Quantity("1"))
                 .addToRequests("memory", new Quantity("200"))
                 .endResources()
-                .withCommand(t.getCmd().split(" ")).build();
+                .withCommand(t.getCmd()).build();
 
         ObjectMeta meta = new ObjectMetaBuilder().withNamespace(KUBERNETES_NAMESPACE).withName(containerUUID).build();
 

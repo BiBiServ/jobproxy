@@ -138,8 +138,8 @@ public class DRMAA extends JobProxyInterface {
 
             // set remote command
             if (t.getContainer() == null) {
-                if (t.getCmd() != null && !t.getCmd().isEmpty()) {
-                    jobTemplate.setRemoteCommand(t.getCmd());
+                if (t.getCmd() != null && t.getCmd().length != 0) {
+                    jobTemplate.setRemoteCommand(String.join(" ", t.getCmd()));
                 } else {
                     throw new FrameworkException("CMD attribute must not be 'null' or empty!");
                 }
@@ -182,8 +182,8 @@ public class DRMAA extends JobProxyInterface {
                 }
                 
                 dockercmd.append(container.getImage()).append(" ");
-                if (t.getCmd() != null && !t.getCmd().isEmpty()) {
-                    dockercmd.append(t.getCmd());
+                if (t.getCmd() != null && t.getCmd().length != 0) {
+                    dockercmd.append(String.join(" ", t.getCmd()));
                 }
                 
                 // log dockercmd string
