@@ -62,7 +62,7 @@ public class Local extends JobProxyInterface {
 
             ContainerCreation container = dockerClient.createContainer(ContainerConfig.builder()
                     .image(task.getContainer().getImage())
-                    .cmd(task.getCmd().split(" "))
+                    .cmd(task.getCmd())
                     .hostConfig(hostConfigBuild)
                     .attachStdout(true)
                     .build());
@@ -83,7 +83,7 @@ public class Local extends JobProxyInterface {
 
     private String handleLocalCommand(Task task) throws FrameworkException {
         try {
-            Runtime.getRuntime().exec(task.getCmd());
+            Runtime.getRuntime().exec(String.join(" ", task.getCmd()));
         } catch (IOException e) {
             e.printStackTrace();
             throw new FrameworkException(e.getMessage());
