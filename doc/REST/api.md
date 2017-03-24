@@ -182,8 +182,8 @@ Submit a task
 
 |Name|Schema|
 |---|---|
-|**container**  <br>*optional*|integer(int32)|
-|**host**  <br>*optional*|integer(int32)|
+|**container**  <br>*optional*|integer (int32)|
+|**host**  <br>*optional*|integer (int32)|
 
 
 <a name="state"></a>
@@ -203,7 +203,7 @@ Submit a task
 
 |Name|Schema|
 |---|---|
-|**state**  <br>*required*|< [State](#state) > array|
+|**state**  <br>*optional*|< [State](#state) > array|
 
 
 <a name="tcontainer"></a>
@@ -237,11 +237,11 @@ Submit a task
 
 |Name|Description|Schema|
 |---|---|---|
-|**cmd**  <br>*optional*||string|
+|**cmd**  <br>*optional*||< string > array|
 |**container**  <br>*optional*||[TContainer](#tcontainer)|
-|**cores**  <br>*optional*||integer(int32)|
-|**cputime**  <br>*optional*||integer(int32)|
-|**memory**  <br>*optional*||integer(int32)|
+|**cores**  <br>*optional*||integer (int32)|
+|**cputime**  <br>*optional*||integer (int32)|
+|**memory**  <br>*optional*||integer (int32)|
 |**stderr**  <br>*optional*||string|
 |**stdout**  <br>*optional*||string|
 |**user**  <br>*required*|**Length** : `1 - 2147483647`|string|

@@ -135,15 +135,17 @@ definitions:
         type: "string"
       stderr:
         type: "string"
+    xml:
+      name: "state"
   States:
     type: "object"
-    required:
-    - "state"
     properties:
       state:
         type: "array"
         items:
           $ref: "#/definitions/State"
+    xml:
+      name: "states"
   TContainer:
     type: "object"
     required:
@@ -198,6 +200,10 @@ definitions:
       stderr:
         type: "string"
       cmd:
-        type: "string"
+        type: "array"
+        items:
+          type: "string"
       container:
         $ref: "#/definitions/TContainer"
+    xml:
+      name: "task"
