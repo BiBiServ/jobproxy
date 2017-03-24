@@ -109,7 +109,7 @@ public class Chronos extends JobProxyInterface {
 
         jc.setName(UUID.randomUUID().toString()); // should be a unique task name
         jc.setOwnerName(t.getUser());
-        jc.setCommand(t.getCmd());
+        jc.setCommand(String.join(" ", t.getCmd()));
 
         // Container
         if (t.getContainer() != null) {
