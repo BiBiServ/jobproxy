@@ -91,8 +91,10 @@ public class Kubernetes extends JobProxyInterface {
                 .withName(containerUUID)
                 .withImage(DEFAULT_IMAGE)
                 .withNewResources()
-                .addToLimits("cpu", new Quantity("1"))
-                .addToRequests("memory", new Quantity("200"))
+                .addToLimits("cpu", new Quantity(t.getCores().toString()))
+                .addToLimits("memory", new Quantity(t.getMemory().toString()))
+                .addToRequests("cpu", new Quantity(t.getCores().toString()))
+                .addToRequests("memory", new Quantity(t.getMemory().toString()))
                 .endResources()
                 .withCommand(t.getCmd()).build();
 
