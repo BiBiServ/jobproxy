@@ -59,7 +59,7 @@ public class Local extends JobProxyInterface {
         String id = null;
 
         try {
-
+            dockerClient.pull(task.getContainer().getImage());
             ContainerCreation container = dockerClient.createContainer(ContainerConfig.builder()
                     .image(task.getContainer().getImage())
                     .cmd(task.getCmd().split(" "))
